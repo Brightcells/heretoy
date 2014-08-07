@@ -1,0 +1,182 @@
+/* For a link/href */
+a:link {
+    text-decoration: none;
+}
+a:active {
+    text-decoration: blink;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    text-decoration: none;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font: normal 14px/1.5 Tahoma,Helvetica,arial,sans-serif
+ }
+
+.warp {
+    width: 300px;
+    margin: auto;
+}
+
+.header {
+    height: 50px;
+    margin-bottom: 20px;
+    background-color: #14fa1c;
+
+}
+
+.logo {
+    float: left;
+}
+
+.countDown {
+    float: left;
+    padding-top: 15px;
+}
+
+.shitPanel {
+    float:  right;
+}
+
+.scorePanel {
+    float: right;
+    padding-top: 15px;
+}
+
+.shitLogo {
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+}
+
+.highestScore {
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+
+.score {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.gamePanel {
+}
+
+.myCanvas {
+    border: 1px solid #c3c3c3;
+}
+
+.speed {
+    display: none;
+}
+
+.start_button, .control_button {
+    width: 80px;
+    height: 30px;
+    margin: 30px 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.hidden>img {
+    width: 17px;
+    height: 17px;
+}
+
+.footer {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: grey;
+}
+
+
+.home-header {
+    margin-bottom: 30px;
+}
+
+.photo_input, .name_input {
+    width: 150px;
+    height: 25px;
+    font-size: 15px;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.photo_input {
+    margin: 5px 0 5px 0;
+}
+
+.name_input {
+    margin: 5px 0 25px 0;
+}
+
+.photo {
+    width: 40px;
+    height: 40px;
+    margin: 0 0 25px 0;
+}
+
+.summit-photo {
+    width: 150px;
+    height: 25px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.start {
+    margin: 50px;
+}
+
+.start-game {
+    padding: 10px 43px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+
+.share {
+    display: none;
+    width: 232px;
+    margin: auto;
+    height: 350px;
+    padding: 20px;
+    position: relative;
+    top: -400px;
+    background-color: grey;
+}
+
+.achieve {
+    width: 200px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.red {
+    color: red;
+}
+
+.once_more {
+    width: 200px;
+    height: 30px;
+    margin: 30px 0;
+    font-size: 15px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

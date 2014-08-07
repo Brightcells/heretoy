@@ -1,0 +1,7 @@
+*.db
+*.pyc
+*.swp
+*media*
+*.sqlite3
+local_settings.py
+local_urls.py
