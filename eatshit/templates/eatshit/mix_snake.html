@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>HTML5 -- 贪吃翔</title>
+        <title>贪吃翔</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
         <meta name="description" content="">
@@ -34,14 +34,14 @@
             </div>
         </div>
 
-        <div class="warp">
+        <div id="warp" class="warp">
             <div id="gamePanel" class="gamePanel" tabindex="0">
                 <canvas id="myCanvas" class="myCanvas" width="300" height="300">
                     Your browser does not support the canvas element.
                 </canvas>
             </div>
 
-            <div id="controlPanel">
+            <div id="controlPanel" class=" hidden">
                 <select id="speed" class="speed">
                     <option>1</option>
                     <option>2</option>
@@ -57,7 +57,7 @@
                 <button id="control" class="control_button" onclick="control(this)" disabled="true">暂停</button>
             </div>
 
-            <div id="foter" class="footer">
+            <div id="footer" class="footer">
                 <p>Power by HereToy</p>
             </div>
 
@@ -65,34 +65,95 @@
                 {% ifequal photo_data '' %}
                     <img id="photo" src="{% static 'eatshit/img/photo/wq.png' %}" />
                 {% else %}
-                    <img id="photo" src="{{ photo_data.image }}" />
+			{% ifequal photo_data.image '' %}
+			    <img id="photo" src="{% static 'eatshit/img/photo/wq.png' %}" />
+			{% else %}
+			    <img id="photo" src="{{ photo_data.image }}" />
+			{% endifequal %}
                 {% endifequal %}
                 <img id="shit" src="" />
             </div>
         </div>
 
         <div id="share" class="share">
-            <div class="achieve">
+            <div id="achieve" class="achieve">
                 {% ifequal photo_data '' %}{% else %}<span class="red">{{ photo_data.name }}</span>{% endifequal %}同学，恭喜您！在疯狂吃翔游戏中，您疯狂的吃掉了<span id="shitNum" class="red"></span>坨翔翔，击败了<span id="rank" class="red"></span>%的同学，英勇的获得<span id="title" class="red"></span>称号！！！
             </div>
             <div>
-                <button id="once_more" class="once_more" onclick="once_more(this)">再来一次</button>
-            </div>
-            <div class="bdsharebuttonbox" data-tag="share_1">
-                <a class="bds_mshare" data-cmd="mshare"></a>
-                <a class="bds_qzone" data-cmd="qzone" href="#"></a>
-                <a class="bds_tsina" data-cmd="tsina"></a>
-                <a class="bds_baidu" data-cmd="baidu"></a>
-                <a class="bds_renren" data-cmd="renren"></a>
-                <a class="bds_tqq" data-cmd="tqq"></a>
-                <a class="bds_more" data-cmd="more">更多</a>
-                <a class="bds_count" data-cmd="count"></a>
+                <button id="once_more" class="once_more" onclick="once_more(this)">再来一顿</button>
+                <button id="share_friend" class="share_friend" onclick="share_friend(this)">通知好友</button>
             </div>
         </div>
 
         <script src="{% static 'eatshit/js/hammer.min.js' %}"></script>
         <script src="{% static 'eatshit/js/mix_snake.js' %}"></script>
         <script language="JavaScript">
+		function findDimensions() {  // 函数：获取尺寸
+		     //获取窗口宽度
+		     if (window.innerWidth)
+			winWidth = window.innerWidth;
+		     else if ((document.body) && (document.body.clientWidth))
+			winWidth = document.body.clientWidth;
+
+		     // 获取窗口高度
+		     if (window.innerHeight)
+			winHeight = window.innerHeight;
+		     else if ((document.body) && (document.body.clientHeight))
+			winHeight = document.body.clientHeight;
+
+		     // 通过深入Document内部对body进行检测，获取窗口大小
+		     if (document.documentElement  && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+			winHeight = document.documentElement.clientHeight;
+			winWidth = document.documentElement.clientWidth;
+		     }
+
+		     return {
+			width: winWidth,
+			height: winHeight
+		     }
+		}
+
+
+            var widthNum = 0,
+                heightNum = 0,
+                achieve = '',
+                threeCount = 0;
+            var btn = document.getElementById("start"),
+                startBtn = document.getElementById("control");
+
+            function threeCountDown() {
+                if(threeCount < 3) {
+                    threeCount += 1;
+                } else {
+                    threeCount = 0;
+                    clearInterval(tcd);
+                    control(btn);
+                }
+            }
+
+
+            (function() {
+                function preventDefault(ev) {
+                    ev.preventDefault()
+                }
+
+                document.addEventListener('touchmove', preventDefault, false);
+
+                var size = findDimensions(),
+                    width = height = 25;
+
+                widthNum = Math.floor((size.width-30)/width);
+                heightNum = Math.floor((size.height-120)/height);
+
+                document.styleSheets[0].rules[5].style.width = String(width * widthNum) + "px";
+                document.getElementById("myCanvas").width = width * widthNum;
+                document.getElementById("myCanvas").height = height * heightNum;
+            })();
+
+
+
+
+
             var shitNum = 4,
                 shitId = Math.floor(Math.random() * shitNum),
                 shitUrl = "/static/" + "eatshit/img/shit/" + String(shitId) + ".jpg";
@@ -102,12 +163,11 @@
             var gameMrg = new Ga1900("myCanvas");
             function startGame(startBtn) {
                 /*var step = document.getElementById("speed").value;*/
-                var step = 5;
-                document.getElementById("leftTime").innerHTML = 180;
+                var step = 4;
+                document.getElementById("leftTime").innerHTML = 60;
                 gameMrg.startGame(step);
                 document.getElementById("gamePanel").focus();
                 pause = true;
-                var btn = document.getElementById("control");
                 btn.innerHTML = "暂停";
                 btn.disabled = false;
             }
@@ -129,23 +189,18 @@
                 document.getElementById("share").style.display = "none";
                 var startBtn = document.getElementById("start");
                 startGame(startBtn);
+                control(btn);
+                tcd = setInterval(threeCountDown, 1000);
             }
-        </script>
+            function share_friend(sfBtn) {
+                url = "{% url 'eatshit:share' %}?achieve={{ photo_data.name|default:'' }}" + achieve;
+                location.href = url;
+            }
 
-        <script>
-            window._bd_share_config = {
-                common: {
-                    bdText : '我刚刚玩了这个游戏，吃翔翔达人，很赞的哦~',
-                    bdUrl : 'http://www.heretoy.com/eatshit/',
-                    bdSnsKey: {},
-                    bdMini: "2",
-                    bdMiniList: false,
-                    bdStyle: "0",
-                    bdSize: "20"
-                },
-                share: {}
-            };
-            with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+
+            startGame(startBtn);
+            control(btn);
+            tcd = setInterval(threeCountDown, 1000);
         </script>
     </body>
 </html>

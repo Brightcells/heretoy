@@ -26,8 +26,8 @@ class PhotoInfoModelForm(ModelForm):
         include = ('image', 'name')
 
     def clean(self):
-        image = self.cleaned_data['image']
-        if not image:
-            raise forms.ValidationError(_('Must uploda an image or input an image\'s url'))
+        name = self.cleaned_data['name']
+        if not name:
+            raise forms.ValidationError(_('Must input name'))
         else:
             return self.cleaned_data

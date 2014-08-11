@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>HTML5 -- 贪吃翔</title>
+        <title>贪吃翔</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
         <meta name="description" content="">
@@ -30,61 +30,9 @@
                     <div><img class="photo" src={{ photo_data.image }} /></div>
                     <span>上传吃翔翔的好友名字</span>
                     <div>{{ form.name }}</div>
-                    <div><button type="submit" class="btn btn-control summit-photo">上传</button></div>
+                    <div><button type="submit" class="btn btn-control summit-photo">开始游戏</button></div>
                 </form>
             </div>
-
-            <div class="start">
-                {% ifequal photo_data '' %}
-                    <a class="start-game" href="{% url 'eatshit:eatshit' %}">开始游戏</a>
-                {% else %}
-                    <a class="start-game" href="{% url 'eatshit:eatshit' photo_data.pk %}">开始游戏</a>
-                {% endifequal %}
-            </div>
-
-            <div id="foter" class="footer">
-                <p>Power by HereToy</p>
-            </div>
-
-            <div id="hidden" class="hidden">
-                <img id="photo" src="{% static 'eatshit/img/photo/wq.png' %}" />
-                <img id="shit" src="" />
-            </div>
         </div>
-
-        <script src="{% static 'eatshit/js/hammer.min.js' %}"></script>
-        <script src="{% static 'eatshit/js/mix_snake.js' %}"></script>
-        <script language="JavaScript">
-            var shitNum = 4,
-                shitId = Math.floor(Math.random() * shitNum),
-                shitUrl = "/static/" + "eatshit/img/shit/" + String(shitId) + ".jpg";
-            document.getElementById("shit").src = shitUrl;
-            document.getElementById("shitLogo").src = shitUrl;
-
-            var gameMrg = new Ga1900("myCanvas");
-            function startGame(startBtn){
-                /*var step = document.getElementById("speed").value;*/
-                var step = 5;
-                gameMrg.startGame(step);
-                document.getElementById("gamePanel").focus();
-                pause = true;
-                var btn = document.getElementById("control");
-                btn.innerHTML = "暂停";
-                btn.disabled = false;
-            }
-
-            var pause = true;
-            function control(btn){
-                if (pause) {
-                    gameMrg.pause();
-                    btn.innerHTML = "继续";
-                } else {
-                    gameMrg.goon();
-                    btn.innerHTML = "暂停";
-                    document.getElementById("gamePanel").focus();
-                }
-                pause = !pause;
-            }
-        </script>
     </body>
 </html>

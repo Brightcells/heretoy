@@ -23,8 +23,8 @@ function Black(money, card) {
 }
 
 function n97() {
-    var initX = 10;
-    var initY = 10;
+    var initX = Math.floor(widthNum/2);
+    var initY = Math.floor(heightNum/2);
     var SIZE = 20;
 
     this.nokia6700 = new Array();
@@ -43,14 +43,14 @@ function n97() {
         this.nokia5230.length = 0;
         this.nokia6700.length = 0;
 
-        for(i = 0; i <= SIZE + 1; i++ ) {
+        for(i = 0; i <= widthNum + 1; i++ ) {
             this.nokia5230[i] = new Array();
         }
-        for (i = 0; i <= SIZE + 1; i++) {
+        for (i = 0; i <= widthNum + 1; i++) {
             this.nokia5230[i][0] = 1;
-            this.nokia5230[SIZE + 1][i] = 1;
+            this.nokia5230[widthNum + 1][i] = 1;
             this.nokia5230[0][i] = 1;
-            this.nokia5230[i][SIZE + 1] = 1;
+            this.nokia5230[i][heightNum + 1] = 1;
         }
         /*for (i = 5; i <= initX; i++) {*/
         /*for (i = 5; i < initX; i++) {
@@ -176,8 +176,8 @@ function n97() {
 
     this.productFood = function() {
         do {
-            var x = Math.round(Math.random() * 100 % SIZE);
-            var y = Math.round(Math.random() * 100 % SIZE);
+            var x = Math.round(Math.random() * 100 % widthNum);
+            var y = Math.round(Math.random() * 100 % heightNum);
         }
         while (this.nokia5230[x][y] == 1)
         this.targetX = x;
@@ -187,10 +187,12 @@ function n97() {
 }
 
 function Ga1900(canvasId) {
-    var WIDTH = 15;
+    var WIDTH = 25;
+    var WIDTH2 = 25 - 2;
     var canvas = document.getElementById(canvasId);
     var RED = "#FF0000"
-    var WHITE = "#FFFFFF";
+    var WHITE = "#dcdcdc";
+    var GREY = "#ffffff";
     var BLACK = "#000000";
     this.cxt = canvas.getContext("2d");
     var e398 = new n97();
@@ -262,6 +264,8 @@ function Ga1900(canvasId) {
         document.getElementById("title").innerHTML = title;
 
         document.getElementById("share").style.display = "block";
+        
+        achieve = "同学，恭喜您！在疯狂吃翔游戏中，您疯狂的吃掉了" + this.score + "坨翔翔，击败了" + rank + "%的同学，英勇的获得" + title + "称号！！！";
 
         localStorage.maxScore = this.maxScore;
         //alert(localStorage.maxScore);
@@ -314,37 +318,43 @@ function Ga1900(canvasId) {
 
     this.removeFood = function(x, y) {
         this.cxt.fillStyle = WHITE;
-        this.cxt.fillRect((x - 1)*WIDTH, (y - 1)*WIDTH, WIDTH, WIDTH);
+        this.cxt.fillRect((x - 1) * WIDTH + 1, (y - 1) * WIDTH + 1, WIDTH2, WIDTH2);
     }
 
     this.drawFood = function(x, y) {
         this.cxt.fillStyle = RED;
-        this.cxt.fillRect((x - 1)*WIDTH, (y - 1)*WIDTH, WIDTH, WIDTH);
+        this.cxt.fillRect((x - 1) * WIDTH + 1, (y - 1) * WIDTH + 1, WIDTH2, WIDTH2);
         var img = document.getElementById("shit");
-        this.cxt.drawImage(img, (x - 1)*WIDTH, (y - 1)*WIDTH, WIDTH, WIDTH);
+        this.cxt.drawImage(img, (x - 1) * WIDTH + 1, (y - 1) * WIDTH + 1, WIDTH2, WIDTH2);
     }
 
     this.drawBlack = function(point) {
         this.cxt.fillStyle = BLACK;
-        this.cxt.fillRect((point.x-1) * WIDTH, (point.y-1) * WIDTH, WIDTH, WIDTH);
+        this.cxt.fillRect((point.x - 1) * WIDTH + 1, (point.y - 1) * WIDTH + 1, WIDTH2, WIDTH2);
         var img = document.getElementById("shit");
-        this.cxt.drawImage(img, (point.x-1) * WIDTH, (point.y-1) * WIDTH, WIDTH, WIDTH);
+        this.cxt.drawImage(img, (point.x - 1) * WIDTH + 1, (point.y - 1) * WIDTH + 1, WIDTH2, WIDTH2);
     }
 
     this.drawPhoto = function(point) {
         this.cxt.fillStyle = BLACK;
-        this.cxt.fillRect((point.x-1) * WIDTH, (point.y-1) * WIDTH, WIDTH, WIDTH);
+        this.cxt.fillRect((point.x - 1) * WIDTH + 1, (point.y - 1) * WIDTH + 1, WIDTH2, WIDTH2);
         var img = document.getElementById("photo");
-        this.cxt.drawImage(img, (point.x-1) * WIDTH, (point.y-1) * WIDTH, WIDTH, WIDTH);
+        this.cxt.drawImage(img, (point.x - 1) * WIDTH + 1, (point.y - 1) * WIDTH + 1, WIDTH2, WIDTH2);
     }
 
     this.removeBlack = function(point) {
         this.cxt.fillStyle = WHITE;
-        this.cxt.fillRect((point.x-1) * WIDTH, (point.y-1) * WIDTH, WIDTH, WIDTH);
+        this.cxt.fillRect((point.x - 1) * WIDTH + 1, (point.y - 1) * WIDTH + 1, WIDTH2, WIDTH2);
     }
 
     this.clear = function() {
+        this.cxt.fillStyle = GREY;
+        this.cxt.fillRect(0, 0, widthNum * WIDTH, heightNum * WIDTH);
         this.cxt.fillStyle = WHITE;
-        this.cxt.fillRect(0, 0, 20 * WIDTH, 20 * WIDTH);
+        for(var i=0; i<heightNum; i++){
+            for(var j=0; j<widthNum; j++){
+                this.cxt.fillRect(j * WIDTH + 1, i * WIDTH + 1, WIDTH2, WIDTH2);
+            }
+        }
     }
  }

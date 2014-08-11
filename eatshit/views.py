@@ -3,7 +3,7 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from eatshit.models import PhotoInfo
@@ -36,7 +36,7 @@ def home(request):
             f.ip_addr = ip_addr
             f.status = True
             f.save()
-            form = PhotoInfoModelForm()
+            return redirect('/eatshit/eatshit/%s' %(f.pk,))
 
     return render(request, 'eatshit/home.html', dict(form=form, photo_data=photo_data))
 
@@ -50,3 +50,15 @@ def eatshit(request, pk=-1):
         photo_data = ''
 
     return render(request, 'eatshit/mix_snake.html', dict(photo_data=photo_data))
+
+
+def share(request):
+    share = request.GET.get('achieve', '')
+    ip_addr = request.META['HTTP_X_FORWARDED_FOR'] if 'HTTP_X_FORWARDED_FOR' in request.META else request.META['REMOTE_ADDR']
+
+    try:
+        photo_data = PhotoInfo.objects.filter(pk=pk).order_by('-create_at')[0].data
+    except:
+        photo_data = ''
+
+    return render(request, 'eatshit/share.html', dict(share=share, photo_data=photo_data))
