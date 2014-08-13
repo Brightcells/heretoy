@@ -10,6 +10,7 @@
         <meta name="description" content="">
 
         <link href="{% static 'eatshit/css/mix_snake.css' %}" rel="stylesheet">
+        <link href="{% static 'eatshit/css/pam.css' %}" rel="stylesheet">
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -18,11 +19,20 @@
     </head>
     <body>
         <div class="warp">
-            {{ share }}
         </div>
 
         <script src="{% static 'eatshit/js/weixin-api.js' %}"></script>
+        <script src="{% static 'eatshit/js/pam.js' %}"></script>
         <script type="text/javaScript">
+(function () {
+            var res = [
+                {"image": "{% static 'eatshit/img/share.png' %}", "info": "", "link": ""},
+            ]
+            _bg(0, res, 10000);
+})();
+
+
+
 WeixinApi.ready(function(Api) {
 
     // 微信分享的数据

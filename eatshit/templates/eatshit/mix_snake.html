@@ -25,11 +25,11 @@
                     <!-- <strong>最高分</strong> -->
                     <div id="highestScore" class="highestScore">0</div>
                     <!-- <strong>分数</strong> -->
-                    <span id="score" class="score">0</span><span>坨翔翔</span>
+                    <span id="score" class="score red">0</span><span>坨翔翔</span>
                 </div>
 
                 <div class="shitPanel">
-                    <img id="shitLogo" class="shitLogo" src="" />
+                    <img id="shitLogo" class="shitLogo" src="{% static 'eatshit/img/count_down_shit.png' %}" />
                 </div>
             </div>
         </div>
@@ -71,7 +71,7 @@
 			    <img id="photo" src="{{ photo_data.image }}" />
 			{% endifequal %}
                 {% endifequal %}
-                <img id="shit" src="" />
+                <img id="shit" src="{% static 'eatshit/img/food.png' %}" />
             </div>
         </div>
 
@@ -156,15 +156,6 @@
                 document.getElementById("myCanvas").height = height * heightNum;
             })();
 
-
-
-
-
-            var shitNum = 4,
-                shitId = Math.floor(Math.random() * shitNum),
-                shitUrl = "/static/" + "eatshit/img/shit/" + String(shitId) + ".jpg";
-            document.getElementById("shit").src = shitUrl;
-            document.getElementById("shitLogo").src = shitUrl;
 
             var gameMrg = new Ga1900("myCanvas");
             function startGame(startBtn) {

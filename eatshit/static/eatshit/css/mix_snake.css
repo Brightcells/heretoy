@@ -64,6 +64,7 @@ body {
 .score {
     font-weight: bold;
     margin-left: 10px;
+    margin: 0 5px 0 10px;
 }
 
 .gamePanel {
@@ -102,12 +103,17 @@ body {
     background: grey;
 }
 
-
-.home-header {
-    margin-bottom: 30px;
+.photo_input {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -102px;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
 }
 
-.photo_input, .name_input {
+.name_input {
     width: 200px;
     height: 40px;
     font-size: 18px;
@@ -118,10 +124,6 @@ body {
 .input-tip {
     color: #9d670d;
     font-weight: bold;
-}
-
-.photo_input {
-    display: none;
 }
 
 .name_input {
@@ -219,4 +221,10 @@ body {
     border-radius: 10px;
     box-sizing: border-box;
     background-color: #ffdc40;
+}
+
+.slogan {
+    width: 300px;
+    height: 96px;
+    margin: 15px 0;
 }

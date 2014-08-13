@@ -19,14 +19,12 @@
     <body>
         <div class="warp">
             <div id="home-header" class="home-header">
-                <div class=""><h1>吃翔翔达人</h1></div>
-                <div class="">嘎嘣脆，翔翔味！</div>
+                <div class=""><img id="slogan" class="slogan" src="{% static 'eatshit/img/slogan_300x96.png' %}"></div>
             </div>
 
             <div class="upload">
                 <form class="form-horizontal" method="post" action="" enctype='multipart/form-data'>{% csrf_token %}
-                    <span class="input-tip">撕心裂肺想吃翔翔的盆友头像</span>
-                    <div>{{ form.image }}</div>
+                    <span class="input-tip">撕心裂肺想吃翔翔的盆友头像(选填)</span>
                     <div id="photo-layer" class="photo-layer">
                     {% ifequal photo_data '' %}
                         <img id="photo" class="photo" src="" />
@@ -37,8 +35,9 @@
                             <img id="photo" class="photo" src={{ photo_data.image }} />
                         {% endifequal %}
                     {% endifequal %}
+                    {{ form.image }}
                     </div>
-                    <span class="input-tip">撕心裂肺想吃翔翔的盆友名字</span>
+                    <span class="input-tip">撕心裂肺想吃翔翔的盆友名字(必填)</span>
                     <div>{{ form.name }}</div>
                     <div><button type="submit" class="btn btn-control summit-photo">开始游戏</button></div>
                 </form>
@@ -46,10 +45,6 @@
         </div>
         <script language="Javascript">
             (function() {
-                document.getElementById("photo-layer").onclick = function(){
-                    return document.getElementById("id_image").click();
-                };
-
         document.getElementById("id_image").onchange = function(){
             change();
         };
