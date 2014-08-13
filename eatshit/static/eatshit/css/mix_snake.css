@@ -28,8 +28,7 @@ body {
 .header {
     height: 50px;
     margin-bottom: 20px;
-    background-color: #14fa1c;
-
+    background-color: #ffdc40;
 }
 
 .logo {
@@ -109,33 +108,50 @@ body {
 }
 
 .photo_input, .name_input {
-    width: 150px;
-    height: 25px;
-    font-size: 15px;
-    border: 1px solid black;
-    border-radius: 4px;
+    width: 200px;
+    height: 40px;
+    font-size: 18px;
+    border: 4px solid #9e660f;
     box-sizing: border-box;
 }
 
+.input-tip {
+    color: #9d670d;
+    font-weight: bold;
+}
+
 .photo_input {
-    margin: 5px 0 5px 0;
+    display: none;
 }
 
 .name_input {
     margin: 5px 0 25px 0;
+    padding-left: 10px;
+}
+
+.photo-layer {
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    border: 4px solid #9e660f;
 }
 
 .photo {
-    width: 40px;
-    height: 40px;
+    width: 100%;
+    height: 100%;
     margin: 0 0 25px 0;
 }
 
 .summit-photo {
-    width: 150px;
-    height: 25px;
-    font-size: 15px;
+    width: 200px;
+    height: 55px;
+    font-size: 20px;
+    border: 4px solid #9e660f;
+    border-radius: 10px;
     box-sizing: border-box;
+    background-color: #ffdc40;
 }
 
 .start {
@@ -149,9 +165,9 @@ body {
 }
 
 
-.share {
+.share, .countDownLayer {
     display: none;
-    width: 232px;
+    width: 250px;
     margin: auto;
     height: 350px;
     padding: 20px;
@@ -161,12 +177,21 @@ body {
     right: 0;
 }
 
+.countDownLayer {
+    display: block;
+}
+
+.threeCount {
+    font-size: 50px;
+}
+
 .achieve {
-    width: 200px;
+    width: 250px;
+    height: 175px;
     margin: auto;
     padding: 20px;
+    font-size: 17px;
     background-color: white;
-    border-radius: 4px;
     box-sizing: border-box;
 }
 
@@ -174,20 +199,24 @@ body {
     color: red;
 }
 
-.once_more {
-    width: 200px;
-    height: 30px;
-    margin: 30px 0;
-    font-size: 15px;
-    border-radius: 4px;
+.share_friend {
+    width: 123px;
+    height: 55px;
+    margin: 25px 0;
+    font-size: 20px;
+    border: 4px solid #9e660f;
+    border-radius: 10px;
     box-sizing: border-box;
+    background-color: #ffdc40;
 }
 
-.share_friend {
-    width: 200px;
-    height: 30px;
+.once_more {
+    width: 123px;
+    height: 55px;
     margin: 0;
-    font-size: 15px;
-    border-radius: 4px;
+    font-size: 20px;
+    border: 4px solid #9e660f;
+    border-radius: 10px;
     box-sizing: border-box;
+    background-color: #ffdc40;
 }

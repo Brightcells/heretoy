@@ -4,8 +4,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>贪吃翔</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>吃翔翔达人</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
         <meta name="description" content="">
 
@@ -28,7 +28,7 @@ WeixinApi.ready(function(Api) {
     // 微信分享的数据
     var wxData = {
         "appId": "", // 服务号可以填写appId
-        "imgUrl" : "{{ photo_data.image|default:'http://heretoy.com/static/eatshit/img/photo/wq.png' }}",
+        "imgUrl" : "http://heretoy.com" + "{{ photo_data.image|default:'http://heretoy.com/static/eatshit/img/photo/wq.png' }}",
         "link" : "http://heretoy.com/eatshit",
         "desc" : "{{ share }}",
         "title" : "吃翔翔达人"

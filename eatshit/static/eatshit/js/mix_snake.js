@@ -176,8 +176,8 @@ function n97() {
 
     this.productFood = function() {
         do {
-            var x = Math.round(Math.random() * 100 % widthNum);
-            var y = Math.round(Math.random() * 100 % heightNum);
+            var x = Math.ceil(Math.random() * 100 % widthNum);
+            var y = Math.ceil(Math.random() * 100 % heightNum);
         }
         while (this.nokia5230[x][y] == 1)
         this.targetX = x;
@@ -190,8 +190,8 @@ function Ga1900(canvasId) {
     var WIDTH = 25;
     var WIDTH2 = 25 - 2;
     var canvas = document.getElementById(canvasId);
-    var RED = "#FF0000"
-    var WHITE = "#dcdcdc";
+    var RED = "#f9dd5f";
+    var WHITE = "#dedede";
     var GREY = "#ffffff";
     var BLACK = "#000000";
     this.cxt = canvas.getContext("2d");
@@ -230,8 +230,17 @@ function Ga1900(canvasId) {
     var _this = this;
     var countDown = function() {
         var left_time = parseInt(document.getElementById("leftTime").innerHTML);
-        if (left_time > 0) {
+        if(left_time > 0) {
             document.getElementById("leftTime").innerHTML = left_time - 1;
+            if(left_time == 40) {
+                clearInterval(_this.moveHandle);
+                _this.step = 5;
+                _this.moveHandle = setInterval(move, 500 - 50 * _this.step);
+            } else if(left_time == 20) {
+                clearInterval(_this.moveHandle);
+                _this.step = 7;
+                _this.moveHandle = setInterval(move, 500 - 50 * _this.step);
+            }
         } else {
             /*alert("Game Over");*/
             _this.stopGame();
@@ -246,18 +255,18 @@ function Ga1900(canvasId) {
         if(this.score == 0) {
             rank = 0;
             title = "吃翔翔大笨蛋";
-        } else if(this.score <= 10) {
+        } else if(this.score <= 5) {
             rank = GetRandomNum(1, 20);
             title = "吃翔翔小菜鸟";
-        } else if(this.score <= 25) {
+        } else if(this.score <= 10) {
             rank = GetRandomNum(21, 40);
-            title = "吃翔翔小怪兽";
-        } else if(this.score <= 40) {
+            title = "吃翔翔小能手";
+        } else if(this.score <= 25) {
             rank = GetRandomNum(41, 65);
-            title = "吃翔翔达人";
+            title = "吃翔翔小怪兽";
         } else {
             rank = GetRandomNum(66, 98);
-            title = "吃翔翔大师";
+            title = "吃翔翔大宗师";
         }
         document.getElementById("shitNum").innerHTML = this.score;
         document.getElementById("rank").innerHTML = rank;
@@ -265,7 +274,7 @@ function Ga1900(canvasId) {
 
         document.getElementById("share").style.display = "block";
         
-        achieve = "同学，恭喜您！在疯狂吃翔游戏中，您疯狂的吃掉了" + this.score + "坨翔翔，击败了" + rank + "%的同学，英勇的获得" + title + "称号！！！";
+        achieve = "同学，严重的恭喜你！在吃翔翔达人比赛中，丧心病狂地吃掉了" + this.score + "坨翔翔，击败了" + rank + "%的翔友，NB闪闪的获得了" + title + "称号！";
 
         localStorage.maxScore = this.maxScore;
         //alert(localStorage.maxScore);

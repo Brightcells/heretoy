@@ -4,8 +4,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>贪吃翔</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>吃翔翔达人</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
         <meta name="description" content="">
 
@@ -77,12 +77,16 @@
 
         <div id="share" class="share">
             <div id="achieve" class="achieve">
-                {% ifequal photo_data '' %}{% else %}<span class="red">{{ photo_data.name }}</span>{% endifequal %}同学，恭喜您！在疯狂吃翔游戏中，您疯狂的吃掉了<span id="shitNum" class="red"></span>坨翔翔，击败了<span id="rank" class="red"></span>%的同学，英勇的获得<span id="title" class="red"></span>称号！！！
+                {% ifequal photo_data '' %}{% else %}<span class="red">{{ photo_data.name }}</span>{% endifequal %}同学，严重的恭喜你！在吃翔翔达人比赛中，丧心病狂地吃掉了<span id="shitNum" class="red"></span>坨翔翔，击败了<span id="rank" class="red"></span>%的翔友，NB闪闪的获得了<span id="title" class="red"></span>称号！
             </div>
             <div>
-                <button id="once_more" class="once_more" onclick="once_more(this)">再来一顿</button>
                 <button id="share_friend" class="share_friend" onclick="share_friend(this)">通知好友</button>
+                <button id="once_more" class="once_more" onclick="once_more(this)">再来一顿</button>
             </div>
+        </div>
+
+        <div id="countDownLayer" class="countDownLayer">
+            <span id="threeCount" class="threeCount">3</span>   
         </div>
 
         <script src="{% static 'eatshit/js/hammer.min.js' %}"></script>
@@ -122,10 +126,12 @@
                 startBtn = document.getElementById("control");
 
             function threeCountDown() {
-                if(threeCount < 3) {
-                    threeCount += 1;
+                var threeCount = parseInt(document.getElementById("threeCount").innerHTML);
+                if(threeCount > 0) {
+                    document.getElementById("threeCount").innerHTML = threeCount - 1;
                 } else {
-                    threeCount = 0;
+                    document.getElementById("threeCount").innerHTML = 3;
+                    document.getElementById("countDownLayer").style.display = "none";
                     clearInterval(tcd);
                     control(btn);
                 }
@@ -190,17 +196,26 @@
                 var startBtn = document.getElementById("start");
                 startGame(startBtn);
                 control(btn);
+                document.getElementById("countDownLayer").style.display = "block";
                 tcd = setInterval(threeCountDown, 1000);
             }
             function share_friend(sfBtn) {
-                url = "{% url 'eatshit:share' %}?achieve={{ photo_data.name|default:'' }}" + achieve;
+                url = "{% url 'eatshit:share' photo_data.name|default:'' %}?achieve={{ photo_data.name|default:'' }}" + achieve;
                 location.href = url;
             }
 
 
-            startGame(startBtn);
-            control(btn);
-            tcd = setInterval(threeCountDown, 1000);
+            function loading() {
+                if(document.getElementById("photo").src == window.location.href) {
+                } else {
+                    clearInterval(loading);
+                    startGame(startBtn);
+                    control(btn);
+                    tcd = setInterval(threeCountDown, 1000);
+                }
+            }
+
+            loading = setInterval(loading, 1000);
         </script>
     </body>
 </html>

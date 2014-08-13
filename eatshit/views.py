@@ -9,6 +9,8 @@ from django.views.decorators.csrf import csrf_exempt
 from eatshit.models import PhotoInfo
 from eatshit.form import PhotoInfoModelForm
 
+from utils.graphics import *
+
 from CodeConvert import CodeConvert
 
 
@@ -36,29 +38,37 @@ def home(request):
             f.ip_addr = ip_addr
             f.status = True
             f.save()
-            return redirect('/eatshit/eatshit/%s' %(f.pk,))
+            if f.image:
+                base, ext = os.path.splitext(f.image.name)
+                make_thumb(f.image.path, 70, 70)
+                f.image.name = base + '_70x70' + ext
+                f.save()
+            return redirect('/eatshit/eatshit/%s' %(f.name,))
 
     return render(request, 'eatshit/home.html', dict(form=form, photo_data=photo_data))
 
 
-def eatshit(request, pk=-1):
-    ip_addr = request.META['HTTP_X_FORWARDED_FOR'] if 'HTTP_X_FORWARDED_FOR' in request.META else request.META['REMOTE_ADDR']
-
+def eatshit(request, name='admin'):
     try:
-        photo_data = PhotoInfo.objects.filter(pk=pk).order_by('-create_at')[0].data
+        photo_data = PhotoInfo.objects.filter(name=name).exclude(image='').order_by('-create_at')[0].data
     except:
-        photo_data = ''
+        try:
+            photo_data = PhotoInfo.objects.filter(name=name).order_by('-create_at')[0].data
+        except:
+            photo_data = ''
 
     return render(request, 'eatshit/mix_snake.html', dict(photo_data=photo_data))
 
 
-def share(request):
+def share(request, name='admin'):
     share = request.GET.get('achieve', '')
-    ip_addr = request.META['HTTP_X_FORWARDED_FOR'] if 'HTTP_X_FORWARDED_FOR' in request.META else request.META['REMOTE_ADDR']
 
     try:
-        photo_data = PhotoInfo.objects.filter(pk=pk).order_by('-create_at')[0].data
+        photo_data = PhotoInfo.objects.filter(name=name).exclude(image='').order_by('-create_at')[0].data
     except:
-        photo_data = ''
+        try:
+            photo_data = PhotoInfo.objects.filter(name=name).order_by('-create_at')[0].data
+        except:
+            photo_data = ''
 
     return render(request, 'eatshit/share.html', dict(share=share, photo_data=photo_data))
