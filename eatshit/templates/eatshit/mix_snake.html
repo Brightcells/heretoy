@@ -86,7 +86,9 @@
         </div>
 
         <div id="countDownLayer" class="countDownLayer">
-            <span id="threeCount" class="threeCount">3</span>   
+            <p>通过手指上下、左右滑动进行操控</p>
+            <img id="count_down_bg" class="count_down_bg" src="{% static 'eatshit/img/count_down_bg.png' %}" />
+            <p id="threeCount" class="threeCount">3</p>   
         </div>
 
         <script src="{% static 'eatshit/js/hammer.min.js' %}"></script>
@@ -150,6 +152,8 @@
 
                 widthNum = Math.floor((size.width-30)/width);
                 heightNum = Math.floor((size.height-120)/height);
+ 
+                heightNum = ((heightNum < widthNum) ? widthNum : heightNum)
 
                 document.styleSheets[0].rules[5].style.width = String(width * widthNum) + "px";
                 document.getElementById("myCanvas").width = width * widthNum;

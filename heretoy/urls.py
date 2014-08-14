@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('',
     # url(r'^', include('officialsite.urls', namespace='officialsite')),
-    url(r'^eatshit/', include('eatshit.urls', namespace='eatshit')),
+    url(r'^cxxdr/', include('eatshit.urls', namespace='eatshit')),
 )
 
 urlpatterns += staticfiles_urlpatterns('static')
