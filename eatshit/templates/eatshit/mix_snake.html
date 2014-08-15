@@ -133,7 +133,7 @@
                     document.getElementById("threeCount").innerHTML = threeCount - 1;
                 } else {
                     document.getElementById("threeCount").innerHTML = 3;
-                    document.getElementById("countDownLayer").style.display = "none";
+                    document.getElementById("countDownLayer").style.zIndex = -1;
                     clearInterval(tcd);
                     control(btn);
                 }
@@ -187,11 +187,11 @@
             }
 
             function once_more(moreBtn) {
-                document.getElementById("share").style.display = "none";
+                document.getElementById("share").style.zIndex = -1;
                 var startBtn = document.getElementById("start");
                 startGame(startBtn);
                 control(btn);
-                document.getElementById("countDownLayer").style.display = "block";
+                document.getElementById("countDownLayer").style.zIndex = 999;
                 tcd = setInterval(threeCountDown, 1000);
             }
             function share_friend(sfBtn) {

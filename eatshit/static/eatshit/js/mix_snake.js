@@ -272,7 +272,7 @@ function Ga1900(canvasId) {
         document.getElementById("rank").innerHTML = rank;
         document.getElementById("title").innerHTML = title;
 
-        document.getElementById("share").style.display = "block";
+        document.getElementById("share").style.zIndex = 999;
         
         achieve = "同学，严重的恭喜你！在吃翔翔达人比赛中，丧心病狂地吃掉了" + this.score + "坨翔翔，击败了" + rank + "%的翔友，NB闪闪的获得了" + title + "称号！";
 

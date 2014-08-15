@@ -10,6 +10,8 @@ except ImportError:
 
 def make_thumb(path, w, h):
     base, ext = os.path.splitext(path)
+    if ext not in ['.png', '.jpg', '.jpeg']:
+        return
     try:
         im = Image.open(path)
     except IOError:

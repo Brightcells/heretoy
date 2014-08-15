@@ -167,8 +167,7 @@ body {
 }
 
 
-.share, .countDownLayer {
-    display: none;
+.share {
     width: 250px;
     margin: auto;
     height: 350px;
@@ -177,15 +176,21 @@ body {
     top: 75px;
     left: 0;
     right: 0;
+    z-index: -1;
 }
 
 .countDownLayer {
-    width: 210px;
+    width: 250px;
+    margin: auto;
     height: 250px;
     position: absolute;
     top: 125px;
+    left: 0;
+    right: 0;
     display: block;
-    background-color: #00ff66;
+    border-radius: 10px;
+    background-color: #ffdc40;
+    z-index: 999;
 }
 
 .count_down_bg {
@@ -196,6 +201,7 @@ body {
     font-size: 50px;
     position: relative;
     top: -160px;
+    color: white;
 }
 
 .achieve {
