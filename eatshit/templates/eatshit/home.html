@@ -23,14 +23,14 @@
             </div>
 
             <div class="upload">
-                <form class="form-horizontal" method="post" action="" enctype='multipart/form-data'>{% csrf_token %}
+                <form id="userInfoForm" class="form-horizontal" method="post" action="" enctype='multipart/form-data'>{% csrf_token %}
                     <span class="input-tip">撕心裂肺想吃翔翔的盆友头像(选填)</span>
                     <div id="photo-layer" class="photo-layer">
                     {% ifequal photo_data '' %}
-                        <img id="photo" class="photo" src="" />
+                        <img id="photo" class="photo" src="{% static 'eatshit/img/photo_bg.png' %}" />
                     {% else %}
                         {% ifequal photo_data.image '' %}
-                            <img id="photo" class="photo" src="" />
+                            <img id="photo" class="photo" src="{% static 'eatshit/img/photo_bg.png' %}" />
                         {% else %}
                             <img id="photo" class="photo" src={{ photo_data.image }} />
                         {% endifequal %}
@@ -39,52 +39,73 @@
                     </div>
                     <span class="input-tip">撕心裂肺想吃翔翔的盆友名字(必填)</span>
                     <div>{{ form.name }}</div>
-                    <div><button type="submit" class="btn btn-control summit-photo">开始游戏</button></div>
+                    <div><button type="button" id="formSubmit" class="btn btn-control summit-photo">开始游戏</button></div>
                 </form>
             </div>
         </div>
         <script language="Javascript">
             (function() {
-        document.getElementById("id_image").onchange = function(){
-            change();
-        };
+                document.getElementById("id_image").onchange = function(){
+                change();
+            };
 
-        function change() {
-             var pic = document.getElementById("photo");
-             var file = document.getElementById("id_image");
-             var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
-             // gif在IE浏览器暂时无法显示
-             if(ext!='png'&&ext!='jpg'&&ext!='jpeg'){
-                 alert("请上传 png/jpg/jpeg 格式的图片！"); return;
-             }
-             // IE浏览器
-             if (document.all) {
-                 file.select();
-                 var reallocalpath = document.selection.createRange().text;
-                 var ie6 = /msie 6/i.test(navigator.userAgent);
-                 // IE6浏览器设置img的src为本地路径可以直接显示图片
-                 if (ie6) pic.src = reallocalpath;
-                 else {
-                     // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
-                     pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
-                     // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
-                     pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+            document.getElementById("formSubmit").onclick = function(){
+                if(eval(document.getElementById('id_name')).value == ""){
+                    alert("请输入撕心肺裂想吃翔翔的盆友的名字");
+                } else {
+                    document.getElementById("userInfoForm").submit();
+                }
+            };
+
+            function change() {
+                var pic = document.getElementById("photo");
+                var file = document.getElementById("id_image");
+                var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
+                // gif在IE浏览器暂时无法显示
+                if(ext!='png'&&ext!='jpg'&&ext!='jpeg'){
+                    alert("请上传 png/jpg/jpeg 格式的图片！"); return;
+                }
+                // IE浏览器
+                if (document.all) {
+                    file.select();
+                    var reallocalpath = document.selection.createRange().text;
+                    var ie6 = /msie 6/i.test(navigator.userAgent);
+                    // IE6浏览器设置img的src为本地路径可以直接显示图片
+                    if (ie6) pic.src = reallocalpath;
+                    else {
+                        // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+                        pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+                        // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+                        pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+                    }
+                }else{
+                    html5Reader(file);
+                }
+            }
+
+            function html5Reader(file){
+                 var file = file.files[0];
+                 var reader = new FileReader();
+                 reader.readAsDataURL(file);
+                 reader.onload = function(e){
+                     var pic = document.getElementById("photo");
+                     pic.src=this.result;
                  }
-             }else{
-                 html5Reader(file);
-             }
-        }
-
-        function html5Reader(file){
-             var file = file.files[0];
-             var reader = new FileReader();
-             reader.readAsDataURL(file);
-             reader.onload = function(e){
-                 var pic = document.getElementById("photo");
-                 pic.src=this.result;
-             }
-        }
-            })();
+            }
+        })();
         </script>
+        <script src="{% static 'js/weixin-api.js' %}"></script>
+        <script type="text/javaScript">
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl" : "{{ domain }}/static/eatshit/img/cxx.png",
+                "link" : "{{ domain }}/cxxdr",
+                "desc" : "嘎嘣脆，翔翔味，爱TA就给TA吃吧！",
+                "title" : "吃翔翔达人"
+            };
+        </script>
+        <script src="{% static 'js/wx.js' %}"></script>
+    </body>
     </body>
 </html>

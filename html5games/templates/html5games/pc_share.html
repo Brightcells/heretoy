@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ h5game.name }}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
+        <meta name="description" content="">
+
+        <link rel="stylesheet" href="{% static 'html5games/css/html5games.css' %}" />
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="pc_container">
+            <div class="left_container">
+                <div class="game">
+                    <div id="logo" class="logo"><img src="{{ h5game.image }}"></div>
+                    <div id="info" class="info">
+                        <div class="name">{{ h5game.name }}</div>
+                        <div class="num"><span class="pnum">玩</span><label>{{ h5game.play }}</label><span class="lnum">赞</span><label>{{ h5game.like }}</label><span class="unum">踩</span><label>{{ h5game.unlike }}</label></div>
+                        <div class="descr">{{ h5game.descr }}</div>
+                    </div>
+                </div>
+                <div id="iframe_container" class="pc_iframe_container">
+                    <iframe src="{{ h5game.url }}" id="iframe" class="iframe"></iframe>
+                </div>
+            </div>
+            <div class="right_container">
+                <div class="pc_heretoy_logo"><img src="{% static 'html5games/img/heretoy_logo.jpg' %}"></div>
+                <div class="pc_heretoy_desc"><h3>HereToy，口袋社交小游戏中心</h3></div>
+                <div class="pc_heretoy_iphone"><span>iPhone版下载</span></div>
+                <div class="pc_heretoy_android"><span>Android版下载</span></div>
+            </div>
+        </div>
+        <script language="Javascript">
+        </script>
+    </body>
+</html>

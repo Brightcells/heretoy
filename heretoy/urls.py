@@ -15,8 +15,15 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('',
-    # url(r'^', include('officialsite.urls', namespace='officialsite')),
+    url(r'^', include('html5games.urls', namespace='html5games')),
+    url(r'^data/', include('data.urls', namespace='data')),
     url(r'^cxxdr/', include('eatshit.urls', namespace='eatshit')),
+
+    # url(r'^download/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.DOWNLOADS_ROOT, 'show_indexes':True}),
+)
+
+urlpatterns += patterns('',
+    url(r'^inverter/', 'games_bak.views.inverter', name='inverter'),
 )
 
 urlpatterns += staticfiles_urlpatterns('static')

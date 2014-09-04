@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.csrf import csrf_exempt
 
 from eatshit.models import PhotoInfo
@@ -37,7 +38,10 @@ def get_path():
     )
 
 
+@csrf_exempt
+@xframe_options_exempt
 def home(request):
+    domain = settings.DOMAIN
     form = PhotoInfoModelForm()
 
     if request.method == "POST":
@@ -58,10 +62,14 @@ def home(request):
             f.save()
             return redirect(reverse('eatshit:eatshit', kwargs={'name': f.name}))
 
-    return render(request, 'eatshit/home.html', dict(form=form, photo_data=''))
+    return render(request, 'eatshit/home.html', dict(form=form, photo_data='', domain=domain))
 
 
+@csrf_exempt
+@xframe_options_exempt
 def eatshit(request, name='admin'):
+    domain = settings.DOMAIN
+
     try:
         photo_data = PhotoInfo.objects.filter(name=name).exclude(image='').order_by('-create_at')[0].data
     except:
@@ -70,10 +78,13 @@ def eatshit(request, name='admin'):
         except:
             photo_data = ''
 
-    return render(request, 'eatshit/mix_snake.html', dict(photo_data=photo_data))
+    return render(request, 'eatshit/mix_snake.html', dict(photo_data=photo_data, domain=domain))
 
 
+@csrf_exempt
+@xframe_options_exempt
 def share(request, name='admin'):
+    domain = settings.DOMAIN
     share = request.GET.get('achieve', '')
 
     try:
@@ -84,4 +95,4 @@ def share(request, name='admin'):
         except:
             photo_data = ''
 
-    return render(request, 'eatshit/share.html', dict(share=share, photo_data=photo_data))
+    return render(request, 'eatshit/share.html', dict(share=share, photo_data=photo_data, domain=domain))

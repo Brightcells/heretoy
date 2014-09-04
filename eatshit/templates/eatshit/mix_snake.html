@@ -19,7 +19,7 @@
     <body>
         <div id="header" class="header">
             <div class="warp">
-                <div class="countDown"><span>剩余时间：</span><span id="leftTime" class="leftTime">180</span></div>
+                <div class="countDown"><span>剩余时间：</span><span id="leftTime" class="leftTime">60</span></div>
 
                 <div id="scorePanel" class="scorePanel">
                     <!-- <strong>最高分</strong> -->
@@ -57,10 +57,6 @@
                 <button id="control" class="control_button" onclick="control(this)" disabled="true">暂停</button>
             </div>
 
-            <div id="footer" class="footer">
-                <p>Power by HereToy</p>
-            </div>
-
             <div id="hidden" class="hidden">
                 {% ifequal photo_data '' %}
                     <img id="photo" src="{% static 'eatshit/img/photo/wq.png' %}" />
@@ -77,7 +73,7 @@
 
         <div id="share" class="share">
             <div id="achieve" class="achieve">
-                {% ifequal photo_data '' %}{% else %}<span class="red">{{ photo_data.name }}</span>{% endifequal %}同学，严重的恭喜你！在吃翔翔达人比赛中，丧心病狂地吃掉了<span id="shitNum" class="red"></span>坨翔翔，击败了<span id="rank" class="red"></span>%的翔友，NB闪闪的获得了<span id="title" class="red"></span>称号！
+                {% ifequal photo_data '' %}{% else %}<span class="red">{{ photo_data.name }}</span>{% endifequal %}同学，丧心病狂地吃掉了<span id="shitNum" class="red"></span>坨翔翔，击败了<span id="rank" class="red"></span>%的翔友，NB闪闪的获得了<span id="title" class="red"></span>称号！
             </div>
             <div>
                 <button id="share_friend" class="share_friend" onclick="share_friend(this)">通知好友</button>
@@ -94,31 +90,30 @@
         <script src="{% static 'eatshit/js/hammer.min.js' %}"></script>
         <script src="{% static 'eatshit/js/mix_snake.js' %}"></script>
         <script language="JavaScript">
-		function findDimensions() {  // 函数：获取尺寸
-		     //获取窗口宽度
-		     if (window.innerWidth)
-			winWidth = window.innerWidth;
-		     else if ((document.body) && (document.body.clientWidth))
-			winWidth = document.body.clientWidth;
+            function findDimensions() {  // 函数：获取尺寸
+                //获取窗口宽度
+		if (window.innerWidth)
+                    winWidth = window.innerWidth;
+		else if ((document.body) && (document.body.clientWidth))
+		    winWidth = document.body.clientWidth;
 
-		     // 获取窗口高度
-		     if (window.innerHeight)
-			winHeight = window.innerHeight;
-		     else if ((document.body) && (document.body.clientHeight))
-			winHeight = document.body.clientHeight;
+		// 获取窗口高度
+		if (window.innerHeight)
+                    winHeight = window.innerHeight;
+		else if ((document.body) && (document.body.clientHeight))
+	            winHeight = document.body.clientHeight;
 
-		     // 通过深入Document内部对body进行检测，获取窗口大小
-		     if (document.documentElement  && document.documentElement.clientHeight && document.documentElement.clientWidth) {
-			winHeight = document.documentElement.clientHeight;
-			winWidth = document.documentElement.clientWidth;
-		     }
-
-		     return {
-			width: winWidth,
-			height: winHeight
-		     }
+		// 通过深入Document内部对body进行检测，获取窗口大小
+		if (document.documentElement  && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+	            winHeight = document.documentElement.clientHeight;
+		    winWidth = document.documentElement.clientWidth;
 		}
 
+		return {
+	            width: winWidth,
+                    height: winHeight
+		}
+            }
 
             var widthNum = 0,
                 heightNum = 0,
@@ -139,7 +134,6 @@
                 }
             }
 
-
             (function() {
                 function preventDefault(ev) {
                     ev.preventDefault()
@@ -159,7 +153,6 @@
                 document.getElementById("myCanvas").width = width * widthNum;
                 document.getElementById("myCanvas").height = height * heightNum;
             })();
-
 
             var gameMrg = new Ga1900("myCanvas");
             function startGame(startBtn) {
@@ -199,7 +192,6 @@
                 location.href = url;
             }
 
-
             function loading() {
                 if(document.getElementById("photo").src == window.location.href) {
                 } else {
@@ -212,5 +204,17 @@
 
             loading = setInterval(loading, 1000);
         </script>
+        <script src="{% static 'js/weixin-api.js' %}"></script>
+        <script type="text/javaScript">
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl" : "{{ domain }}{{ photo_data.image }}",
+                "link" : "{{ domain }}/cxxdr",
+                "desc" : "嘎嘣脆，翔翔味，爱TA就给TA吃吧！",
+                "title" : "吃翔翔达人"
+            };
+        </script>
+        <script src="{% static 'js/wx.js' %}"></script>
     </body>
 </html>

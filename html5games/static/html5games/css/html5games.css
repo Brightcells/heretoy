@@ -1,0 +1,344 @@
+a:link, a:active, a:hover, a:visited {
+    text-decoration: none;
+    color: #eb4d3c;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font: normal 14px/1.5 Tahoma,Helvetica,arial,sans-serif;
+}
+
+.header {
+    height: 33px;
+    padding: 8px 0;
+    font-size: 22px;
+    text-align: center;
+    color: white;
+    background-color: #eb4d3c;
+}
+
+.warp {
+    width: 300px;
+    margin: auto;
+}
+
+.menu {
+    height: 38px;
+    border-bottom: 1px #dcdcdc solid;
+    box-sizing: border-box;
+}
+
+.menu>div {
+    width: 33%;
+    height: 38px;
+    font-size: 12px;
+    padding-top: 10px;
+    color: #676566;
+    float: left;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.hots, .news {
+}
+
+.hots {
+}
+
+.news {
+}
+
+.game {
+    height: 75px;
+    padding: 10px 12px;
+    border-bottom: 1px #dcdcdc solid;
+}
+
+.game_line {
+    padding: 10px 12px;
+}
+.logo {
+    float: left;
+    margin: 0 9px 0 0;
+}
+
+.logo>img {
+    width: 75px;
+    height: 75px;
+    border: 1px #dcdcdc solid;
+    border-radius: 15px;
+}
+
+.info {
+    
+}
+
+.name {
+    height: 24px;
+    margin: 3px 0 5px 0;
+    color: #eb4d3c;
+    font: normal 21px "宋体",Arial,Times;
+    overflow: hidden;
+}
+
+.num>span {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    padding: 1px;
+    margin: 0 3px 0 10px;
+    border-radius: 3px;
+    display:inline-block;
+    text-align: center;
+}
+
+.num>span:first-child {
+    margin-left: 0;
+}
+
+.num>label {
+    color: #929292;
+}
+
+.pnum {
+    color: #63bd5c;
+    border: 1px #63bd5c solid;
+}
+
+.lnum {
+    color: #eb4d3c;
+    border: 1px #eb4d3c solid;
+}
+
+.unum {
+    color: #bdbcbd;
+    border: 1px #929292 solid;
+}
+
+.descr {
+    height: 20px;
+    margin-top: 5px;
+    color: #929292;
+    overflow: hidden;
+}
+
+.play {
+    width: 55px;
+    text-align: center;
+    float: right;
+    padding: 2px 0;
+    margin-right: 5px;
+    border: 1px #eb4d3c solid;
+    border-radius: 3px;
+}
+
+.my_logo {
+    width: 25%;
+    margin: 5px;
+    margin-bottom: 0;
+}
+
+.my_logo>img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.my_name {
+    width: 25px;
+    margin-left: 5px;
+    text-align: center;
+}
+
+.game_more {
+    margin: 15px;
+    text-align: center;
+}
+
+
+.iframe_container {
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    height: auto;
+    width: 100%;
+}
+
+.iframe {
+    border: 0;
+    height: 100%;
+    vertical-align: top;
+    width: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.evaluate {
+    width: 200px;
+    margin: auto;
+}
+
+.like {
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    float: left;
+    border: 1px #bfbfbf solid; 
+    border-radius: 5px;
+    margin: 0 0 10px 0;
+}
+
+.unlike {
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    float: right;
+    border: 1px #bfbfbf solid; 
+    border-radius: 5px;
+    margin: 0 0 10px 0;
+}
+
+
+.heretoy_iframe_container {
+    height: 100%;
+    width: 100%;
+}
+
+.heretoy_iframe {
+    border: 0;
+    height: 100%;
+    vertical-align: top;
+    width: 100%;
+}
+
+.heretoy_footer {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #eb4d3c;
+    text-align: center;
+}
+
+.heretoy_logo {
+    float: left;
+}
+
+.heretoy_logo>img {
+    width: 45px;
+    height: 45px;
+    margin-top: 3px;
+    margin-left: 5px;
+    border-radius: 10px;
+}
+
+.heretoy_desc {
+    float: left;
+    margin-left: 7px;
+}
+
+.heretoy_app {
+    margin: 2px 0 0 0;
+    color: white;
+    text-align: left;
+    float: left;
+}
+
+.heretoy_ds {
+    margin: 0 0 2px 0;
+    font-size: 10px;
+    color: white;
+    clear: left;
+    float: left;
+}
+
+.heretoy_star {
+    float: left;
+    height: 9px;
+    margin: 10px 0 0 8px;
+}
+
+.heretoy_download {
+    float: right;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.heretoy_dl {
+    padding: 7px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.heretoy_close {
+    float: right;
+}
+
+.heretoy_cls {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    top: 15px;
+    margin-right: 5px;
+}
+
+
+.pc_container {
+    position: absolute;
+    width: 800px;
+    left: 50%;
+    margin-left: -400px;
+    top: 0;
+    bottom: 0;
+    background-color: grey;
+}
+
+.left_container {
+    position: absolute;
+    top: 50%;
+    margin-top: -290px;
+    margin-left: 20px;
+    width: 360px;
+    height: 580px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.right_container {
+    position: absolute;
+    top: 50%;
+    margin-top: -290px;
+    margin-left: 420px;
+    width: 360px;
+    height: 580px;
+    box-sizing: border-box;
+}
+
+.pc_iframe_container {
+    height: 500px;
+}
+
+.pc_iframe {
+    border: 0;
+    height: 100%;
+    vertical-align: top;
+    width: 100%;
+}
+
+.pc_heretoy_logo>img {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+}
+
+.pc_heretoy_desc {
+    
+}

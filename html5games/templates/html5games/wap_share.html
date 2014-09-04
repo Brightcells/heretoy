@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ h5game.name }}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
+        <meta name="description" content="">
+
+        <link rel="stylesheet" href="{% static 'html5games/css/html5games.css' %}" />
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="iframe_container" class="heretoy_iframe_container">
+            <iframe src="{{ h5game.url }}" id="iframe" class="heretoy_iframe"></iframe>
+        </div>
+        <div id="footer" class="heretoy_footer">
+            <div class="heretoy_logo"><img src="{% static 'html5games/img/heretoy_logo.jpg' %}"></div> 
+            <div class="heretoy_desc">
+                <h3 class="heretoy_app">HereToy</h3>
+                <img class="heretoy_star" src="{% static 'html5games/img/star.png' %}"></img>
+                <span class="heretoy_ds">口袋社交小游戏中心</span>
+            </div>
+            <div id="heretoy_close" class="heretoy_close"><img class="heretoy_cls" src="{% static 'html5games/img/close.png' %}"></img></div>
+            <div class="heretoy_download"><a id="heretoy_dl" class="heretoy_dl" href="{% static 'html5games/downloads/heretoy.apk' %}">立即下载</a></div>
+        </div>
+        <script src="{% static 'js/weixin-api.js' %}"></script>
+        <script language="Javascript">
+            document.getElementById("heretoy_close").onclick = function(){
+                document.getElementById("footer").style.display = "none"; 
+            };
+
+            WeixinApi.ready(function(Api) {
+                document.getElementById("heretoy_dl").href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.brightcells.cxm";
+            });
+
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl" : "{{ domain }}/media/" + "{{ h5game.image|default:'' }}",
+                "link" : "{{ domain }}/share/{{ h5game.pk}}",
+                "desc" : "{{ h5game.descr }}",
+                "title" : "{{ h5game.name }}"
+            };
+        </script>
+        <script src="{% static 'js/wx.js' %}"></script>
+    </body>
+</html>

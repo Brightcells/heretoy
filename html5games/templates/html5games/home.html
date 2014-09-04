@@ -1,0 +1,171 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>HTML5 小游戏</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
+        <meta name="description" content="">
+
+        <link rel="stylesheet" href="{% static 'html5games/css/html5games.css' %}" />
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="header">
+            <div class="warp">HereToy</div>
+        </div>
+        <div id="menu" class="menu">
+            <div id="hot" class="hot">Hot</div>
+            <div id="new" class="new" style="color: #ed4b3c; border-bottom: 5px #ed4b3c solid;">New</div>
+            <div id="me" class="me">Me</div>
+        </div>
+        <div id="hots" class="hots" style="display: none;">
+            {% for h5 in hots %}
+                <div class="game">
+                    <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
+                    <div id="play" class="play"><a href="{% url 'html5games:play' h5.pk %}" target="_blank">试玩</a></div>
+                    <div id="info" class="info">
+                        <div class="name">{{ h5.name }}</div>
+                        <div class="num"><span class="pnum">玩</span><label>{{ h5.play }}</label><span class="lnum">赞</span><label>{{ h5.like }}</label><span class="unum">踩</span><label>{{ h5.unlike }}</label></div>
+                        <div class="descr">{{ h5.descr }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="news" class="news">
+            {% for h5 in news %}
+                <div class="game">
+                    <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
+                    <div id="play" class="play"><a href="{% url 'html5games:play' h5.pk %}" target="_blank">试玩</a></div>
+                    <div id="info" class="info">
+                        <div class="name">{{ h5.name }}</div>
+                        <div class="num"><span class="pnum">玩</span><label>{{ h5.play }}</label><span class="lnum">赞</span><label>{{ h5.like }}</label><span class="unum">踩</span><label>{{ h5.unlike }}</label></div>
+                        <div class="descr">{{ h5.descr }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="mes" class="mes" style="display: none;">
+            <div class="game_line">
+                {% for h5 in mes %}
+                    <div>
+                        <div class="my_logo"><img src="{{ h5.image }}"></div>
+                        <div class="my_name">{{ h5.name }}</div>
+                    </div>
+                    {% if forloop.counter0|divisibleby:4 %}
+                        </div>
+                        <div class="game_line">
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="game_more" class="game_more">点击加载更多</div>
+
+        <script language="Javascript">
+var createAjax=function(){
+    var xhr=null;
+    try{//IE系列浏览器
+        xhr=new ActiveXObject("microsoft.xmlhttp");
+    }catch(e1){
+        try{//非IE浏览器
+            xhr=new XMLHttpRequest();
+        }catch(e2){
+            window.alert("您的浏览器不支持ajax，请更换！");
+        }
+    }
+    return xhr;
+};
+var ajax=function(conf){
+    var type=conf.type;//type参数,可选 
+    var url=conf.url;//url参数，必填 
+    var data=conf.data;//data参数可选，只有在post请求时需要 
+    var dataType=conf.dataType;//datatype参数可选 
+    var success=conf.success;//回调函数可选
+    if(type==null){//type参数可选，默认为get
+        type="get";
+    }
+    if(dataType==null){//dataType参数可选，默认为text
+        dataType="text";
+    }
+    var xhr=createAjax();
+    xhr.open(type,url,true);
+    if(type=="GET"||type=="get"){
+        xhr.send(null);
+    }else if(type=="POST"||type=="post"){
+        xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        xhr.send(data);
+    }
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4&&xhr.status==200){
+            if(dataType=="text"||dataType=="TEXT"){
+                if(success!=null){//普通文本
+                    success(xhr.responseText);
+                }
+            }else if(dataType=="xml"||dataType=="XML"){
+                if(success!=null){//接收xml文档
+                    success(xhr.responseXML);
+                }
+            }else if(dataType=="json"||dataType=="JSON"){
+                if(success!=null){//将json字符串转换为js对象
+                    success(eval("("+xhr.responseText+")"));
+                }
+            }
+        }
+    };
+};
+            document.getElementById("hot").onclick = function(){
+                document.getElementById('hots').style.display = "block";
+                document.getElementById('news').style.display = "none";
+                document.getElementById('mes').style.display = "none";
+                document.getElementById('hot').style.color = "#ed4b3c";
+                document.getElementById('hot').style.borderBottom = "5px #ed4b3c solid";
+                document.getElementById('new').style.color = "#676566";
+                document.getElementById('new').style.borderBottom = "1px #dcdcdc solid";
+                document.getElementById('me').style.color = "#676566";
+                document.getElementById('me').style.borderBottom = "1px #dcdcdc solid";
+            };
+            document.getElementById("new").onclick = function(){
+                document.getElementById('hots').style.display = "none";
+                document.getElementById('news').style.display = "block";
+                document.getElementById('mes').style.display = "none";
+                document.getElementById('hot').style.color = "#676566";
+                document.getElementById('hot').style.borderBottom = "1px #dcdcdc solid";
+                document.getElementById('new').style.color = "#ed4b3c";
+                document.getElementById('new').style.borderBottom = "5px #ed4b3c solid";
+                document.getElementById('me').style.color = "#676566";
+                document.getElementById('me').style.borderBottom = "1px #dcdcdc solid";
+            };
+            document.getElementById("me").onclick = function(){
+                document.getElementById('hots').style.display = "none";
+                document.getElementById('news').style.display = "none";
+                document.getElementById('mes').style.display = "block";
+                document.getElementById('hot').style.color = "#676566";
+                document.getElementById('hot').style.borderBottom = "1px #dcdcdc solid";
+                document.getElementById('new').style.color = "#676566";
+                document.getElementById('new').style.borderBottom = "1px #dcdcdc solid";
+                document.getElementById('me').style.color = "#ed4b3c";
+                document.getElementById('me').style.borderBottom = "5px #ed4b3c solid";
+            };
+
+            document.getElementById("game_more").onclick = function(){
+ajax({
+    type: "get",//post或者get，非必须
+    url:"/data/games",//必须的
+    data:"type=1&page=2",//非必须
+    dataType:"json",//text/xml/json，非必须
+    success:function(data){//回调函数，非必须
+        alert(data);
+    }
+});
+            };
+        </script>
+    </body>
+</html>

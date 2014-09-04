@@ -1,0 +1,135 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-30 18:53+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: models.py:48 models.py:127 models.py:155 models.py:167 models.py:179
+msgid "token"
+msgstr "移动设备唯一标识符"
+
+#: models.py:49 models.py:88
+msgid "status"
+msgstr "游戏状态"
+
+#: models.py:52 models.py:53
+msgid "testtokeninfo"
+msgstr "测试设备信息"
+
+#: models.py:60
+msgid "1st"
+msgstr "一级分类"
+
+#: models.py:61
+msgid "2nd"
+msgstr "二级分类"
+
+#: models.py:64 models.py:65
+msgid "html5gamesclassifyinfo"
+msgstr "HTML5游戏分类信息"
+
+#: models.py:72
+msgid "name"
+msgstr "游戏名称"
+
+#: models.py:73
+msgid "image"
+msgstr "游戏Logo"
+
+#: models.py:74
+msgid "description"
+msgstr "游戏描述"
+
+#: models.py:75
+msgid "url"
+msgstr "游戏链接"
+
+#: models.py:76 models.py:129
+msgid "play"
+msgstr "游戏玩数"
+
+#: models.py:77
+msgid "real_play"
+msgstr "真实游戏玩数"
+
+#: models.py:78
+msgid "like"
+msgstr "游戏赞数"
+
+#: models.py:79
+msgid "real_like"
+msgstr "真实游戏赞数"
+
+#: models.py:80
+msgid "unlike"
+msgstr "游戏踩数"
+
+#: models.py:81
+msgid "classify1"
+msgstr "游戏分类1"
+
+#: models.py:82
+msgid "classify2"
+msgstr "游戏分类2"
+
+#: models.py:83
+msgid "source"
+msgstr "游戏来源"
+
+#: models.py:84
+msgid "version"
+msgstr "游戏版本"
+
+#: models.py:85
+msgid "commit"
+msgstr "游戏备注"
+
+#: models.py:86
+msgid "language"
+msgstr "游戏语言"
+
+#: models.py:87
+msgid "operate"
+msgstr "游戏操作"
+
+#: models.py:89
+msgid "onshalf"
+msgstr "上线状况"
+
+#: models.py:92 models.py:93
+msgid "html5gamesinfo"
+msgstr "HTML5游戏信息"
+
+#: models.py:128 models.py:156 models.py:168 models.py:180
+msgid "h5game"
+msgstr "HTML5游戏"
+
+#: models.py:132 models.py:133
+msgid "html5gamesplayinfo"
+msgstr "HTML5游戏玩信息"
+
+#: models.py:159 models.py:160
+msgid "html5gamesplaylog"
+msgstr "HTML5游戏玩Log"
+
+#: models.py:171 models.py:172
+msgid "html5gameslikeinfo"
+msgstr "HTML5游戏赞信息"
+
+#: models.py:183 models.py:184
+msgid "html5gamesunlikeinfo"
+msgstr "HTML5游戏踩信息"

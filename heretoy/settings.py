@@ -40,6 +40,9 @@ INSTALLED_APPS = (
     'heretoy',
     'south',
     'eatshit',
+    'html5games',
+    'data',
+    'games_bak',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,6 +52,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'mobi.middleware.MobileDetectionMiddleware',
 )
 
 ROOT_URLCONF = 'heretoy.urls'
@@ -113,7 +117,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 
 MEDIA_URL = '/media/'
 
+DOWNLOADS_ROOT = os.path.join(BASE_DIR, 'downloads').replace('\\', '/')
+
 LOGIN_URL = '/accounts/login'
+
+DOMAIN = 'http://heretoy.com'
+
+GAME_NUM_PER_PAGE = 10
+PLAY_NUM_PER_CLICK = 8
+LIKE_NUM_PER_CLICK = 8
 
 LOGGING = {
     'version': 1,

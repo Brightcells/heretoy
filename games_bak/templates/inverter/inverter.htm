@@ -1,0 +1,143 @@
+{% load staticfiles %}
+ 
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://www.webhek.com/misc/inverter/ -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>蓝色拼图</title>
+    <meta name="description" content="这是一个用HTML5制作的智力游戏，有相当的难度。每个方块一面橙色，一面蓝色。点击一个方块，这个方块的颜色会翻转，并且，与它邻接的方块的颜色也会翻转。使拼板全部变成蓝色，你就算过关了。">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'inverter/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'inverter/css/style.css' %}">
+
+    <script async="" src="{% static 'inverter/js/analytics.js' %}"></script>
+    <script type="text/javascript" src="{% static 'inverter/js/jquery-1.10.2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'inverter/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'inverter/js/viewmodel.js' %}"></script>
+    <script type="text/javascript" src="{% static 'inverter/js/controller.js' %}"></script>
+    <style type="text/css">
+        .form, .comments{display: block;clear: both;margin:  0 auto; width: 600px;}
+        code{white-space: normal;}
+        .comments_warp{margin-top: 650px;}
+    </style>
+    <script charset="utf-8" src="{% static 'inverter/js/shorten.json' %}"></script>
+</head>
+
+<body class="">
+    <div class="container">
+        <div class="heading">
+            <div class="scoresContainer">
+                <div class="currLevel">当前级别: <b>1</b></div>
+                <div class="best">历史最高级别: <b>5</b> (68 clicks)</div>
+                <div class="score">当前点击次数: <b>0</b></div>
+                <div class="total">总计点击次数: <b>142</b></div>
+            </div>
+        </div>
+        <div class="aboveGame">
+            <p class="gameInfo"></p>
+            <a class="reset btn btn-primary">再来一次</a><br>
+            <a class="newgame btn btn-primary">从头来过</a><br>
+            <a class="instruct btn btn-primary">玩法说明</a>
+        </div>
+        <div class="board" style="padding: 7.5px 7.5px 0px;">
+                <div class="gamerow" style="height: 277.5px; margin-right: -7.5px; margin-bottom: 7.5px;">
+                    <div class="gamesquare coord0q0" style="margin-right: 7.5px; width: 277.5px; height: 277.5px; background-color: rgb(230, 171, 94);">
+                </div>
+            </div>
+        </div>
+        <div class="copyof">A Copy of <a href="http://www.webhek.com/misc/inverter/" target="_blank">蓝色拼图</a> from <a href="http://www.webhek.com/">WebHek</a></div>
+    </div>
+
+    <div id="instructions" class="modal fade" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content" id="pullThisHeight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span><span class="sr-only">关闭</span>
+                    </button>
+                    <h4 class="modal-title">玩法说明</h4>
+                </div>
+                <div class="modal-body">
+                    <p>如何才算赢：使拼板全部变成蓝色。 <br>
+                    玩法：每个方块一面橙色，一面蓝色。点击一个方块，这个方块的颜色会翻转，并且，与它邻接的方块的颜色也会翻转。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">开始！</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="newLevel" class="modal fade" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="cheesyGoodJob">I服U!</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="levelDescriptor">进入级别 5</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">开始</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="newGame" class="modal fade" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">你确定要这样做？</h4>
+                </div>
+                <div class="modal-body">
+                    <p>你真的想重新开始吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="newGameConfirm" type="button" class="btn btn-success" data-dismiss="modal">新游戏</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="restartLevel" class="modal fade" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="cheesyGoodJob">你确定要这样做？</h4>
+                </div>
+                <div class="modal-body">
+                    <p>你真的想重新开始吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="resetLevelConfirm" type="button" class="btn btn-success" data-dismiss="modal">重置级别</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <script src="{% static 'inverter/js/util.js' %}"></script>
+    <script src="{% static 'js/weixin-api.js' %}"></script>
+    <script>
+        // 微信分享的数据
+        var wxData = {
+            "appId": "", // 服务号可以填写appId
+            "imgUrl" : "{{ domain }}/static/inverter/img/inverter.png",
+            "link" : "{{ domain }}/inverter",
+            "desc" : "这是一个用HTML5制作的智力游戏，有相当的难度。每个方块一面橙色，一面蓝色。点击一个方块，这个方块的颜色会翻转，并且，与它邻接的方块的颜色也会翻转。使拼板全部变成蓝色， 你就算过关了。",
+            "title" : "蓝色拼图"
+        };
+    </script>
+    <script src="{% static 'js/wx.js' %}"></script>
+    <!--
+        Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+        Page Caching using disk
+        Served from: www.webhek.com @ 2014-09-03 09:08:33 by W3 Total Cache
+    -->
+</body>
+</html>
