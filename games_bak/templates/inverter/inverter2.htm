@@ -13,12 +13,12 @@
     <meta name="description" content="这是一个用HTML5制作的智力游戏，有相当的难度。每个方块一面橙色，一面蓝色。点击一个方块，这个方块的颜色会翻转，并且，与它邻接的方块的颜色也会翻转。使拼板全部变成蓝色，你就算过关了。">
 
     <link rel="stylesheet" type="text/css" href="{% static 'inverter/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'inverter/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'inverter/css/style2.css' %}">
 
     <script async="" src="{% static 'inverter/js/analytics.js' %}"></script>
     <script type="text/javascript" src="{% static 'inverter/js/jquery-1.10.2.js' %}"></script>
     <script type="text/javascript" src="{% static 'inverter/js/bootstrap.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'inverter/js/viewmodel.js' %}"></script>
+    <script type="text/javascript" src="{% static 'inverter/js/viewmodel2.js' %}"></script>
     <script type="text/javascript" src="{% static 'inverter/js/controller.js' %}"></script>
     <style type="text/css">
         .form, .comments{display: block;clear: both;margin:  0 auto; width: 600px;}
@@ -44,6 +44,7 @@
             <a class="newgame btn btn-primary">从头来过</a><br>
             <a class="instruct btn btn-primary">玩法说明</a>
         </div>
+        <div class="bgimg"><img src="{{ img_url }}"></div>
         <div class="board" style="padding: 7.5px 7.5px 0px;">
             <div class="gamerow" style="height: 277.5px; margin-right: -7.5px; margin-bottom: 7.5px;">
                 <div class="gamesquare coord0q0" style="margin-right: 7.5px; width: 277.5px; height: 277.5px; background-color: rgb(230, 171, 94);"></div>

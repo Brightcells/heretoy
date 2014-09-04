@@ -66,6 +66,7 @@ def wap_share(request, pk=-1):
         h5game.play += PLAY
         h5game.real_play += 1
         h5game.save()
+        h5game = h5game.data
     except:
         h5game = ''
     return render(request, 'html5games/wap_share.html', dict(h5game=h5game, domain=domain))

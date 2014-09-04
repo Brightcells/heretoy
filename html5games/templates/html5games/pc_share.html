@@ -19,7 +19,7 @@
     <body>
         <div class="pc_container">
             <div class="left_container">
-                <div class="game">
+                <div class="pc_game">
                     <div id="logo" class="logo"><img src="{{ h5game.image }}"></div>
                     <div id="info" class="info">
                         <div class="name">{{ h5game.name }}</div>
@@ -33,9 +33,12 @@
             </div>
             <div class="right_container">
                 <div class="pc_heretoy_logo"><img src="{% static 'html5games/img/heretoy_logo.jpg' %}"></div>
-                <div class="pc_heretoy_desc"><h3>HereToy，口袋社交小游戏中心</h3></div>
-                <div class="pc_heretoy_iphone"><span>iPhone版下载</span></div>
-                <div class="pc_heretoy_android"><span>Android版下载</span></div>
+                <div class="pc_heretoy_desc"><p>HereToy</p><span>口袋社交小游戏中心</span></div>
+                <div class="pc_heretoy_phone">
+                    <div class="pc_heretoy_iphone"><span>iPhone版下载</span></div>
+                    <div class="pc_heretoy_android"><span>Android版下载</span></div>
+                </div>
+                <div class="pc_heretoy_qrcode"><img src="{% static 'html5games/img/heretoy_logo.jpg' %}"></div>
             </div>
         </div>
         <script language="Javascript">
