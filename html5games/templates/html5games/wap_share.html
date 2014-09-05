@@ -45,7 +45,7 @@
             var wxData = {
                 "appId": "", // 服务号可以填写appId
                 "imgUrl" : "{{ domain }}" + "{{ h5game.image|default:'' }}",
-                "link" : "{{ domain }}/share/{{ h5game.pk}}",
+                "link" : "{{ domain }}/{{ h5game.pk}}",
                 "desc" : "{{ h5game.descr }}",
                 "title" : "{{ h5game.name }}"
             };

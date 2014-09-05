@@ -328,6 +328,7 @@ body {
 }
 
 .pc_iframe_container {
+    border: 1px #dcdcdc solid;
     height: 500px;
 }
 

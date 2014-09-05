@@ -157,7 +157,11 @@ function Game() {
 		$(".score").html("当前点击次数: <b>" + this.currentClicks +"</b>");
 		$(".best").html("历史最高级别: <b>" + this.bestLevel + "</b> (" + this.clicksForBest + " clicks)");
 		$(".total").html("总计点击次数: <b>" + this.totalClicks + "</b>");
-                wxData["desc"] = this.currentClicks + "步点击完成级别：" + this.level + "; 历史最高级别：" + this.bestLevel + "(" + this.clicksForBest + "次点击); 不服来战！";
+                var share_info = this.currentClicks + "步点击完成级别：" + this.level + "; 历史最高级别：" + this.bestLevel + "(" + this.clicksForBest + "次点击); 不服来战！";
+                wxData["desc"] = share_info;
+                if(parent.wxData) {
+                    parent.wxData["desc"] = share_info;
+                }
 	}
 
 	this.applyBindings = function() {
