@@ -9,6 +9,9 @@ body {
     font: normal 14px/1.5 Tahoma,Helvetica,arial,sans-serif;
 }
 
+.content {
+}
+
 .header {
     height: 33px;
     padding: 8px 0;
@@ -30,7 +33,7 @@ body {
 }
 
 .menu>div {
-    width: 33%;
+    width: 50%;
     height: 38px;
     font-size: 12px;
     padding-top: 10px;
@@ -58,6 +61,7 @@ body {
 .game_line {
     padding: 10px 12px;
 }
+
 .logo {
     float: left;
     margin: 0 9px 0 0;
@@ -155,6 +159,34 @@ body {
     text-align: center;
 }
 
+.hfooter {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.htext {
+    height: 20px;
+    margin: 5px;
+    color: #929292;
+}
+
+.hbutton {
+    height: 40px;
+    margin: 0 12px 10px 12px;
+    color: white;
+    background-color: red;
+    border-radius: 5px; 
+}
+
+.hbutton>a {
+    position: relative;
+    padding: 11px 25px;
+    top: 10px;
+    bottom: 10px;
+    font-size: 15px;
+}
 
 .iframe_container {
     position: absolute;
@@ -172,15 +204,19 @@ body {
 }
 
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
+    height: 50px;
+    border-top: 1px #dfdfdf solid;
     text-align: center;
+    background-color: white;
+    box-sizing: border-box;
 }
 
 .evaluate {
     width: 200px;
-    margin: auto;
+    margin: 12px auto;
 }
 
 .like {
@@ -370,28 +406,33 @@ body {
 }
 
 .pc_heretoy_iphone {
+    height: 55px;
+    font-size: 25px;
     color: #ef4a39;
     padding: 8px 18px;
-    margin-top: 20px;
     border: 1px #ef4a39 solid;
     border-radius: 3px;
+    box-sizing: border-box;
 }
 
 .pc_heretoy_android {
+    height: 55px;
+    font-size: 25px;
     color: #ef4a39;
     padding: 8px 18px;
-    margin-top: 12px;
+    margin-top: 15px;
     border: 1px #ef4a39 solid;
     border-radius: 3px;
+    box-sizing: border-box;
 }
 
 .qc_heretoy_qrcode {
 }
 
 .pc_heretoy_qrcode>img {
-    width: 150px;
-    height: 150px;
+    width: 142px;
+    height: 142px;
     margin-left: 15px;
-    margin-top: 150px;
+    margin-top: 157px;
     border-radius: 20px;
 }

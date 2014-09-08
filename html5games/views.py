@@ -24,13 +24,10 @@ def home(request):
     h5games = Html5GamesInfo.objects.filter(status=True).order_by('-play', '-like', 'unlike')[:10]
     hots = [h5.data for h5 in h5games]
 
-    h5games = Html5GamesInfo.objects.filter(status=True).order_by('-modify_at')[:10]
+    h5games = Html5GamesInfo.objects.filter(status=True).order_by('-create_at')[:10]
     news = [h5.data for h5 in h5games]
 
-    h5gamesplay = Html5GamesPlayInfo.objects.filter().order_by('-modify_at')[:20]
-    mes = [h5.data for h5 in h5gamesplay]
-
-    return render(request, 'html5games/home.html', dict(hots=hots, news=news, mes=mes))
+    return render(request, 'html5games/home.html', dict(hots=hots, news=news))
 
 
 def play(request, pk=-1):

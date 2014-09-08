@@ -7,7 +7,7 @@
         <title>{{ h5game.name }}</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
-        <meta name="description" content="{{ h5game.descr }}">
+        <meta id="description" name="description" content="{{ h5game.descr }}">
 
         <link rel="stylesheet" href="{% static 'html5games/css/html5games.css' %}" />
 
@@ -17,6 +17,7 @@
         <![endif]-->
     </head>
     <body>
+        <div style="display: none"><img src="{{ domain }}{{ h5game.image }}"></div>
         <div id="iframe_container" class="heretoy_iframe_container">
             <iframe src="{{ h5game.url }}" id="iframe" class="heretoy_iframe"></iframe>
         </div>
@@ -45,11 +46,25 @@
             var wxData = {
                 "appId": "", // 服务号可以填写appId
                 "imgUrl" : "{{ domain }}" + "{{ h5game.image|default:'' }}",
-                "link" : "{{ domain }}/{{ h5game.pk}}",
+                "link" : "{{ domain }}/share/{{ h5game.pk}}",
                 "desc" : "{{ h5game.descr }}",
                 "title" : "{{ h5game.name }}"
             };
+
+            var onmessage = function(e) {
+                data = e.data;
+                wxData['desc'] = data;
+                document.getElementById("description").content = data;
+            };
+            //监听postMessage消息事件
+            if (typeof window.addEventListener != 'undefined') {
+                window.addEventListener('message', onmessage, false);
+            } else if (typeof window.attachEvent != 'undefined') {
+                window.attachEvent('onmessage', onmessage);
+            }
+
         </script>
         <script src="{% static 'js/wx.js' %}"></script>
+        <script src="{% static 'js/yx.js' %}"></script>
     </body>
 </html>

@@ -275,10 +275,8 @@ function Ga1900(canvasId) {
         document.getElementById("share").style.zIndex = 999;
         
         share_info = "同学，丧心病狂地吃掉了" + this.score + "坨翔翔，击败了" + rank + "%的翔友，NB闪闪的获得了" + title + "称号！";
-        wxData["desc"] = share_info;
-        if(parent.wxData) {
-            parent.wxData["desc"] = share_info;
-        }
+        wxData['desc'] = share_info;
+        window.parent.postMessage(share_info, '*');
 
         localStorage.maxScore = this.maxScore;
         //alert(localStorage.maxScore);

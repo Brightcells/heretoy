@@ -4,10 +4,12 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>HTML5 小游戏</title>
+        <title>Heretoy | 口袋社交小游戏中心</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
         <meta name="description" content="">
+
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
 
         <link rel="stylesheet" href="{% static 'html5games/css/html5games.css' %}" />
 
@@ -23,8 +25,8 @@
         </div>
         <div class="footer">
             <div class="evaluate">
-            <div class="like">赞 {{ h5game.like }}</div>
-            <div class="unlike">踩 {{ h5game.unlike }}</div>
+                <div class="like">赞 {{ h5game.like }}</div>
+                <div class="unlike">踩 {{ h5game.unlike }}</div>
             </div>
         </div>
         <script language="Javascript">

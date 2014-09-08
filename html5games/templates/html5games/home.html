@@ -4,10 +4,12 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>HTML5 小游戏</title>
+        <title>Heretoy | 口袋社交小游戏中心</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
         <meta name="description" content="">
+
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
 
         <link rel="stylesheet" href="{% static 'html5games/css/html5games.css' %}" />
 
@@ -15,59 +17,51 @@
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
+
+        <script type="text/javascript" name="baidu-tc-cerfication" src="http://apps.bdimg.com/cloudaapi/lightapp.js#abe51080d473c59514606426dfd6669f"></script><script type="text/javascript">window.bd && bd._qdc && bd._qdc.init({app_id: '374fbc51f1cdd1f393e2d4ba'});</script>
     </head>
     <body>
-        <div class="header">
-            <div class="warp">HereToy</div>
-        </div>
-        <div id="menu" class="menu">
-            <div id="hot" class="hot">Hot</div>
-            <div id="new" class="new" style="color: #ed4b3c; border-bottom: 5px #ed4b3c solid;">New</div>
-            <div id="me" class="me">Me</div>
-        </div>
-        <div id="hots" class="hots" style="display: none;">
-            {% for h5 in hots %}
-                <div class="game">
-                    <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
-                    <div id="play" class="play"><a href="{% url 'html5games:play' h5.pk %}" target="_blank">试玩</a></div>
-                    <div id="info" class="info">
-                        <div class="name">{{ h5.name }}</div>
-                        <div class="num"><span class="pnum">玩</span><label>{{ h5.play }}</label><span class="lnum">赞</span><label>{{ h5.like }}</label><span class="unum">踩</span><label>{{ h5.unlike }}</label></div>
-                        <div class="descr">{{ h5.descr }}</div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-
-        <div id="news" class="news">
-            {% for h5 in news %}
-                <div class="game">
-                    <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
-                    <div id="play" class="play"><a href="{% url 'html5games:play' h5.pk %}" target="_blank">试玩</a></div>
-                    <div id="info" class="info">
-                        <div class="name">{{ h5.name }}</div>
-                        <div class="num"><span class="pnum">玩</span><label>{{ h5.play }}</label><span class="lnum">赞</span><label>{{ h5.like }}</label><span class="unum">踩</span><label>{{ h5.unlike }}</label></div>
-                        <div class="descr">{{ h5.descr }}</div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <div id="mes" class="mes" style="display: none;">
-            <div class="game_line">
-                {% for h5 in mes %}
-                    <div>
-                        <div class="my_logo"><img src="{{ h5.image }}"></div>
-                        <div class="my_name">{{ h5.name }}</div>
-                    </div>
-                    {% if forloop.counter0|divisibleby:4 %}
+        <div class="content">
+            <div class="header">
+                <div class="warp">HereToy</div>
+            </div>
+            <div id="menu" class="menu">
+                <div id="hot" class="hot">Hot</div>
+                <div id="new" class="new" style="color: #ed4b3c; border-bottom: 5px #ed4b3c solid;">New</div>
+            </div>
+            <div id="hots" class="hots" style="display: none;">
+                {% for h5 in hots %}
+                    <div class="game">
+                        <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
+                        <div id="play" class="play"><a href="{% url 'html5games:play' h5.pk %}" target="_blank">试玩</a></div>
+                        <div id="info" class="info">
+                            <div class="name">{{ h5.name }}</div>
+                            <div class="num"><span class="pnum">玩</span><label>{{ h5.play }}</label><span class="lnum">赞</span><label>{{ h5.like }}</label><span class="unum">踩</span><label>{{ h5.unlike }}</label></div>
+                            <div class="descr">{{ h5.descr }}</div>
                         </div>
-                        <div class="game_line">
-                    {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div id="news" class="news">
+                {% for h5 in news %}
+                    <div class="game">
+                        <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
+                        <div id="play" class="play"><a href="{% url 'html5games:play' h5.pk %}" target="_blank">试玩</a></div>
+                        <div id="info" class="info">
+                            <div class="name">{{ h5.name }}</div>
+                            <div class="num"><span class="pnum">玩</span><label>{{ h5.play }}</label><span class="lnum">赞</span><label>{{ h5.like }}</label><span class="unum">踩</span><label>{{ h5.unlike }}</label></div>
+                            <div class="descr">{{ h5.descr }}</div>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
         </div>
 
-        <div id="game_more" class="game_more">点击加载更多</div>
+        <div class="hfooter" style="padding-top: 0">
+            <div class="htext">想玩更多小游戏?</div>
+            <div class="hbutton"><a href="{% static 'html5games/downloads/heretoy.apk' %}" style="color: white;">立即下载Heretoy客户端</a></div>
+        </div>
 
         <script language="Javascript">
 var createAjax=function(){
@@ -124,47 +118,18 @@ var ajax=function(conf){
             document.getElementById("hot").onclick = function(){
                 document.getElementById('hots').style.display = "block";
                 document.getElementById('news').style.display = "none";
-                document.getElementById('mes').style.display = "none";
                 document.getElementById('hot').style.color = "#ed4b3c";
                 document.getElementById('hot').style.borderBottom = "5px #ed4b3c solid";
                 document.getElementById('new').style.color = "#676566";
                 document.getElementById('new').style.borderBottom = "1px #dcdcdc solid";
-                document.getElementById('me').style.color = "#676566";
-                document.getElementById('me').style.borderBottom = "1px #dcdcdc solid";
             };
             document.getElementById("new").onclick = function(){
                 document.getElementById('hots').style.display = "none";
                 document.getElementById('news').style.display = "block";
-                document.getElementById('mes').style.display = "none";
                 document.getElementById('hot').style.color = "#676566";
                 document.getElementById('hot').style.borderBottom = "1px #dcdcdc solid";
                 document.getElementById('new').style.color = "#ed4b3c";
                 document.getElementById('new').style.borderBottom = "5px #ed4b3c solid";
-                document.getElementById('me').style.color = "#676566";
-                document.getElementById('me').style.borderBottom = "1px #dcdcdc solid";
-            };
-            document.getElementById("me").onclick = function(){
-                document.getElementById('hots').style.display = "none";
-                document.getElementById('news').style.display = "none";
-                document.getElementById('mes').style.display = "block";
-                document.getElementById('hot').style.color = "#676566";
-                document.getElementById('hot').style.borderBottom = "1px #dcdcdc solid";
-                document.getElementById('new').style.color = "#676566";
-                document.getElementById('new').style.borderBottom = "1px #dcdcdc solid";
-                document.getElementById('me').style.color = "#ed4b3c";
-                document.getElementById('me').style.borderBottom = "5px #ed4b3c solid";
-            };
-
-            document.getElementById("game_more").onclick = function(){
-ajax({
-    type: "get",//post或者get，非必须
-    url:"/data/games",//必须的
-    data:"type=1&page=2",//非必须
-    dataType:"json",//text/xml/json，非必须
-    success:function(data){//回调函数，非必须
-        alert(data);
-    }
-});
             };
         </script>
     </body>

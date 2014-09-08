@@ -188,7 +188,7 @@
                 tcd = setInterval(threeCountDown, 1000);
             }
             function share_friend(sfBtn) {
-                url = "{% url 'eatshit:share' photo_data.name|default:'' %}?achieve={{ photo_data.name|default:'' }}" + achieve;
+                url = "{% url 'eatshit:share' photo_data.name|default:'' %}?achieve={{ photo_data.name|default:'' }}" + share_info;
                 location.href = url;
             }
 
@@ -216,5 +216,6 @@
             };
         </script>
         <script src="{% static 'js/wx.js' %}"></script>
+        <script src="{% static 'js/yx.js' %}"></script>
     </body>
 </html>

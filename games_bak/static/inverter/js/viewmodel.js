@@ -1,7 +1,10 @@
-// Daniel Gorrie
+function getRandomNum(Min, Max) {
+    var Range = Max - Min,
+        Rand = Math.random();
+    return (Min + Math.round(Rand * Range));
+}
 
 function cookieHelper() {
-
 	this.readCookie = function(callback) {
 		callback(this.getCookie("gs"));
 	}
@@ -157,11 +160,19 @@ function Game() {
 		$(".score").html("当前点击次数: <b>" + this.currentClicks +"</b>");
 		$(".best").html("历史最高级别: <b>" + this.bestLevel + "</b> (" + this.clicksForBest + " clicks)");
 		$(".total").html("总计点击次数: <b>" + this.totalClicks + "</b>");
-                var share_info = this.currentClicks + "步点击完成级别：" + this.level + "; 历史最高级别：" + this.bestLevel + "(" + this.clicksForBest + "次点击); 不服来战！";
-                wxData["desc"] = share_info;
-                if(parent.wxData) {
-                    parent.wxData["desc"] = share_info;
-                }
+                var rank = "",
+                    title = "不服来战！";
+                if(this.level == 2) {rank = getRandomNum(1, 3);}
+                else if(this.level == 3) {rank = getRandomNum(4, 10);}
+                else if(this.level == 4) {rank = getRandomNum(11, 20);}
+                else if(this.level == 5) {rank = getRandomNum(21, 40); title = "超越有难度！";}
+                else if(this.level == 6) {rank = getRandomNum(41, 50); title = "超越有难度！";}
+                else if(this.level == 7) {rank = getRandomNum(51, 64); title = "已经不好超越！";}
+                else if(this.level == 8) {rank = getRandomNum(65, 80); title = "已经不好超越！";}
+                else {rank = getRandomNum(81, 99); title = "已经不好超越！";}
+                var share_info = "用了" + this.currentClicks + "次点击，达到" + this.level + "级，击败全球" + rank + "%用户，" + title;
+                wxData['desc'] = share_info;
+                window.parent.postMessage(share_info, '*');
 	}
 
 	this.applyBindings = function() {
