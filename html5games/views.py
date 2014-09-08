@@ -24,13 +24,15 @@ def home(request):
     fromWeixin = True if 'MicroMessenger' in request.META['HTTP_USER_AGENT'] else False
     app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL
 
+    domain = settings.DOMAIN
+
     h5games = Html5GamesInfo.objects.filter(status=True).order_by('-play', '-like', 'unlike')[:10]
     hots = [h5.data for h5 in h5games]
 
     h5games = Html5GamesInfo.objects.filter(status=True).order_by('-create_at')[:10]
     news = [h5.data for h5 in h5games]
 
-    return render(request, 'html5games/home.html', dict(hots=hots, news=news, app_url=app_url))
+    return render(request, 'html5games/home.html', dict(hots=hots, news=news, domain=domain, app_url=app_url))
 
 
 def play(request, pk=-1):
