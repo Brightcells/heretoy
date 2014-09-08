@@ -123,6 +123,8 @@ LOGIN_URL = '/accounts/login'
 
 DOMAIN = 'http://heretoy.com'
 
+APP_DOWNLOAD_URL = 'http://heretoy.com/static/html5games/downloads/heretoy.apk'
+
 GAME_NUM_PER_PAGE = 10
 PLAY_NUM_PER_CLICK = 8
 LIKE_NUM_PER_CLICK = 8

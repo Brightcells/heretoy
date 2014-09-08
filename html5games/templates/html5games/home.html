@@ -30,7 +30,7 @@
 	})();
 	</script>
     </head>
-    <body>
+    <body style="max-width: 500px; margin: 0 auto;">
         <div class="content">
             <div class="header">
                 <div class="warp">HereToy</div>
@@ -43,7 +43,7 @@
                 {% for h5 in hots %}
                     <div class="game">
                         <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
-                        <div id="play" class="play"><a href="{% url 'html5games:play' h5.pk %}" target="_blank">试玩</a></div>
+                        <div id="play" class="play"><a href="{% url 'html5games:share' h5.pk %}" target="_blank">试玩</a></div>
                         <div id="info" class="info">
                             <div class="name">{{ h5.name }}</div>
                             <div class="num"><span class="pnum">玩</span><label>{{ h5.play }}</label><span class="lnum">赞</span><label>{{ h5.like }}</label><span class="unum">踩</span><label>{{ h5.unlike }}</label></div>
@@ -57,7 +57,7 @@
                 {% for h5 in news %}
                     <div class="game">
                         <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
-                        <div id="play" class="play"><a href="{% url 'html5games:play' h5.pk %}" target="_blank">试玩</a></div>
+                        <div id="play" class="play"><a href="{% url 'html5games:share' h5.pk %}" target="_blank">试玩</a></div>
                         <div id="info" class="info">
                             <div class="name">{{ h5.name }}</div>
                             <div class="num"><span class="pnum">玩</span><label>{{ h5.play }}</label><span class="lnum">赞</span><label>{{ h5.like }}</label><span class="unum">踩</span><label>{{ h5.unlike }}</label></div>
@@ -70,7 +70,7 @@
 
         <div class="hfooter" style="padding-top: 0">
             <div class="htext">想玩更多小游戏?</div>
-            <div class="hbutton"><a href="{% static 'html5games/downloads/heretoy.apk' %}" style="color: white;">立即下载Heretoy客户端</a></div>
+            <div class="hbutton" onclick="window.location='{{ app_url }}'"><span>立即下载Heretoy客户端</span></div>
         </div>
 
         <script language="Javascript">

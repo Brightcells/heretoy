@@ -129,12 +129,18 @@ body {
 
 .play {
     width: 55px;
+    height: 25px;
     text-align: center;
     float: right;
-    padding: 2px 0;
+    padding: 0;
     margin-right: 5px;
     border: 1px #eb4d3c solid;
     border-radius: 3px;
+}
+
+.play>a {
+    padding: 4px 13px;
+    line-height: 25px;
 }
 
 .my_logo {
@@ -178,9 +184,10 @@ body {
     color: white;
     background-color: red;
     border-radius: 5px; 
+    cursor: pointer;
 }
 
-.hbutton>a {
+.hbutton>span {
     position: relative;
     padding: 11px 25px;
     top: 10px;
@@ -305,6 +312,7 @@ body {
     float: right;
     margin-top: 15px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .heretoy_dl {

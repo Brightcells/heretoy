@@ -21,13 +21,15 @@ PLAY = settings.PLAY_NUM_PER_CLICK
 
 
 def home(request):
+    app_url = settings.APP_DOWNLOAD_URL
+
     h5games = Html5GamesInfo.objects.filter(status=True).order_by('-play', '-like', 'unlike')[:10]
     hots = [h5.data for h5 in h5games]
 
     h5games = Html5GamesInfo.objects.filter(status=True).order_by('-create_at')[:10]
     news = [h5.data for h5 in h5games]
 
-    return render(request, 'html5games/home.html', dict(hots=hots, news=news))
+    return render(request, 'html5games/home.html', dict(hots=hots, news=news, app_url=app_url))
 
 
 def play(request, pk=-1):
@@ -44,6 +46,7 @@ def play(request, pk=-1):
 @xframe_options_exempt
 def share(request, pk=-1):
     domain = settings.DOMAIN
+    app_url = settings.APP_DOWNLOAD_URL
 
     try:
         h5game = Html5GamesInfo.objects.get(pk=pk)
@@ -55,7 +58,7 @@ def share(request, pk=-1):
         h5game = ''
 
     if request.mobile:
-        return render(request, 'html5games/wap_share.html', dict(h5game=h5game, domain=domain))
+        return render(request, 'html5games/wap_share.html', dict(h5game=h5game, domain=domain, app_url=app_url))
         # return redirect(reverse('html5games:wap_share', args=[pk,]))
     else:
         return render(request, 'html5games/pc_share.html', dict(h5game=h5game, domain=domain))

@@ -39,7 +39,7 @@
                 <span class="heretoy_ds">口袋社交小游戏中心</span>
             </div>
             <div id="heretoy_close" class="heretoy_close"><img class="heretoy_cls" src="{% static 'html5games/img/close.png' %}"></img></div>
-            <div class="heretoy_download"><a id="heretoy_dl" class="heretoy_dl" href="{% static 'html5games/downloads/heretoy.apk' %}">立即下载</a></div>
+            <div class="heretoy_download"><a id="heretoy_dl" class="heretoy_dl" href="{{ app_url }}">立即下载</a></div>
             <div style="display: none;"><img src="{{ h5game.image }}"><h1>{{ h5game.descr }}</h1></div>
         </div>
         <script src="{% static 'js/weixin-api.js' %}"></script>
