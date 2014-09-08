@@ -21,7 +21,8 @@ PLAY = settings.PLAY_NUM_PER_CLICK
 
 
 def home(request):
-    app_url = settings.APP_DOWNLOAD_URL
+    fromWeixin = True if 'MicroMessenger' in request.META['HTTP_USER_AGENT'] else False
+    app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL
 
     h5games = Html5GamesInfo.objects.filter(status=True).order_by('-play', '-like', 'unlike')[:10]
     hots = [h5.data for h5 in h5games]
@@ -45,8 +46,10 @@ def play(request, pk=-1):
 
 @xframe_options_exempt
 def share(request, pk=-1):
+    fromWeixin = True if 'MicroMessenger' in request.META['HTTP_USER_AGENT'] else False
+    app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL
+
     domain = settings.DOMAIN
-    app_url = settings.APP_DOWNLOAD_URL
 
     try:
         h5game = Html5GamesInfo.objects.get(pk=pk)
