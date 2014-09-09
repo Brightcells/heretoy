@@ -126,6 +126,14 @@ DOMAIN = 'http://heretoy.com'
 APP_DOWNLOAD_URL = 'http://heretoy.com/static/html5games/downloads/heretoy.apk'
 APP_DOWNLOAD_URL_WEIXIN = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.brightcells.cxm'
 
+RSA_VALUES = {
+    'n': 3247,
+    'e': 65537,
+    'd': 833,
+    'p': 191,
+    'q': 17
+}
+
 GAME_NUM_PER_PAGE = 10
 PLAY_NUM_PER_CLICK = 8
 LIKE_NUM_PER_CLICK = 8

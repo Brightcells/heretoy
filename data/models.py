@@ -8,8 +8,19 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 from heretoy.basemodels import CreateUpdateMixin
 
 import os
+import rsa
 import time
+import urllib
 import datetime
+
+from pyDes import *
+
+
+RSA = settings.RSA_VALUES
+BOB_PUB = rsa.PublicKey(RSA['n'], RSA['e'])
+BOB_PRIV = rsa.PrivateKey(RSA['n'], RSA['e'], RSA['d'], RSA['p'], RSA['q'])
+
+k = des('DIORSLAB', CBC, '\0\0\0\0\0\0\0\0', pad=None, padmode=PAD_PKCS5)
 
 
 def upload_path(instance, old_filename):
@@ -70,6 +81,7 @@ class Html5GamesClassifyInfo(CreateUpdateMixin):
 
 class Html5GamesInfo(CreateUpdateMixin):
     name = models.CharField(_('name'), max_length=255, blank=True, null=True, help_text=u'游戏名称')
+    md5 = models.CharField(_('md5'), max_length=255, blank=True, null=True, help_text=u'首次 pk + 游戏名称 的 md5')
     image = models.ImageField(_('image'), upload_to=upload_path, blank=True, null=True, help_text=u'游戏 Logo')
     descr = models.TextField(_(u'description'), blank=True, null=True, help_text=u'游戏描述')
     url = models.CharField(_(u'url'), max_length=255, blank=True, null=True, help_text=u'游戏链接')
@@ -97,7 +109,7 @@ class Html5GamesInfo(CreateUpdateMixin):
 
     def _data(self):
         return {
-            'pk': self.pk,
+            'pk': self.md5,
             'name': self.name,
             'image': self.image.url if self.image else '',
             'descr': self.descr,

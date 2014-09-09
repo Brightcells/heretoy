@@ -1,6 +1,21 @@
 from django.contrib import admin
 from data.models import TestTokenInfo, Html5GamesClassifyInfo, Html5GamesInfo, Html5GamesPlayInfo, Html5GamesPlayLog, Html5GamesLikeInfo, Html5GamesUnlikeInfo
 
+import hashlib
+
+from CodeConvert import CodeConvert as cc
+
+
+def string2hash(string):
+    '''
+        @function: change string to hash by using hashlib's md5 method
+        @paras: string
+        @returns: hexdigest string
+    '''
+    hash_string = hashlib.md5()
+    hash_string.update(string)
+    return hash_string.hexdigest()
+
 
 class TestTokenInfoAdmin(admin.ModelAdmin):
     list_display = ('token', 'status')
@@ -14,6 +29,13 @@ class Html5GamesInfoAdmin(admin.ModelAdmin):
     list_display = ('name', 'onshalf', 'image', 'descr', 'url', 'play', 'real_play', 'like', 'real_like', 'unlike', 'classify1', 'classify2', 'source', 'version', 'commit', 'language', 'operate', 'status')
     search_fields = ('name', 'descr', 'commit')
     list_filter = ('source', 'version', 'language', 'operate', 'classify1', 'classify2')
+
+    def save_model(self, request, obj, form, change):
+        if obj.md5 == '':
+            obj.md5 = string2hash(cc.Convert2Utf8('%s: %s' % (obj.pk, obj.name)))
+            obj.save()
+        else:
+            pass
 
 
 class Html5GamesPlayInfoAdmin(admin.ModelAdmin):

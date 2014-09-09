@@ -42,7 +42,7 @@
             </div>
             <div id="hots" class="hots" style="display: none;">
                 {% for h5 in hots %}
-                    <div class="game">
+                    <div class="game" onclick="window.location='{% url 'html5games:share' h5.pk %}'">
                         <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
                         <div id="play" class="play"><a href="{% url 'html5games:share' h5.pk %}" target="_blank">试玩</a></div>
                         <div id="info" class="info">
@@ -56,7 +56,7 @@
 
             <div id="news" class="news">
                 {% for h5 in news %}
-                    <div class="game">
+                    <div class="game" onclick="window.location='{% url 'html5games:share' h5.pk %}'">
                         <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
                         <div id="play" class="play"><a href="{% url 'html5games:share' h5.pk %}" target="_blank">试玩</a></div>
                         <div id="info" class="info">
