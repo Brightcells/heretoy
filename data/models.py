@@ -8,19 +8,9 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 from heretoy.basemodels import CreateUpdateMixin
 
 import os
-import rsa
 import time
 import urllib
 import datetime
-
-from pyDes import *
-
-
-RSA = settings.RSA_VALUES
-BOB_PUB = rsa.PublicKey(RSA['n'], RSA['e'])
-BOB_PRIV = rsa.PrivateKey(RSA['n'], RSA['e'], RSA['d'], RSA['p'], RSA['q'])
-
-k = des('DIORSLAB', CBC, '\0\0\0\0\0\0\0\0', pad=None, padmode=PAD_PKCS5)
 
 
 def upload_path(instance, old_filename):

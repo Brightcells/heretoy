@@ -13,21 +13,12 @@ from data.models import Html5GamesInfo, Html5GamesPlayInfo
 from CodeConvert import CodeConvert
 
 import os
-import rsa
 import time
 import urllib
 import datetime
 
-from pyDes import *
-
 
 PLAY = settings.PLAY_NUM_PER_CLICK
-
-RSA = settings.RSA_VALUES
-BOB_PUB = rsa.PublicKey(RSA['n'], RSA['e'])
-BOB_PRIV = rsa.PrivateKey(RSA['n'], RSA['e'], RSA['d'], RSA['p'], RSA['q'])
-
-k = des('DIORSLAB', CBC, '\0\0\0\0\0\0\0\0', pad=None, padmode=PAD_PKCS5)
 
 
 def home(request):
@@ -64,7 +55,7 @@ def share(request, pk=-1):
     domain = settings.DOMAIN
 
     try:
-        h5game = Html5GamesInfo.objects.get(md5=md5)
+        h5game = Html5GamesInfo.objects.get(md5=pk)
         h5game.play += PLAY
         h5game.real_play += 1
         h5game.save()
