@@ -111,7 +111,7 @@ class Html5GamesInfo(CreateUpdateMixin):
 
     def _info(self):
         return {
-            'pk': self.pk,
+            'pk': self.md5,
             'name': self.name,
             'image': settings.DOMAIN + self.image.url if self.image else '',
             'descr': self.descr,
