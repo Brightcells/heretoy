@@ -33,14 +33,21 @@
         </div>
         <div id="footer" class="heretoy_footer">
             <div class="heretoy_logo"><img src="{% static 'html5games/img/heretoy_logo.jpg' %}"></div> 
+            {% if fromApple %}
+            <div id="heretoy_close" class="heretoy_close"><img class="heretoy_cls" src="{% static 'html5games/img/close.png' %}"></img></div>
+            <div class="heretoy_apple">
+                <p class="heretoy_ap">IOS客户端正在玩命开发</p>
+                <p class="heretoy_ap">您可先关注我们微信公号：iheretoy</p>
+            </div>
+            {% else %}
             <div class="heretoy_desc">
                 <h3 class="heretoy_app">HereToy</h3>
                 <img class="heretoy_star" src="{% static 'html5games/img/star.png' %}"></img>
                 <span class="heretoy_ds">口袋社交小游戏中心</span>
             </div>
             <div id="heretoy_close" class="heretoy_close"><img class="heretoy_cls" src="{% static 'html5games/img/close.png' %}"></img></div>
-            <div class="heretoy_download"><a id="heretoy_dl" class="heretoy_dl" href="{{ app_url }}">立即下载</a></div>
-            <div style="display: none;"><img src="{{ h5game.image }}"><h1>{{ h5game.descr }}</h1></div>
+            <div class="heretoy_download"><a id="heretoy_dl" class="heretoy_dl" onclick="window.location='{{ app_url }}'">立即下载</a></div>
+            {% endif %}
         </div>
         <script src="{% static 'js/weixin-api.js' %}"></script>
         <script language="Javascript">

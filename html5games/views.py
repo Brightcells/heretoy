@@ -22,8 +22,11 @@ PLAY = settings.PLAY_NUM_PER_CLICK
 
 
 def home(request):
-    fromWeixin = True if 'MicroMessenger' in request.META['HTTP_USER_AGENT'] else False
-    app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL
+    meta = request.META['HTTP_USER_AGENT']
+    fromWeixin = 'MicroMessenger' in meta
+    fromApple = 'iPhone' in meta or 'iPad' in meta or 'iPod' in meta
+
+    app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL_WAP
 
     domain = settings.DOMAIN
 
@@ -33,7 +36,7 @@ def home(request):
     h5games = Html5GamesInfo.objects.filter(status=True).order_by('-create_at')[:10]
     news = [h5.data for h5 in h5games]
 
-    return render(request, 'html5games/home.html', dict(hots=hots, news=news, domain=domain, app_url=app_url))
+    return render(request, 'html5games/home.html', dict(hots=hots, news=news, domain=domain, fromApple=fromApple, app_url=app_url))
 
 
 def play(request, pk=-1):
@@ -49,9 +52,6 @@ def play(request, pk=-1):
 
 @xframe_options_exempt
 def share(request, pk=-1):
-    fromWeixin = True if 'MicroMessenger' in request.META['HTTP_USER_AGENT'] else False
-    app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL
-
     domain = settings.DOMAIN
 
     try:
@@ -64,11 +64,15 @@ def share(request, pk=-1):
         h5game = ''
 
     if request.mobile:
-        return render(request, 'html5games/wap_share.html', dict(h5game=h5game, domain=domain, app_url=app_url))
-        # return redirect(reverse('html5games:wap_share', args=[pk,]))
+        meta = request.META['HTTP_USER_AGENT']
+        fromWeixin = 'MicroMessenger' in meta
+        fromApple = 'iPhone' in meta or 'iPad' in meta or 'iPod' in meta
+
+        app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL_WAP
+
+        return render(request, 'html5games/wap_share.html', dict(h5game=h5game, domain=domain, fromApple=fromApple, app_url=app_url))
     else:
         return render(request, 'html5games/pc_share.html', dict(h5game=h5game, domain=domain))
-        # return redirect(reverse('html5games:pc_share', args=[pk,]))
 
 
 @xframe_options_exempt
@@ -99,3 +103,15 @@ def pc_share(request, pk=-1):
     except:
         h5game = ''
     return render(request, 'html5games/pc_share.html', dict(h5game=h5game, domain=domain))
+
+
+def downloads(request):
+    meta = request.META['HTTP_USER_AGENT']
+    fromWeixin = 'MicroMessenger' in meta
+    fromApple = 'iPhone' in meta or 'iPad' in meta or 'iPod' in meta
+
+    app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL_PC
+
+    domain = settings.DOMAIN
+
+    return render(request, 'html5games/downloads.html', dict(domain=domain, fromApple=fromApple, app_url=app_url))

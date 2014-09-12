@@ -1,0 +1,65 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Heretoy | 口袋社交小游戏中心</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
+        <meta name="description" content="">
+
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+
+        <link rel="stylesheet" href="{% static 'html5games/css/html5games.css' %}" />
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+ 
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?f2d763b8f092643b8497b99a7cb7fc64";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    </head>
+    <body style="max-width: 500px; margin: 0 auto;">
+        <div id="dl_header" class="dl_header">
+            <div class="dl_logo"><img src="{{domain }}{% static 'html5games/img/heretoy_logo.jpg' %}"></div> 
+            {% if fromApple %}
+            <div class="dl_apple">
+                <p class="dl_ap">IOS客户端正在玩命开发</p>
+                <p class="dl_ap">您可先关注我们微信公号：iheretoy</p>
+            </div>
+            {% else %}
+            <div class="dl_desc">
+                <h3 class="dl_app">HereToy</h3>
+                <span class="dl_ds">口袋社交小游戏中心</span>
+                <img class="dl_star" src="{% static 'html5games/img/star.png' %}"></img>
+            </div>
+            <div class="dl_download"><a class="dl_dl" onclick="window.location='{{ app_url }}'">立即下载</a></div>
+            {% endif %}
+        </div>
+
+        <div class="dl_face"><img src="{% static 'html5games/img/heretoy_face.png' %}"></div>
+
+        <script language="Javascript">
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl" : "{{ domain }}{% static 'html5games/img/heretoy_logo.jpg' %}",
+                "link" : "{{ domain }}",
+                "desc" : "Heretoy，口袋社交小游戏中心",
+                "title" : "HereToy"
+            };
+        </script>
+        <script src="{% static 'js/wx.js' %}"></script>
+        <script src="{% static 'js/yx.js' %}"></script>
+        </script>
+    </body>
+</html>

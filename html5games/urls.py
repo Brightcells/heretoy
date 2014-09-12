@@ -10,4 +10,6 @@ urlpatterns = patterns('html5games.views',
     url(r'^share/(?P<pk>[^/]+)/$', 'share', name='share'),
     url(r'^share/wap/(?P<pk>\d+)/$', 'wap_share', name='wap_share'),
     url(r'^share/pc/(?P<pk>\d+)/$', 'pc_share', name='pc_share'),
+
+    url(r'^downloads/$', 'downloads', name='downloads'),
 )
