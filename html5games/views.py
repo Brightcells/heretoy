@@ -21,7 +21,9 @@ import datetime
 PLAY = settings.PLAY_NUM_PER_CLICK
 
 
-def home(request):
+def game(request):
+    rank_type = request.GET.get('type', 'new')
+
     meta = request.META['HTTP_USER_AGENT']
     fromWeixin = 'MicroMessenger' in meta
     fromApple = 'iPhone' in meta or 'iPad' in meta or 'iPod' in meta
@@ -36,7 +38,7 @@ def home(request):
     h5games = Html5GamesInfo.objects.filter(status=True).order_by('-create_at')[:10]
     news = [h5.data for h5 in h5games]
 
-    return render(request, 'html5games/home.html', dict(hots=hots, news=news, domain=domain, fromApple=fromApple, app_url=app_url))
+    return render(request, 'html5games/game.html', dict(rank_type=rank_type, hots=hots, news=news, domain=domain, fromApple=fromApple, app_url=app_url))
 
 
 def play(request, pk=-1):
@@ -52,6 +54,10 @@ def play(request, pk=-1):
 
 @xframe_options_exempt
 def share(request, pk=-1):
+    meta = request.META['HTTP_USER_AGENT']
+    fromWeixin = 'MicroMessenger' in meta
+    fromApple = 'iPhone' in meta or 'iPad' in meta or 'iPod' in meta
+
     domain = settings.DOMAIN
 
     try:
@@ -64,15 +70,12 @@ def share(request, pk=-1):
         h5game = ''
 
     if request.mobile:
-        meta = request.META['HTTP_USER_AGENT']
-        fromWeixin = 'MicroMessenger' in meta
-        fromApple = 'iPhone' in meta or 'iPad' in meta or 'iPod' in meta
-
         app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL_WAP
 
         return render(request, 'html5games/wap_share.html', dict(h5game=h5game, domain=domain, fromApple=fromApple, app_url=app_url))
     else:
-        return render(request, 'html5games/pc_share.html', dict(h5game=h5game, domain=domain))
+        app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL_PC
+        return render(request, 'html5games/pc_share.html', dict(h5game=h5game, domain=domain, fromApple=fromApple, app_url=app_url))
 
 
 @xframe_options_exempt
@@ -105,7 +108,7 @@ def pc_share(request, pk=-1):
     return render(request, 'html5games/pc_share.html', dict(h5game=h5game, domain=domain))
 
 
-def downloads(request):
+def wap_home(request):
     meta = request.META['HTTP_USER_AGENT']
     fromWeixin = 'MicroMessenger' in meta
     fromApple = 'iPhone' in meta or 'iPad' in meta or 'iPod' in meta
@@ -114,4 +117,4 @@ def downloads(request):
 
     domain = settings.DOMAIN
 
-    return render(request, 'html5games/downloads.html', dict(domain=domain, fromApple=fromApple, app_url=app_url))
+    return render(request, 'html5games/wap_home.html', dict(domain=domain, fromApple=fromApple, app_url=app_url))

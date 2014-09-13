@@ -97,6 +97,8 @@
                 document.getElementById('new').style.borderBottom = "5px #ed4b3c solid";
             };
 
+            {% ifequal rank_type 'hot' %}document.getElementById("hot").onclick();{% endifequal %}
+
             // 微信分享的数据
             var wxData = {
                 "appId": "", // 服务号可以填写appId

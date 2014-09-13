@@ -425,6 +425,7 @@ body {
 }
 
 .pc_heretoy_iphone {
+    width: 202px;
     height: 55px;
     font-size: 25px;
     color: #ef4a39;
@@ -432,9 +433,11 @@ body {
     border: 1px #ef4a39 solid;
     border-radius: 3px;
     box-sizing: border-box;
+    background-color: #d7d7d7;
 }
 
 .pc_heretoy_android {
+    width: 202px;
     height: 55px;
     font-size: 25px;
     color: #ef4a39;
@@ -443,6 +446,11 @@ body {
     border: 1px #ef4a39 solid;
     border-radius: 3px;
     box-sizing: border-box;
+    cursor: pointer;
+}
+
+.pc_heretoy_android:hover {
+    border: 3px #ef4a39 solid;
 }
 
 .qc_heretoy_qrcode {
