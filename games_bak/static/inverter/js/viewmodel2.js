@@ -78,6 +78,7 @@ function Game() {
 	this.totalClicks = 0;
 	this.level = 1;
 	this.isFirstGame = 1;
+        this.share_info = '';
 
 	// Objects that help facilitate the game
 	this.gb;
@@ -135,15 +136,10 @@ function Game() {
 	}
 
 	this.resetGame = function() {
-		$('#cheesyGoodJob').html(this.cwg.getWord()+"!");
-		$('#levelDescriptor').html("进入级别 " + this.level);
-		setTimeout(function(){
-			$('#newLevel').modal('show');
-			self.setupLevel();
-		}, 500);
-		setTimeout(function(){
-			$('#newLevel').modal('hide');
-		}, 1500);
+                var conf = confirm(this.share_info);
+                if(conf == true) {
+	            self.setupLevel();
+                }
 	}
 
 	this.setupLevel = function() {
@@ -171,9 +167,9 @@ function Game() {
                 else if(this.level == 7) {rank = getRandomNum(51, 64); title = "已经不好超越！";}
                 else if(this.level == 8) {rank = getRandomNum(65, 80); title = "已经不好超越！";}
                 else {rank = getRandomNum(81, 99); title = "已经不好超越！";}
-                var share_info = "用了" + this.currentClicks + "次点击，达到" + this.level + "级，击败全球" + rank + "%用户，" + title;
-                wxData['desc'] = share_info;
-                window.parent.postMessage(share_info, '*');
+                this.share_info = "用了" + this.currentClicks + "次点击，达到" + this.level + "级，击败全球" + rank + "%用户，" + title;
+                wxData['desc'] = this.share_info;
+                window.parent.postMessage(this.share_info, '*');
 	}
 
 	this.applyBindings = function() {

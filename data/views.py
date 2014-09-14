@@ -122,7 +122,7 @@ def play(request):
     pk = request.GET.get('pk', '')
 
     try:
-        h5game = Html5GamesInfo.objects.get(pk=pk)
+        h5game = Html5GamesInfo.objects.get(md5=pk)
         h5game.play += PLAY
         h5game.real_play += 1
         h5game.save()
@@ -151,7 +151,7 @@ def like(request):
     pk = request.GET.get('pk', '')
 
     try:
-        h5game = Html5GamesInfo.objects.get(pk=pk)
+        h5game = Html5GamesInfo.objects.get(md5=pk)
         if have_already_like_or_unlike(token, h5game):
             RESULT['status'] = 1
             RESULT['data']['msg'] = 'You have already like/unlike game of this pk!'
@@ -174,7 +174,7 @@ def unlike(request):
     pk = request.GET.get('pk', '')
 
     try:
-        h5game = Html5GamesInfo.objects.get(pk=pk)
+        h5game = Html5GamesInfo.objects.get(md5=pk)
         if have_already_like_or_unlike(token, h5game):
             RESULT['status'] = 1
             RESULT['data']['msg'] = 'You have already like/unlike game of this pk!'
@@ -210,7 +210,7 @@ def plu(request):
         pk = request.POST.get('pk', '')
 
     try:
-        h5game = Html5GamesInfo.objects.get(pk=pk)
+        h5game = Html5GamesInfo.objects.get(md5=pk)
         if _type == 0:
             h5game.play += PLAY
             h5game.real_play += 1

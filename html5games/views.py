@@ -43,7 +43,7 @@ def game(request):
 
 def play(request, pk=-1):
     try:
-        h5game = Html5GamesInfo.objects.get(pk=pk)
+        h5game = Html5GamesInfo.objects.get(md5=pk)
         h5game.play += PLAY
         h5game.real_play += 1
         h5game.save()
@@ -83,7 +83,7 @@ def wap_share(request, pk=-1):
     domain = settings.DOMAIN
 
     try:
-        h5game = Html5GamesInfo.objects.get(pk=pk)
+        h5game = Html5GamesInfo.objects.get(md5=pk)
         h5game.play += PLAY
         h5game.real_play += 1
         h5game.save()
@@ -98,7 +98,7 @@ def pc_share(request, pk=-1):
     domain = settings.DOMAIN
 
     try:
-        h5game = Html5GamesInfo.objects.get(pk=pk)
+        h5game = Html5GamesInfo.objects.get(md5=pk)
         h5game.play += PLAY
         h5game.real_play += 1
         h5game.save()

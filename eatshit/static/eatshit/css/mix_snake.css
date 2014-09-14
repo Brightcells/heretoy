@@ -156,6 +156,11 @@ body {
     background-color: #ffdc40;
 }
 
+.tips {
+    color: #dcdcdc;
+    margin-top: 35px;
+}
+
 .start {
     margin: 50px;
 }
