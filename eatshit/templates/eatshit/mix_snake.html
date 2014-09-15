@@ -169,7 +169,7 @@
                 /*var step = document.getElementById("speed").value;*/
                 var step = 4;
                 document.getElementById("leftTime").innerHTML = 60;
-                gameMrg.startGame(step);
+                gameMrg.startGame(step, "{{ photo_data.name|default:'' }}");
                 document.getElementById("gamePanel").focus();
                 pause = true;
                 btn.innerHTML = "暂停";
@@ -198,7 +198,7 @@
                 tcd = setInterval(threeCountDown, 1000);
             }
             function share_friend(sfBtn) {
-                url = "{% url 'eatshit:share' photo_data.name|default:'' %}?achieve={{ photo_data.name|default:'' }}" + share_info;
+                url = "{% url 'eatshit:share' photo_data.name|default:'' %}?achieve=" + share_info;
                 location.href = url;
             }
 

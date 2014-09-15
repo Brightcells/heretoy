@@ -65,8 +65,9 @@
             };
 
             var onmessage = function(e) {
-                data = e.data;
-                wxData['desc'] = data;
+                data = JSON.parse(e.data);
+                wxData['imgUrl'] = data['imgUrl'];
+                wxData['desc'] = data['desc'];
                 document.getElementById("description").content = data;
             };
             //监听postMessage消息事件
