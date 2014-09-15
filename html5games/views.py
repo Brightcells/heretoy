@@ -32,10 +32,12 @@ def game(request):
 
     domain = settings.DOMAIN
 
-    h5games = Html5GamesInfo.objects.filter(status=True).order_by('-play', '-like', 'unlike')[:10]
+    allh5games = Html5GamesInfo.objects.filter(status=True, onshalf='on')
+
+    h5games = allh5games.order_by('-play', '-like', 'unlike')[:10]
     hots = [h5.data for h5 in h5games]
 
-    h5games = Html5GamesInfo.objects.filter(status=True).order_by('-create_at')[:10]
+    h5games = allh5games.order_by('-create_at')[:10]
     news = [h5.data for h5 in h5games]
 
     return render(request, 'html5games/game.html', dict(rank_type=rank_type, hots=hots, news=news, domain=domain, fromApple=fromApple, app_url=app_url))

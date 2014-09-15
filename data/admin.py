@@ -28,7 +28,7 @@ class Html5GamesClassifyInfoAdmin(admin.ModelAdmin):
 class Html5GamesInfoAdmin(admin.ModelAdmin):
     list_display = ('name', 'md5', 'onshalf', 'image', 'descr', 'url', 'play', 'real_play', 'like', 'real_like', 'unlike', 'classify1', 'classify2', 'source', 'version', 'commit', 'language', 'operate', 'status')
     search_fields = ('name', 'md5', 'descr', 'commit')
-    list_filter = ('source', 'version', 'language', 'operate', 'classify1', 'classify2')
+    list_filter = ('onshalf', 'source', 'version', 'language', 'operate', 'classify1', 'classify2')
 
     def save_model(self, request, obj, form, change):
         if obj.md5 == '':
