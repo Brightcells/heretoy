@@ -101,7 +101,7 @@ class Html5GamesInfo(CreateUpdateMixin):
         return {
             'pk': self.md5,
             'name': self.name,
-            'image': self.image.url if self.image else '',
+            'image': self.image.url if self.image else settings.APP_DEFAULT_LOGO,
             'descr': self.descr,
             'url': self.url,
             'play': self.play,
@@ -113,7 +113,7 @@ class Html5GamesInfo(CreateUpdateMixin):
         return {
             'pk': self.md5,
             'name': self.name,
-            'image': settings.DOMAIN + self.image.url if self.image else '',
+            'image': settings.DOMAIN + self.image.url if self.image else settings.APP_DEFAULT_LOGO,
             'descr': self.descr,
             'url': self.url,
             'play': self.play,

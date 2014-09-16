@@ -123,9 +123,11 @@ LOGIN_URL = '/accounts/login'
 
 DOMAIN = 'http://heretoy.com'
 
+APP_DEFAULT_LOGO = 'http://heretoy.com/static/data/img/heretoy_0003s_0000_heretoy.png'
+
 APP_DOWNLOAD_URL_PC = 'http://heretoy.com/static/html5games/downloads/heretoy_1.0.0_C0013.apk'
 APP_DOWNLOAD_URL_WAP = 'http://heretoy.com/static/html5games/downloads/heretoy_1.0.0_C0012.apk'
-APP_DOWNLOAD_URL_WEIXIN = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.brightcells.cxm'
+APP_DOWNLOAD_URL_WEIXIN = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.brightcells.heretoy'
 
 GAME_NUM_PER_PAGE = 10
 PLAY_NUM_PER_CLICK = 8

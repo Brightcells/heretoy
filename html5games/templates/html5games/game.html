@@ -31,7 +31,7 @@
 	</script>
     </head>
     <body style="max-width: 500px; margin: 0 auto;">
-        <div style="display: none"><img src="{{ domain }}{% static 'html5games/img/heretoy_logo.jpg' %}"></div>
+        <div style="display: none"><img src="{{ domain }}{% static 'html5games/img/heretoy_logo.png' %}"></div>
         <div class="content">
             <div class="header">
                 <div class="warp">HereToy</div>
@@ -47,7 +47,7 @@
                         <div id="play" class="play"><a>试玩</a></div>
                         <div id="info" class="info">
                             <div class="name">{{ h5.name }}</div>
-                            <div class="num"><span class="pnum">玩</span><label>{{ h5.play }}</label><span class="lnum">赞</span><label>{{ h5.like }}</label><span class="unum">踩</span><label>{{ h5.unlike }}</label></div>
+                            <div class="num"><img src="{% static 'html5games/img/play.png' %}"></img><label>{{ h5.play }}</label><img src="{% static 'html5games/img/like.png' %}"></img><label>{{ h5.like }}</label><img src="{% static 'html5games/img/unlike.png' %}"></img><label>{{ h5.unlike }}</label></div>
                             <div class="descr">{{ h5.descr }}</div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         <div id="play" class="play"><a>试玩</a></div>
                         <div id="info" class="info">
                             <div class="name">{{ h5.name }}</div>
-                            <div class="num"><span class="pnum">玩</span><label>{{ h5.play }}</label><span class="lnum">赞</span><label>{{ h5.like }}</label><span class="unum">踩</span><label>{{ h5.unlike }}</label></div>
+                            <div class="num"><img src="{% static 'html5games/img/play.png' %}"></img><label>{{ h5.play }}</label><img src="{% static 'html5games/img/like.png' %}"></img><label>{{ h5.like }}</label><img src="{% static 'html5games/img/unlike.png' %}"></img><label>{{ h5.unlike }}</label></div>
                             <div class="descr">{{ h5.descr }}</div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
             // 微信分享的数据
             var wxData = {
                 "appId": "", // 服务号可以填写appId
-                "imgUrl" : "{{ domain }}{% static 'html5games/img/heretoy_logo.jpg' %}",
+                "imgUrl" : "{{ domain }}{% static 'html5games/img/heretoy_logo.png' %}",
                 "link" : "{{ domain }}",
                 "desc" : "Heretoy，口袋社交小游戏中心",
                 "title" : "HereToy"

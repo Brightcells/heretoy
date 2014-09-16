@@ -30,7 +30,7 @@
     </head>
     <body style="max-width: 500px; margin: 0 auto;">
         <div id="dl_header" class="dl_header">
-            <div class="dl_logo"><img src="{{domain }}{% static 'html5games/img/heretoy_logo.jpg' %}"></div> 
+            <div class="dl_logo"><img src="{{domain }}{% static 'html5games/img/heretoy_logo.png' %}"></div> 
             {% if fromApple %}
             <div class="dl_apple">
                 <p class="dl_ap">IOS客户端正在玩命开发</p>
@@ -52,7 +52,7 @@
             // 微信分享的数据
             var wxData = {
                 "appId": "", // 服务号可以填写appId
-                "imgUrl" : "{{ domain }}{% static 'html5games/img/heretoy_logo.jpg' %}",
+                "imgUrl" : "{{ domain }}{% static 'html5games/img/heretoy_logo.png' %}",
                 "link" : "{{ domain }}",
                 "desc" : "Heretoy，口袋社交小游戏中心",
                 "title" : "HereToy"

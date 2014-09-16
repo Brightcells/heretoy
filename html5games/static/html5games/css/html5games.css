@@ -27,15 +27,15 @@ body {
 }
 
 .menu {
-    height: 38px;
+    height: 47px;
     border-bottom: 1px #dcdcdc solid;
     box-sizing: border-box;
 }
 
 .menu>div {
     width: 50%;
-    height: 38px;
-    font-size: 12px;
+    height: 47px;
+    font-size: 21px;
     padding-top: 10px;
     color: #676566;
     float: left;
@@ -79,10 +79,10 @@ body {
 }
 
 .name {
-    height: 24px;
+    height: 21px;
     margin: 3px 0 5px 0;
     color: #eb4d3c;
-    font: normal 21px "宋体",Arial,Times;
+    font: normal 18px "宋体",Arial,Times;
     overflow: hidden;
 }
 
@@ -98,6 +98,18 @@ body {
 }
 
 .num>span:first-child {
+    margin-left: 0;
+}
+
+.num>img{
+    position: relative;
+    top: 3px;
+    width: 17px;
+    height: 17px;
+    margin: 0 3px 0 10px;
+}
+
+.num>img:first-child {
     margin-left: 0;
 }
 
