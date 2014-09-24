@@ -6,8 +6,8 @@
         <meta charset="utf-8">
         <title>{{ h5game.name }}</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <meta name="keywords" content="HTML5 经典 小游戏 贪吃蛇">
-        <meta name="description" content="">
+        <meta name="keywords" content="小游戏 HereToy 社交小游戏 手机小游戏 html5小游戏 微信小游戏">
+        <meta name="description" content="{{ h5game.descr }}">
 
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
 
@@ -44,8 +44,10 @@
                 </div>
             </div>
             <div class="right_container">
-                <div class="pc_heretoy_logo"><img src="{% static 'html5games/img/heretoy_logo.png' %}"></div>
-                <div class="pc_heretoy_desc"><p>HereToy</p><span>口袋社交小游戏中心</span></div>
+                <div onclick="window.location='{{ domain }}'" style="cursor: pointer;">
+                    <div class="pc_heretoy_logo"><img src="{% static 'html5games/img/heretoy_logo.png' %}"></div>
+                    <div class="pc_heretoy_desc"><p>HereToy</p><span>口袋社交小游戏中心</span></div>
+                </div>
                 <div class="pc_heretoy_phone">
                     <div class="pc_heretoy_iphone"><span>iPhone版下载</span></div>
                     <div class="pc_heretoy_android" onclick="window.location='{{ app_url }}'"><span>Android版下载</span></div>
