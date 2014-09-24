@@ -24,7 +24,7 @@ function cookieHelper() {
 			game.gb.board.toString() + 
 			"; "+ expires;
 		document.cookie = toWrite;
-		console.log(document.cookie);
+		// console.log(document.cookie);
 	}
 
 	this.getCookie = function(cname) {
@@ -43,14 +43,23 @@ function styleHelper() {
 	this.setGridSize = function(level) {
 		var margin = this.getMargin(level)
 		var res = ($('.container').width() - margin * level) / (level);
-		$('.gamesquare').css('margin-right', margin);
-		$('.gamesquare').css('width', res);
+		// $('.gamesquare').css('margin-right', margin);
+		$('.gamesquare').css('margin-right', 0);
+		$('.gamesquare').css('border-right', margin + 'px solid black ');
+		$('.gamesquare').css('width', res + margin);
 		$('.gamesquare').css('height', res);
-		$('.gamerow').css('height', res);
+		$('.gamerow').css('height', res + margin);
 		$('.gamerow').css('margin-right', margin * (-1));
-		$('.gamerow').css('margin-bottom', margin);
-		$('.board').css('padding', margin);
-		$('.board').css('padding-bottom', 0);
+		// $('.gamerow').css('margin-bottom', margin);
+		// $('.gamerow').css('margin-right', 0);
+		$('.gamerow').css('margin-bottom', 0);
+		// $('.gamerow').css('border-right', margin * (-1) + 'px solid black');
+		$('.gamerow').css('border-bottom', margin + 'px solid black');
+		// $('.board').css('padding', margin);
+		// $('.board').css('padding-bottom', 0);
+		$('.board').css('padding', 0);
+		$('.board').css('border', margin + 'px solid black ');
+		$('.board').css('border-bottom', 0);
 	}
 
 	this.getMargin = function(level) {
@@ -140,10 +149,10 @@ function Game() {
 		setTimeout(function(){
 			$('#newLevel').modal('show');
 			self.setupLevel();
-		}, 500);
+		}, 2500);
 		setTimeout(function(){
 			$('#newLevel').modal('hide');
-		}, 1500);
+		}, 3500);
 	}
 
 	this.setupLevel = function() {
@@ -163,7 +172,8 @@ function Game() {
 		$(".total").html("总计点击次数: <b>" + this.totalClicks + "</b>");
                 var rank = "",
                     title = "不服来战！";
-                if(this.level == 2) {rank = getRandomNum(1, 3);}
+                if(this.level == 1) {rank = 1;}
+                else if(this.level == 2) {rank = getRandomNum(1, 3);}
                 else if(this.level == 3) {rank = getRandomNum(4, 10);}
                 else if(this.level == 4) {rank = getRandomNum(11, 20);}
                 else if(this.level == 5) {rank = getRandomNum(21, 40); title = "超越有难度！";}
@@ -171,9 +181,11 @@ function Game() {
                 else if(this.level == 7) {rank = getRandomNum(51, 64); title = "已经不好超越！";}
                 else if(this.level == 8) {rank = getRandomNum(65, 80); title = "已经不好超越！";}
                 else {rank = getRandomNum(81, 99); title = "已经不好超越！";}
-                var share_info = "用了" + this.currentClicks + "次点击，达到" + this.level + "级，击败全球" + rank + "%用户，" + title;
+                var share_info = "用了" + this.currentClicks + "次点击，完成级别" + this.level + "，击败全球" + rank + "%用户，" + title;
                 wxData['desc'] = share_info;
-                window.parent.postMessage(JSON.stringify(wxData), '*');
+                jsonData = JSON.stringify(wxData);
+                window.parent.postMessage(jsonData, '*');
+                console.log(jsonData);
 	}
 
 	this.applyBindings = function() {

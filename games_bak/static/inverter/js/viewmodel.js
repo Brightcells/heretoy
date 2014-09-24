@@ -158,7 +158,8 @@ function Game() {
 		$(".total").html("总计点击次数: <b>" + this.totalClicks + "</b>");
                 var rank = "",
                     title = "不服来战！";
-                if(this.level == 2) {rank = getRandomNum(1, 3);}
+                if(this.level == 1) {rank = 1;}
+                else if(this.level == 2) {rank = getRandomNum(1, 3);}
                 else if(this.level == 3) {rank = getRandomNum(4, 10);}
                 else if(this.level == 4) {rank = getRandomNum(11, 20);}
                 else if(this.level == 5) {rank = getRandomNum(21, 40); title = "超越有难度！";}
@@ -166,7 +167,7 @@ function Game() {
                 else if(this.level == 7) {rank = getRandomNum(51, 64); title = "已经不好超越！";}
                 else if(this.level == 8) {rank = getRandomNum(65, 80); title = "已经不好超越！";}
                 else {rank = getRandomNum(81, 99); title = "已经不好超越！";}
-                this.share_info = "用了" + this.currentClicks + "次点击，达到" + this.level + "级，击败全球" + rank + "%用户，" + title;
+                this.share_info = "用了" + this.currentClicks + "次点击，完成级别" + this.level + "，击败全球" + rank + "%用户，" + title;
                 wxData['desc'] = this.share_info;
                 window.parent.postMessage(JSON.stringify(wxData), '*');
                 try {
