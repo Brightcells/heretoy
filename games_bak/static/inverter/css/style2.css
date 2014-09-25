@@ -58,13 +58,13 @@ STYLING FOR GAME BOARD
 }
 
 .bgimg>img {
-        width: 275px;
-        height: 275px;
+        width: 273px;
+        height: 273px;
 }
 
 .board {
 	position: absolute;
-	border-radius: 4px;
+	// border-radius: 4px;
 }
 
 .gamerow {
@@ -81,7 +81,7 @@ STYLING FOR GAME BOARD
 	display: block;
 	margin-right: 7.5px;
 	float: left;
-	border-radius: 3px;
+	// border-radius: 3px;
 }
 
 .btn-primary {

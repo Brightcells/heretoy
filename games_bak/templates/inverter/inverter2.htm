@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>蓝色拼图</title>
-    <meta name="description" content="这是一个用HTML5制作的智力游戏，有相当的难度。每个方块一面橙色，一面蓝色。点击一个方块，这个方块的颜色会翻转，并且，与它邻接的方块的颜色也会翻转。使拼板全部变成蓝色，你就算过关了。">
+    <title>战神</title>
+    <meta name="description" content="这是一个用HTML5制作的智力游戏，有相当的难度。每个方块一面是战神图标，一面是战神中剧照的一部分，点击一个方块，这个就会翻转展现另一面，并且与其邻接的方块也会一同翻转。使战神剧照全部显示， 你就算过关了。">
 
     <link rel="stylesheet" type="text/css" href="{% static 'inverter/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'inverter/css/style2.css' %}">
@@ -54,7 +54,7 @@
             <a class="newgame btn btn-primary">从头来过</a><br>
             <a class="instruct btn btn-primary">玩法说明</a>
         </div>
-        <div class="bgimg"><img id="bgimg" src="{{ img_url }}"></div>
+        <div class="bgimg"><img id="bgimg" src="{{ domain }}/static/inverter/img/0.jpg"></div>
         <div class="board" style="padding: 7.5px 7.5px 0px;">
             <div class="gamerow" style="height: 277.5px; margin-right: -7.5px; margin-bottom: 7.5px;">
                 <div class="gamesquare coord0q0" style="margin-right: 7.5px; width: 277.5px; height: 277.5px; background-color: rgb(230, 171, 94);"></div>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="modal-body">
                     <p>如何才算赢：使拼板全部变成蓝色。 <br>
-                    玩法：每个方块一面橙色，一面蓝色。点击一个方块，这个方块的颜色会翻转，并且，与它邻接的方块的颜色也会翻转。</p>
+                    玩法：每个方块一面是战神图标，一面是战神中剧照的一部分，点击一个方块，这个就会翻转展现另一面，并且与其邻接的方块也会一同翻转。</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal">开始！</button>
@@ -132,23 +132,13 @@
     </div><!-- /.modal -->
 
     <script src="{% static 'inverter/js/util.js' %}"></script>
-    <script src="{% static 'js/weixin-api.js' %}"></script>
+    <script src="{% static 'js/ht.min.js' %}"></script>
     <script>
-        // 微信分享的数据
-        var wxData = {
-            "appId": "", // 服务号可以填写appId
-            "imgUrl" : "{{ domain }}/static/inverter/img/inverter.png",
-            "link" : "{{ domain }}/inverter",
-            "desc" : "这是一个用HTML5制作的智力游戏，有相当的难度。每个方块一面橙色，一面蓝色。点击一个方块，这个方块的颜色会翻转，并且，与它邻接的方块的颜色也会翻转。使拼板全部变成蓝色， 你就算过关了。",
-            "title" : "蓝色拼图"
-        };
+        var descList = ['两个帅哥, @陈思成 @演员王伟光', '一帅哥、一美女, @杜淳 @贡米', '一帅哥、一美女, @杜淳 @贡米', '酷酷的@于震', '帅帅的@于震', '帅帅的@严屹宽', '一脸紧张的@于震', '惊呆了的@于震', '酷酷的@于光荣', '三个帅哥@于光荣 @陈思成 @演员王伟光', '美美的@王丽坤', '一脸吃惊的@王丽坤', '若有所思的@王丽坤', '一帅哥、一美女@王丽坤 @严屹宽', '漂漂的@王丽坤', '两个帅哥@李光洁 @陈思成', '萌萌的@杜淳', '黑黑的@杜淳', '训话中的@杜淳', '酷酷的@陈思成', '萌萌的@陈思成', '运筹帷幄的@陈思成', '吊炸天的@陈思成', '两个帅哥@陈思成 @于震', '可爱又呆萌的小帅哥@孟蔚'];
+        htData['imgUrl'] = "{{ domain }}/static/inverter/img/zhan_shen.png"; 
+        htData['link'] = "{{ domain }}/inverter2";
+        htData['desc'] = "这是一个用HTML5制作的智力游戏，有相当的难度。每个方块一面是战神图标，一面是战神中剧照的一部分，点击一个方块，这个就会翻转展现另一面，并且与其邻接的方块也会一同翻转。使战神剧照全部显示， 你就算过关了。"
+        htData['title'] = "战神";
     </script>
-    <script src="{% static 'js/wx.js' %}"></script>
-    <script src="{% static 'js/yx.js' %}"></script>
-    <!--
-        Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
-        Page Caching using disk
-        Served from: www.webhek.com @ 2014-09-03 09:08:33 by W3 Total Cache
-    -->
 </body>
 </html>

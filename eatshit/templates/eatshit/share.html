@@ -32,7 +32,7 @@
         </div>
 
         <script src="{% static 'eatshit/js/pam.js' %}"></script>
-        <script src="{% static 'js/weixin-api.js' %}"></script>
+        <script src="{% static 'js/ht.min.js' %}"></script>
         <script type="text/javaScript">
             (function () {
                 var res = [
@@ -41,16 +41,12 @@
                 _bg(0, res, 10000);
             })();
 
-            // 微信分享的数据
-            var wxData = {
-                "appId": "", // 服务号可以填写appId
+            init({
                 "imgUrl" : "{{ domain }}{{ photo_data.image }}",
                 "link" : "{{ domain }}/cxxdr",
                 "desc" : "{{ share }}",
                 "title" : "吃翔翔达人"
-            };
+            });
         </script>
-        <script src="{% static 'js/wx.js' %}"></script>
-        <script src="{% static 'js/yx.js' %}"></script>
     </body>
 </html>

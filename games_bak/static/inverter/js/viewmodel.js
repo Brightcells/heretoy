@@ -1,9 +1,3 @@
-function getRandomNum(Min, Max) {
-    var Range = Max - Min,
-        Rand = Math.random();
-    return (Min + Math.round(Rand * Range));
-}
-
 function cookieHelper() {
 	this.readCookie = function(callback) {
 		callback(this.getCookie("gs"));
@@ -23,7 +17,7 @@ function cookieHelper() {
 			game.gb.board.toString() + 
 			"; "+ expires;
 		document.cookie = toWrite;
-		console.log(document.cookie);
+		// console.log(document.cookie);
 	}
 
 	this.getCookie = function(cname) {
@@ -77,7 +71,7 @@ function Game() {
 	this.totalClicks = 0;
 	this.level = 1;
 	this.isFirstGame = 1;
-    this.share_info = '';
+        this.share_info = '';
 
 	// Objects that help facilitate the game
 	this.gb;
@@ -135,10 +129,8 @@ function Game() {
 	}
 
 	this.resetGame = function() {
-        var conf = confirm(this.share_info);
-        if(conf == true) {
-			self.setupLevel();
-        }
+                var conf = confirm(this.share_info);
+                if(conf == true) self.setupLevel();
 	}
 
 	this.setupLevel = function() {
@@ -168,12 +160,7 @@ function Game() {
                 else if(this.level == 8) {rank = getRandomNum(65, 80); title = "已经不好超越！";}
                 else {rank = getRandomNum(81, 99); title = "已经不好超越！";}
                 this.share_info = "用了" + this.currentClicks + "次点击，完成级别" + this.level + "，击败全球" + rank + "%用户，" + title;
-                wxData['desc'] = this.share_info;
-                window.parent.postMessage(JSON.stringify(wxData), '*');
-                try {
-                    jsObject.result(this.share_info); 
-                } catch(err) {
-                }
+                change('desc', this.share_info, true);
 	}
 
 	this.applyBindings = function() {

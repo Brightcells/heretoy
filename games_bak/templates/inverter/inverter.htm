@@ -131,23 +131,14 @@
     </div><!-- /.modal -->
 
     <script src="{% static 'inverter/js/util.js' %}"></script>
-    <script src="{% static 'js/weixin-api.js' %}"></script>
+    <script src="{% static 'js/ht.min.js' %}"></script>
     <script>
-        // 微信分享的数据
-        var wxData = {
-            "appId": "", // 服务号可以填写appId
+        init({
             "imgUrl" : "{{ domain }}/static/inverter/img/inverter.png",
             "link" : "{{ domain }}/inverter",
             "desc" : "这是一个用HTML5制作的智力游戏，有相当的难度。每个方块一面橙色，一面蓝色。点击一个方块，这个方块的颜色会翻转，并且，与它邻接的方块的颜色也会翻转。使拼板全部变成蓝色， 你就算过关了。",
             "title" : "蓝色拼图"
-        };
+        });
     </script>
-    <script src="{% static 'js/wx.js' %}"></script>
-    <script src="{% static 'js/yx.js' %}"></script>
-    <!--
-        Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
-        Page Caching using disk
-        Served from: www.webhek.com @ 2014-09-03 09:08:33 by W3 Total Cache
-    -->
 </body>
 </html>

@@ -11,12 +11,6 @@ var el = document.body,
         transform: false
     });
 
-function GetRandomNum(Min, Max) {
-    var Range = Max - Min;
-    var Rand = Math.random();
-    return (Min + Math.round(Rand * Range));
-}
-
 function Black(money, card) {
     this.x = money;
     this.y = card;
@@ -276,8 +270,7 @@ function Ga1900(canvasId) {
         document.getElementById("share").style.zIndex = 999;
         
         share_info = this.username + "同学，丧心病狂地吃掉了" + this.score + "坨翔翔，击败了" + rank + "%的翔友，NB闪闪的获得了" + title + "称号！";
-        wxData['desc'] = share_info;
-        window.parent.postMessage(JSON.stringify(wxData), '*');
+        change('desc', share_info, true);
 
         localStorage.maxScore = this.maxScore;
         //alert(localStorage.maxScore);

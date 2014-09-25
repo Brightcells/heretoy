@@ -105,19 +105,15 @@
             }
         })();
         </script>
-        <script src="{% static 'js/weixin-api.js' %}"></script>
+        <script src="{% static 'js/ht.min.js' %}"></script>
         <script type="text/javaScript">
-            // 微信分享的数据
-            var wxData = {
-                "appId": "", // 服务号可以填写appId
+            init({
                 "imgUrl" : "{{ domain }}/static/eatshit/img/cxx.png",
                 "link" : "{{ domain }}/cxxdr",
                 "desc" : "嘎嘣脆，翔翔味，爱TA就给TA吃吧！",
                 "title" : "吃翔翔达人"
-            };
+            });
         </script>
-        <script src="{% static 'js/wx.js' %}"></script>
-        <script src="{% static 'js/yx.js' %}"></script>
     </body>
     </body>
 </html>

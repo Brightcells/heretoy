@@ -1,9 +1,3 @@
-function getRandomNum(Min, Max) {
-    var Range = Max - Min,
-        Rand = Math.random();
-    return (Min + Math.round(Rand * Range));
-}
-
 function cookieHelper() {
 
 	this.readCookie = function(callback) {
@@ -45,7 +39,7 @@ function styleHelper() {
 		var res = ($('.container').width() - margin * level) / (level);
 		// $('.gamesquare').css('margin-right', margin);
 		$('.gamesquare').css('margin-right', 0);
-		$('.gamesquare').css('border-right', margin + 'px solid black ');
+		$('.gamesquare').css('border-right', margin + 'px solid black');
 		$('.gamesquare').css('width', res + margin);
 		$('.gamesquare').css('height', res);
 		$('.gamerow').css('height', res + margin);
@@ -58,14 +52,17 @@ function styleHelper() {
 		// $('.board').css('padding', margin);
 		// $('.board').css('padding-bottom', 0);
 		$('.board').css('padding', 0);
-		$('.board').css('border', margin + 'px solid black ');
+		$('.board').css('border', margin + 'px solid black');
 		$('.board').css('border-bottom', 0);
 	}
 
 	this.getMargin = function(level) {
-		if (level <= 6) return 7.5;
-		if (level > 15) return 2.5;
-		return 20 - level;
+		// if (level <= 6) return 7.5;
+		// if (level > 15) return 2.5;
+		// return 20 - level;
+		if (level <= 6) return 3;
+		if (level > 15) return 1;
+		return 8 - level;
 	}
 }
 
@@ -87,6 +84,8 @@ function Game() {
 	this.totalClicks = 0;
 	this.level = 1;
 	this.isFirstGame = 1;
+        this.share_info = '';
+        this.index = 0;
 
 	// Objects that help facilitate the game
 	this.gb;
@@ -100,6 +99,8 @@ function Game() {
 		this.totalClicks++;
 		this.updateCounts();
 		if (this.gb.isGameWin()) {
+                        this.share_info = "我用" + this.currentClicks + "次点击，完成级别" + this.level + "，找到" + descList[parseInt(this.index)];
+                        change('desc', this.share_info, true)
 			this.gameEnd(function(){
 				self.cookh.writeCookie(self);
 			});
@@ -120,10 +121,13 @@ function Game() {
 				self.totalClicks = parseInt(state[3]);
 				self.level = parseInt(state[4]);
 				self.isFirstGame = parseInt(state[5]);
+                                this.share_info = "我用" + self.currentClicks + "次点击，完成级别" + self.level + "，找到" + descList[parseInt(self.index)];
+                                change('desc', this.share_info, true)
 			}
 			if (self.isFirstGame == 1) {
 				$('#instructions').modal('show');
 				self.isFirstGame = 0;
+                                share();
 			}
 			self.setupLevel();
 		});
@@ -145,11 +149,11 @@ function Game() {
 
 	this.resetGame = function() {
 		$('#cheesyGoodJob').html(this.cwg.getWord()+"!");
-		$('#levelDescriptor').html("进入级别 " + this.level);
+		$('#levelDescriptor').html(this.share_info);
 		setTimeout(function(){
 			$('#newLevel').modal('show');
 			self.setupLevel();
-		}, 2500);
+		}, 1500);
 		setTimeout(function(){
 			$('#newLevel').modal('hide');
 		}, 3500);
@@ -163,6 +167,9 @@ function Game() {
 		self.sh.setGridSize(this.level);
 		self.updateCounts();
 		self.applyBindings();
+                var randomNum = getRandomNum(0, 24);
+                $("#bgimg")[0].src = $("#bgimg")[0].src.replace(/\d+/, randomNum);
+                this.index = randomNum;
 	}
 
 	this.updateCounts = function() {
@@ -170,22 +177,6 @@ function Game() {
 		$(".score").html("当前点击次数: <b>" + this.currentClicks +"</b>");
 		$(".best").html("历史最高级别: <b>" + this.bestLevel + "</b> (" + this.clicksForBest + " clicks)");
 		$(".total").html("总计点击次数: <b>" + this.totalClicks + "</b>");
-                var rank = "",
-                    title = "不服来战！";
-                if(this.level == 1) {rank = 1;}
-                else if(this.level == 2) {rank = getRandomNum(1, 3);}
-                else if(this.level == 3) {rank = getRandomNum(4, 10);}
-                else if(this.level == 4) {rank = getRandomNum(11, 20);}
-                else if(this.level == 5) {rank = getRandomNum(21, 40); title = "超越有难度！";}
-                else if(this.level == 6) {rank = getRandomNum(41, 50); title = "超越有难度！";}
-                else if(this.level == 7) {rank = getRandomNum(51, 64); title = "已经不好超越！";}
-                else if(this.level == 8) {rank = getRandomNum(65, 80); title = "已经不好超越！";}
-                else {rank = getRandomNum(81, 99); title = "已经不好超越！";}
-                var share_info = "用了" + this.currentClicks + "次点击，完成级别" + this.level + "，击败全球" + rank + "%用户，" + title;
-                wxData['desc'] = share_info;
-                jsonData = JSON.stringify(wxData);
-                window.parent.postMessage(jsonData, '*');
-                console.log(jsonData);
 	}
 
 	this.applyBindings = function() {
@@ -323,9 +314,9 @@ function GameBoard (wd, hi) {
 
 	/*this.parseGameBoard = function(csv, callback) {
 		var res = csv.split(",");
-		//console.log(res.length);
+		// console.log(res.length);
 		for (var i = 0; i < res.length; i++) {
-			console.log(Math.floor(i/(this.high+1)) + "," + i % (this.high+1));
+			// console.log(Math.floor(i/(this.high+1)) + "," + i % (this.high+1));
 			this.board[Math.floor(i / (this.high+1))][i % (this.high+1)] = parseInt(res[i]);
 		}
 		callback();
