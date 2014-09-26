@@ -168,7 +168,9 @@ function Game() {
 		self.updateCounts();
 		self.applyBindings();
                 var randomNum = getRandomNum(0, 24);
-                $("#bgimg")[0].src = $("#bgimg")[0].src.replace(/\d+/, randomNum);
+                var imgUrl = $("#bgimg")[0].src.replace(/\d+/, randomNum);
+                $("#bgimg")[0].src = imgUrl;
+                change('imgUrl', imgUrl)
                 this.index = randomNum;
 	}
 

@@ -25,7 +25,7 @@ function save(item, value) {
 }
 
 // 获取本地存储
-function load(item) {
+function color_load(item) {
 	if(window['localStorage'] && window['localStorage']['getItem']) {
 		return localStorage.getItem(item);
 	}
@@ -108,7 +108,21 @@ function gameOver() {
 	GetId('cover').style.display = '';
 	GetId('cover-score').innerText = gscore;
 	GetId('cover-best-score').innerText = 'BEST: ' + gbest;
-        change('desc', '本次成绩：' + gscore + "; 最好成绩：" + gbest, true);
+
+        var rank = 0;
+        if(gscore == 0) {
+            rank = 0;
+        } else if(gscore <= 5) {
+            rank = getRandomNum(1, 20);
+        } else if(gscore <= 10) {
+            rank = getRandomNum(21, 40);
+        } else if(gscore <= 25) {
+            rank = getRandomNum(41, 65);
+        } else {
+            rank = getRandomNum(66, 98);
+        }
+        change('desc', "丧心病狂地获得" + gscore + "分，击败了" + rank + "%的朋友!", true);
+
 	var tick = new Clock(300, 10, function(per) {
 		if('webkitFilter' in document.body.style) {
 			GetId('play').style.webkitFilter = 'blur(' + Math.floor(per*15) + 'px)';
@@ -211,7 +225,7 @@ window.onload = function () {
 		tick.start();
 	})
 
-	gbest = parseInt(load('color-not.best')) || 0;
+	gbest = parseInt(color_load('color-not.best')) || 0;
 	GetId('b-score').innerText = gbest;
 
 	setNewColor();
