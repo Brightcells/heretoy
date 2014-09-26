@@ -25,9 +25,10 @@ def inverter(request):
 @xframe_options_exempt
 def inverter2(request):
     domain = settings.DOMAIN
-    try:
-        img_url = requests.get('http://pamjs.com/api/pic/?site=heretoy&usr=inverter&num=1&callback=&cache=false&device=C&classify=rx').json()[0]['image']
-    except:
-        img_url = ''
+    return render(request, 'inverter/inverter2.htm', dict(domain=domain))
 
-    return render(request, 'inverter/inverter2.htm', dict(domain=domain, img_url=img_url))
+
+@xframe_options_exempt
+def colornot(request):
+    domain = settings.DOMAIN
+    return render(request, 'colornot/colornot.htm', dict(domain=domain))

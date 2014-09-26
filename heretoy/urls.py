@@ -25,6 +25,7 @@ urlpatterns += patterns('',
 urlpatterns += patterns('',
     url(r'^inverter/', 'games_bak.views.inverter', name='inverter'),
     url(r'^inverter2/', 'games_bak.views.inverter2', name='inverter2'),
+    url(r'^colornot/', 'games_bak.views.colornot', name='colornot'),
 )
 
 urlpatterns += staticfiles_urlpatterns('static')

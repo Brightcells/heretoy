@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'inverter/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'inverter/css/style2.css' %}">
 
-    <script async="" src="{% static 'inverter/js/analytics.js' %}"></script>
     <script type="text/javascript" src="{% static 'inverter/js/jquery-1.10.2.js' %}"></script>
     <script type="text/javascript" src="{% static 'inverter/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'inverter/js/viewmodel2.js' %}"></script>
@@ -60,7 +59,6 @@
                 <div class="gamesquare coord0q0" style="margin-right: 7.5px; width: 277.5px; height: 277.5px; background-color: rgb(230, 171, 94);"></div>
             </div>
         </div>
-        <div class="copyof">游戏来源自<a href="http://www.webhek.com/">webhek</a>，已自动优化，便于移动设备上试玩体验。</div>
     </div>
 
     <div id="instructions" class="modal fade" aria-hidden="true" style="display: none;">
@@ -73,8 +71,10 @@
                     <h4 class="modal-title">玩法说明</h4>
                 </div>
                 <div class="modal-body">
-                    <p>如何才算赢：使拼板全部变成蓝色。 <br>
-                    玩法：每个方块一面是战神图标，一面是战神中剧照的一部分，点击一个方块，这个就会翻转展现另一面，并且与其邻接的方块也会一同翻转。</p>
+                    <p>
+                        如何才算赢：使拼板全部翻转，展现出战神中的剧照。<br>
+                        玩法：每个方块一面是黄色图标，一面是战神中剧照的一部分，点击一个方块，这个就会翻转展现另一面，并且与其邻接的方块也会一同翻转。
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal">开始！</button>
@@ -134,7 +134,7 @@
     <script src="{% static 'inverter/js/util.js' %}"></script>
     <script src="{% static 'js/ht.min.js' %}"></script>
     <script>
-        var descList = ['两个帅哥, @陈思成 @演员王伟光', '一帅哥、一美女, @杜淳 @贡米', '一帅哥、一美女, @杜淳 @贡米', '酷酷的@于震', '帅帅的@于震', '帅帅的@严屹宽', '一脸紧张的@于震', '惊呆了的@于震', '酷酷的@于光荣', '三个帅哥@于光荣 @陈思成 @演员王伟光', '美美的@王丽坤', '一脸吃惊的@王丽坤', '若有所思的@王丽坤', '一帅哥、一美女@王丽坤 @严屹宽', '漂漂的@王丽坤', '两个帅哥@李光洁 @陈思成', '萌萌的@杜淳', '黑黑的@杜淳', '训话中的@杜淳', '酷酷的@陈思成', '萌萌的@陈思成', '运筹帷幄的@陈思成', '吊炸天的@陈思成', '两个帅哥@陈思成 @于震', '可爱又呆萌的小帅哥@孟蔚'];
+        var descList = ['两个帅哥, @陈思诚 @演员王伟光 ', '一帅哥、一美女, @杜淳 @贡米 ', '一帅哥、一美女, @杜淳 @贡米 ', '酷酷的@于震 ', '帅帅的@于震 ', '帅帅的@严屹宽 ', '一脸紧张的@于震 ', '惊呆了的@于震 ', '酷酷的@于荣光 ', '三个帅哥@于荣光 @陈思诚 @演员王伟光 ', '美美的@王丽坤 ', '一脸吃惊的@王丽坤 ', '若有所思的@王丽坤 ', '一帅哥、一美女@王丽坤 @严屹宽 ', '漂漂的@王丽坤 ', '两个帅哥@李光洁 @陈思诚 ', '萌萌的@杜淳 ', '黑黑的@杜淳 ', '训话中的@杜淳 ', '酷酷的@陈思诚 ', '萌萌的@陈思诚 ', '运筹帷幄的@陈思诚 ', '吊炸天的@陈思诚 ', '两个帅哥@陈思诚 @于震 ', '可爱又呆萌的小帅哥@孟蔚 '];
         htData['imgUrl'] = "{{ domain }}/static/inverter/img/zhan_shen.png"; 
         htData['link'] = "{{ domain }}/inverter2";
         htData['desc'] = "这是一个用HTML5制作的智力游戏，有相当的难度。每个方块一面是战神图标，一面是战神中剧照的一部分，点击一个方块，这个就会翻转展现另一面，并且与其邻接的方块也会一同翻转。使战神剧照全部显示， 你就算过关了。"

@@ -72,6 +72,8 @@ function Game() {
 	this.level = 1;
 	this.isFirstGame = 1;
         this.share_info = '';
+        this.rank = "";
+        this.title = "不服来战！";
 
 	// Objects that help facilitate the game
 	this.gb;
@@ -129,6 +131,7 @@ function Game() {
 	}
 
 	this.resetGame = function() {
+	        change('desc', this.share_info, true);
                 var conf = confirm(this.share_info);
                 if(conf == true) self.setupLevel();
 	}
@@ -148,19 +151,17 @@ function Game() {
 		$(".score").html("当前点击次数: <b>" + this.currentClicks +"</b>");
 		$(".best").html("历史最高级别: <b>" + this.bestLevel + "</b> (" + this.clicksForBest + " clicks)");
 		$(".total").html("总计点击次数: <b>" + this.totalClicks + "</b>");
-                var rank = "",
-                    title = "不服来战！";
-                if(this.level == 1) {rank = 1;}
-                else if(this.level == 2) {rank = getRandomNum(1, 3);}
-                else if(this.level == 3) {rank = getRandomNum(4, 10);}
-                else if(this.level == 4) {rank = getRandomNum(11, 20);}
-                else if(this.level == 5) {rank = getRandomNum(21, 40); title = "超越有难度！";}
-                else if(this.level == 6) {rank = getRandomNum(41, 50); title = "超越有难度！";}
-                else if(this.level == 7) {rank = getRandomNum(51, 64); title = "已经不好超越！";}
-                else if(this.level == 8) {rank = getRandomNum(65, 80); title = "已经不好超越！";}
-                else {rank = getRandomNum(81, 99); title = "已经不好超越！";}
-                this.share_info = "用了" + this.currentClicks + "次点击，完成级别" + this.level + "，击败全球" + rank + "%用户，" + title;
-                change('desc', this.share_info, true);
+
+		if(this.level == 1) {this.rank = 1;}
+		else if(this.level == 2) {this.rank = getRandomNum(1, 3);}
+		else if(this.level == 3) {this.rank = getRandomNum(4, 10);}
+		else if(this.level == 4) {this.rank = getRandomNum(11, 20);}
+		else if(this.level == 5) {this.rank = getRandomNum(21, 40); this.title = "超越有难度！";}
+		else if(this.level == 6) {this.rank = getRandomNum(41, 50); this.title = "超越有难度！";}
+		else if(this.level == 7) {this.rank = getRandomNum(51, 64); this.title = "已经不好超越！";}
+		else if(this.level == 8) {this.rank = getRandomNum(65, 80); this.title = "已经不好超越！";}
+		else {this.rank = getRandomNum(81, 99); this.title = "已经不好超越！";}
+		this.share_info = "用了" + this.currentClicks + "次点击，完成级别" + this.level + "，击败全球" + this.rank + "%用户，" + this.title;
 	}
 
 	this.applyBindings = function() {

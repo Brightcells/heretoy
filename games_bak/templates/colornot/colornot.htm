@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>Color Not</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="{% static 'colornot/css/style.css' %}">
+	<script type="text/javascript" src="{% static 'colornot/js/main.js' %}"></script>
+</head>
+<body>
+<div id="play" style="-webkit-filter: blur(15px);">
+	<div class="header">
+		<div class="scores">
+			<div id="current-score">0</div>
+			<div id="best-score"><span class="best-tag">BEST.</span><span id="b-score">1</span></div>
+		</div>
+	</div>
+	<div class="body">
+		<div id="color-tag" style="-webkit-transform: rotateY(0deg); color: rgb(102, 255, 0);">绿</div>
+		<div id="process" style="-webkit-transform: rotateX(0deg);">
+			<div id="process-inner" style="width: 100%; background: rgb(102, 255, 0);"></div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="buttons">
+			<div class="button" id="btn-no">NO</div>
+			<div class="button" id="btn-yes">YES</div>
+		</div>
+	</div>
+</div>
+<div id="cover" style="background: rgba(255, 255, 255, 0.498039);">
+	<div id="cover-score">0</div>
+	<div id="cover-best-score">BEST: 1</div>
+	<div id="btn-again">AGAIN</div>
+</div>
+
+    <script src="{% static 'js/ht.min.js' %}"></script>
+    <script>
+        init({
+            "imgUrl" : "{{ domain }}/static/colornot/img/colornot.png",
+            "link" : "{{ domain }}/colornot",
+            "desc" : "你是色盲，不信来测！"
+            "title" : "Color Not"
+        });
+    </script>
+</body></html>

@@ -27,7 +27,7 @@
 	</script>
     </head>
     <body>
-        <div style="display: none"><img src="{{ domain }}{{ h5game.image }}"></div>
+        <div style="display: none"><img src="{{ h5game.image }}"></div>
         <div id="iframe_container" class="heretoy_iframe_container">
             <iframe src="{{ h5game.url }}" id="iframe" class="heretoy_iframe"></iframe>
         </div>
@@ -49,26 +49,24 @@
             <div class="heretoy_download"><a id="heretoy_dl" class="heretoy_dl" onclick="window.location='{{ app_url }}'">立即下载</a></div>
             {% endif %}
         </div>
-        <script src="{% static 'js/weixin-api.js' %}"></script>
+        <script src="{% static 'js/ht.min.js' %}"></script>
         <script language="Javascript">
             document.getElementById("heretoy_close").onclick = function(){
                 document.getElementById("footer").style.display = "none"; 
             };
 
-            // 微信分享的数据
-            var wxData = {
-                "appId": "", // 服务号可以填写appId
+            init({
                 "imgUrl" : "{{ domain }}" + "{{ h5game.image|default:'' }}",
                 "link" : "{{ domain }}/share/{{ h5game.pk}}",
                 "desc" : "{{ h5game.descr }}",
                 "title" : "{{ h5game.name }}"
-            };
+            });
 
             var onmessage = function(e) {
                 data = JSON.parse(e.data);
-                wxData['imgUrl'] = data['imgUrl'];
-                wxData['desc'] = data['desc'];
-                document.getElementById("description").content = data;
+                htData['imgUrl'] = data['imgUrl'];
+                htData['desc'] = data['desc'];
+                document.getElementById("description").content = data['desc'];
             };
             //监听postMessage消息事件
             if (typeof window.addEventListener != 'undefined') {
@@ -76,9 +74,6 @@
             } else if (typeof window.attachEvent != 'undefined') {
                 window.attachEvent('onmessage', onmessage);
             }
-
         </script>
-        <script src="{% static 'js/wx.js' %}"></script>
-        <script src="{% static 'js/yx.js' %}"></script>
     </body>
 </html>

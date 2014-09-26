@@ -251,16 +251,16 @@ function Ga1900(canvasId) {
             rank = 0;
             title = "吃翔翔大笨蛋";
         } else if(this.score <= 5) {
-            rank = GetRandomNum(1, 20);
+            rank = getRandomNum(1, 20);
             title = "吃翔翔小菜鸟";
         } else if(this.score <= 10) {
-            rank = GetRandomNum(21, 40);
+            rank = getRandomNum(21, 40);
             title = "吃翔翔小能手";
         } else if(this.score <= 25) {
-            rank = GetRandomNum(41, 65);
+            rank = getRandomNum(41, 65);
             title = "吃翔翔小怪兽";
         } else {
-            rank = GetRandomNum(66, 98);
+            rank = getRandomNum(66, 98);
             title = "吃翔翔大宗师";
         }
         document.getElementById("shitNum").innerHTML = this.score;
