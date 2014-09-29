@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-30 18:53+0800\n"
+"POT-Creation-Date: 2014-09-30 00:19+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,118 +18,134 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: models.py:48 models.py:127 models.py:155 models.py:167 models.py:179
+#: models.py:49 models.py:140 models.py:168 models.py:180 models.py:192
 msgid "token"
 msgstr "移动设备唯一标识符"
 
-#: models.py:49 models.py:88
+#: models.py:50 models.py:90
 msgid "status"
 msgstr "游戏状态"
 
-#: models.py:52 models.py:53
+#: models.py:53 models.py:54
 msgid "testtokeninfo"
 msgstr "测试设备信息"
 
-#: models.py:60
+#: models.py:61
 msgid "1st"
 msgstr "一级分类"
 
-#: models.py:61
+#: models.py:62
 msgid "2nd"
 msgstr "二级分类"
 
-#: models.py:64 models.py:65
+#: models.py:65 models.py:66
 msgid "html5gamesclassifyinfo"
 msgstr "HTML5游戏分类信息"
 
-#: models.py:72
+#: models.py:73
 msgid "name"
 msgstr "游戏名称"
 
-#: models.py:73
+#: models.py:74
+msgid "md5"
+msgstr ""
+
+#: models.py:75
 msgid "image"
 msgstr "游戏Logo"
 
-#: models.py:74
+#: models.py:76
 msgid "description"
 msgstr "游戏描述"
 
-#: models.py:75
+#: models.py:77
 msgid "url"
 msgstr "游戏链接"
 
-#: models.py:76 models.py:129
+#: models.py:78 models.py:142
 msgid "play"
 msgstr "游戏玩数"
 
-#: models.py:77
+#: models.py:79
 msgid "real_play"
 msgstr "真实游戏玩数"
 
-#: models.py:78
+#: models.py:80
 msgid "like"
 msgstr "游戏赞数"
 
-#: models.py:79
+#: models.py:81
 msgid "real_like"
 msgstr "真实游戏赞数"
 
-#: models.py:80
+#: models.py:82
 msgid "unlike"
 msgstr "游戏踩数"
 
-#: models.py:81
+#: models.py:83
 msgid "classify1"
 msgstr "游戏分类1"
 
-#: models.py:82
+#: models.py:84
 msgid "classify2"
 msgstr "游戏分类2"
 
-#: models.py:83
+#: models.py:85
 msgid "source"
 msgstr "游戏来源"
 
-#: models.py:84
+#: models.py:86
 msgid "version"
 msgstr "游戏版本"
 
-#: models.py:85
+#: models.py:87
 msgid "commit"
 msgstr "游戏备注"
 
-#: models.py:86
+#: models.py:88
 msgid "language"
 msgstr "游戏语言"
 
-#: models.py:87
+#: models.py:89
 msgid "operate"
 msgstr "游戏操作"
 
-#: models.py:89
+#: models.py:91
 msgid "onshalf"
 msgstr "上线状况"
 
-#: models.py:92 models.py:93
+#: models.py:92
+msgid "sole"
+msgstr "独家"
+
+#: models.py:93
+msgid "first_publish"
+msgstr "首发"
+
+#: models.py:94
+msgid "boutique"
+msgstr "精品"
+
+#: models.py:97 models.py:98
 msgid "html5gamesinfo"
 msgstr "HTML5游戏信息"
 
-#: models.py:128 models.py:156 models.py:168 models.py:180
+#: models.py:141 models.py:169 models.py:181 models.py:193
 msgid "h5game"
 msgstr "HTML5游戏"
 
-#: models.py:132 models.py:133
+#: models.py:145 models.py:146
 msgid "html5gamesplayinfo"
 msgstr "HTML5游戏玩信息"
 
-#: models.py:159 models.py:160
+#: models.py:172 models.py:173
 msgid "html5gamesplaylog"
 msgstr "HTML5游戏玩Log"
 
-#: models.py:171 models.py:172
+#: models.py:184 models.py:185
 msgid "html5gameslikeinfo"
 msgstr "HTML5游戏赞信息"
 
-#: models.py:183 models.py:184
+#: models.py:196 models.py:197
 msgid "html5gamesunlikeinfo"
 msgstr "HTML5游戏踩信息"

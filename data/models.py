@@ -89,6 +89,9 @@ class Html5GamesInfo(CreateUpdateMixin):
     operate = models.CharField(_(u'operate'), max_length=255, choices=OPERATE, blank=True, null=True, help_text=u'游戏操作')
     status = models.BooleanField(_('status'), default=True, help_text=u'游戏是否显示')
     onshalf = models.CharField(_(u'onshalf'), max_length=255, choices=ONSHALF, default='test', blank=True, null=True, help_text=u'游戏是否上架')
+    sole = models.BooleanField(_('sole'), default=False, help_text=u'游戏是否独家')
+    first_publish = models.BooleanField(_('first_publish'), default=False, help_text=u'游戏是否首发')
+    boutique = models.BooleanField(_('boutique'), default=False, help_text=u'游戏是否精品')
 
     class Meta:
         verbose_name = _('html5gamesinfo')
@@ -107,6 +110,10 @@ class Html5GamesInfo(CreateUpdateMixin):
             'play': self.play,
             'like': self.like,
             'unlike': self.unlike,
+            'source': self.source,
+            'sole': self.sole,
+            'first_publish': self.first_publish,
+            'boutique': self.boutique,
         }
 
     def _info(self):
@@ -119,6 +126,10 @@ class Html5GamesInfo(CreateUpdateMixin):
             'play': self.play,
             'like': self.like,
             'unlike': self.unlike,
+            'source': self.source,
+            'sole': self.sole,
+            'first_publish': self.first_publish,
+            'boutique': self.boutique,
         }
 
     data = property(_data)
