@@ -14,6 +14,7 @@ from utils.json_utils import JsonHttpResponse
 import ast
 import copy
 import json
+import random
 import requests
 
 from datetime import datetime
@@ -212,7 +213,7 @@ def plu(request):
     try:
         h5game = Html5GamesInfo.objects.get(md5=pk)
         if _type == 0:
-            h5game.play += PLAY
+            h5game.play += random.randint(5, 10)
             h5game.real_play += 1
             h5game.save()
             try:
@@ -227,7 +228,7 @@ def plu(request):
                 RESULT['status'] = 1
                 RESULT['data']['msg'] = 'You have already like/unlike game of this pk!'
             else:
-                h5game.like += LIKE
+                h5game.like = min(h5game.like + random.randint(5, 10), h5game.play - h5game.unlike)
                 h5game.real_like += 1
                 h5game.save()
                 Html5GamesLikeInfo.objects.create(token=token, h5game=h5game)

@@ -15,6 +15,7 @@ from CodeConvert import CodeConvert
 import os
 import time
 import urllib
+import random
 import datetime
 
 
@@ -64,7 +65,7 @@ def share(request, pk=-1):
 
     try:
         h5game = Html5GamesInfo.objects.get(md5=pk)
-        h5game.play += PLAY
+        h5game.play += random.randint(5, 10)
         h5game.real_play += 1
         h5game.save()
         h5game = h5game.data
