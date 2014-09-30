@@ -80,6 +80,8 @@ class Html5GamesInfo(CreateUpdateMixin):
     like = models.IntegerField(_(u'like'), default=0, help_text=u'游戏赞数')
     real_like = models.IntegerField(_(u'real_like'), default=0, help_text=u'真实游戏赞数')
     unlike = models.IntegerField(_(u'unlike'), default=0, help_text=u'游戏踩数')
+    nail = models.IntegerField(_(u'nail'), default=0, help_text=u'游戏固定数')
+    real_nail = models.IntegerField(_(u'real_nail'), default=0, help_text=u'真实游戏固定数')
     classify1 = models.ForeignKey(Html5GamesClassifyInfo, verbose_name=_(u'classify1'), blank=True, null=True, related_name='classify1', help_text='分类 - 1')
     classify2 = models.ForeignKey(Html5GamesClassifyInfo, verbose_name=_(u'classify2'), blank=True, null=True, related_name='classify2', help_text='分类 - 2')
     source = models.CharField(_(u'source'), max_length=255, blank=True, null=True, help_text=u'游戏来源')
@@ -140,6 +142,7 @@ class Html5GamesPlayInfo(CreateUpdateMixin):
     token = models.CharField(_(u'token'), max_length=255, blank=True, null=True, help_text=u'用户唯一标示码')
     h5game = models.ForeignKey(Html5GamesInfo, verbose_name=_(u'h5game'), blank=True, null=True, related_name='h5game_play', help_text='Html5 Game')
     play = models.IntegerField(_(u'play'), default=1, help_text=u'游戏玩数')
+    nail = models.BooleanField(_('nail'), default=False, help_text=u'游戏是否固定')
 
     class Meta:
         verbose_name = _('html5gamesplayinfo')
@@ -159,6 +162,7 @@ class Html5GamesPlayInfo(CreateUpdateMixin):
             'like': self.h5game.like,
             'unlike': self.h5game.unlike,
             'myplay': self.play,
+            'nail': self.nail,
         }
 
     data = property(_data)
@@ -171,6 +175,19 @@ class Html5GamesPlayLog(CreateUpdateMixin):
     class Meta:
         verbose_name = _('html5gamesplaylog')
         verbose_name_plural = _('html5gamesplaylog')
+
+    def __unicode__(self):
+        return u'{0.token}'.format(self)
+
+
+class Html5GamesNailLog(CreateUpdateMixin):
+    token = models.CharField(_(u'token'), max_length=255, blank=True, null=True, help_text=u'用户唯一标示码')
+    h5game = models.ForeignKey(Html5GamesInfo, verbose_name=_(u'h5game'), blank=True, null=True, related_name='h5game_nail_log', help_text='Html5 Game')
+    nail = models.BooleanField(_('nail'), default=False, help_text=u'游戏是否固定')
+
+    class Meta:
+        verbose_name = _('html5gamesnaillog')
+        verbose_name_plural = _('html5gamesnaillog')
 
     def __unicode__(self):
         return u'{0.token}'.format(self)

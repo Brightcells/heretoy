@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from CodeConvert import CodeConvert
 
-from data.models import TestTokenInfo, Html5GamesInfo, Html5GamesPlayInfo, Html5GamesPlayLog, Html5GamesLikeInfo, Html5GamesUnlikeInfo
+from data.models import TestTokenInfo, Html5GamesInfo, Html5GamesPlayInfo, Html5GamesPlayLog, Html5GamesNailLog, Html5GamesLikeInfo, Html5GamesUnlikeInfo
 from utils.json_utils import JsonHttpResponse
 
 import ast
@@ -44,12 +44,12 @@ def get_game_info(token, h5game):
     game_info['like_flag'] = have_already_like(token, h5game)
     game_info['unlike_flag'] = have_already_unlike(token, h5game)
     game_info['myplay'] = get_my_play_num(token, h5game)
+    game_info['nail_flag'] = have_already_nail(token, h5game)
     return game_info
 
 
 def get_left_game_num(total, end):
-    left = total - end
-    return left if left > 0 else 0
+    return max(total - end, 0)
 
 
 def games(request):
@@ -78,7 +78,7 @@ def games(request):
         start = GAME_NUM_PER_PAGE * 2 * (p - 1)
         end = GAME_NUM_PER_PAGE * 2 * p
 
-        allh5games = Html5GamesPlayInfo.objects.filter(token=token)
+        allh5games = Html5GamesPlayInfo.objects.filter(token=token).order_by('-nail')
         h5games = allh5games.order_by('-modify_at')[start:end]
         h5games = [get_game_info(token, h5.h5game) for h5 in h5games]
 
@@ -102,8 +102,7 @@ def mine(request):
     h5gamesplay = [h5.data for h5 in h5gamesplay]
 
     all_games_play = len(Html5GamesPlayInfo.objects.all())
-    left = all_games_play - end
-    left = left if left > 0 else 0
+    left = max(all_games_play - end, 0)
 
     return JsonHttpResponse(dict(status=0, data=h5gamesplay, left=left))
 
@@ -240,6 +239,58 @@ def plu(request):
                 h5game.unlike += 1
                 h5game.save()
                 Html5GamesUnlikeInfo.objects.create(token=token, h5game=h5game)
+    except:
+        RESULT['status'] = 1
+        RESULT['data']['msg'] = 'Game of this pk doesn\'t exists!'
+
+    return JsonHttpResponse(RESULT)
+
+
+def have_already_nail(token, h5game):
+    return Html5GamesPlayInfo.objects.filter(token=token, h5game=h5game, nail=True).exists()
+
+
+def set_or_remove_nail(token, h5game, flag):
+    h5gameplay, created = Html5GamesPlayInfo.objects.get_or_create(token=token, h5game=h5game)
+    h5gameplay.nail = flag
+    h5gameplay.save()
+    Html5GamesNailLog.objects.create(token=token, h5game=h5game, nail=False)
+
+
+@csrf_exempt
+def nail(request):
+    RESULT = copy.deepcopy(RESULT_BASE)
+
+    if request.method == 'GET':
+        token = request.GET.get('token', '')
+        nail = int(request.GET.get('nail', 0))
+        pk = request.GET.get('pk', '')
+    else:
+        if request.POST == {} and request.body != '':
+            try:
+                request.POST = json.loads(request.body)
+            except:
+                pass
+        else:
+            pass
+        token = request.POST.get('token', '')
+        nail = int(request.POST.get('nail', 0))
+        pk = request.POST.get('pk', '')
+
+    try:
+        h5game = Html5GamesInfo.objects.get(md5=pk)
+        if nail == 0:
+            if have_already_nail(token, h5game):
+                RESULT['status'] = 1
+                RESULT['data']['msg'] = 'You have already nail game of this pk!'
+            else:
+                set_or_remove_nail(token, h5game, True)
+        else:
+            if not have_already_nail(token, h5game):
+                RESULT['status'] = 1
+                RESULT['data']['msg'] = 'You have not nail game of this pk!'
+            else:
+                set_or_remove_nail(token, h5game, False)
     except:
         RESULT['status'] = 1
         RESULT['data']['msg'] = 'Game of this pk doesn\'t exists!'

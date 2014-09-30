@@ -1,5 +1,5 @@
 from django.contrib import admin
-from data.models import TestTokenInfo, Html5GamesClassifyInfo, Html5GamesInfo, Html5GamesPlayInfo, Html5GamesPlayLog, Html5GamesLikeInfo, Html5GamesUnlikeInfo
+from data.models import TestTokenInfo, Html5GamesClassifyInfo, Html5GamesInfo, Html5GamesPlayInfo, Html5GamesPlayLog, Html5GamesNailLog, Html5GamesLikeInfo, Html5GamesUnlikeInfo
 
 import hashlib
 
@@ -39,7 +39,7 @@ class Html5GamesInfoAdmin(admin.ModelAdmin):
 
 
 class Html5GamesPlayInfoAdmin(admin.ModelAdmin):
-    list_display = ('token', 'h5game', 'play')
+    list_display = ('token', 'h5game', 'play', 'nail')
 
 
 class Html5GamesPlayLogAdmin(admin.ModelAdmin):
@@ -48,6 +48,10 @@ class Html5GamesPlayLogAdmin(admin.ModelAdmin):
 
 class Html5GamesLikeInfoAdmin(admin.ModelAdmin):
     list_display = ('token', 'h5game')
+
+
+class Html5GamesNailLogAdmin(admin.ModelAdmin):
+    list_display = ('token', 'h5game', 'nail')
 
 
 class Html5GamesUnlikeInfoAdmin(admin.ModelAdmin):
@@ -59,5 +63,6 @@ admin.site.register(Html5GamesClassifyInfo, Html5GamesClassifyInfoAdmin)
 admin.site.register(Html5GamesInfo, Html5GamesInfoAdmin)
 admin.site.register(Html5GamesPlayInfo, Html5GamesPlayInfoAdmin)
 admin.site.register(Html5GamesPlayLog, Html5GamesPlayLogAdmin)
+admin.site.register(Html5GamesNailLog, Html5GamesNailLogAdmin)
 admin.site.register(Html5GamesLikeInfo, Html5GamesLikeInfoAdmin)
 admin.site.register(Html5GamesUnlikeInfo, Html5GamesUnlikeInfoAdmin)
