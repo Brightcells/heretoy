@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from CodeConvert import CodeConvert
 
-from data.models import TestTokenInfo, Html5GamesInfo, Html5GamesPlayInfo, Html5GamesPlayLog, Html5GamesNailLog, Html5GamesLikeInfo, Html5GamesUnlikeInfo
+from data.models import TestTokenInfo, Html5GamesInfo, Html5GamesPlayInfo, Html5GamesPlayLog, Html5GamesNailLog, Html5GamesLikeInfo, Html5GamesUnlikeInfo, TopicGamesInfo, LunbotuInfo
 from utils.json_utils import JsonHttpResponse
 
 import ast
@@ -78,8 +78,8 @@ def games(request):
         start = GAME_NUM_PER_PAGE * 2 * (p - 1)
         end = GAME_NUM_PER_PAGE * 2 * p
 
-        allh5games = Html5GamesPlayInfo.objects.filter(token=token).order_by('-nail')
-        h5games = allh5games.order_by('-modify_at')[start:end]
+        allh5games = Html5GamesPlayInfo.objects.filter(token=token)
+        h5games = allh5games.order_by('-nail', '-modify_at')[start:end]
         h5games = [get_game_info(token, h5.h5game) for h5 in h5games]
 
     return JsonHttpResponse(
@@ -296,3 +296,29 @@ def nail(request):
         RESULT['data']['msg'] = 'Game of this pk doesn\'t exists!'
 
     return JsonHttpResponse(RESULT)
+
+
+def topic(request, tp=''):
+    token = request.GET.get('token', '')
+
+    h5games = TopicGamesInfo.objects.filter(topic__tp=tp, status=True).order_by('-modify_at')
+    h5games = [get_game_info(token, h5.h5game) for h5 in h5games]
+
+    return JsonHttpResponse(
+        dict(
+            status=0,
+            data=h5games,
+        )
+    )
+
+
+def lunbotu(request):
+    lunbotu = LunbotuInfo.objects.filter(status=True).order_by('-modify_at')
+    lunbotu = [lbt.data for lbt in lunbotu]
+
+    return JsonHttpResponse(
+        dict(
+            status=0,
+            data=lunbotu,
+        )
+    )

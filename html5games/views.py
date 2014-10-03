@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.csrf import csrf_exempt
 
-from data.models import Html5GamesInfo, Html5GamesPlayInfo
+from data.models import Html5GamesInfo, Html5GamesPlayInfo, TopicInfo, TopicGamesInfo
 
 from CodeConvert import CodeConvert
 
@@ -42,6 +42,26 @@ def game(request):
     news = [h5.data for h5 in h5games]
 
     return render(request, 'html5games/game.html', dict(rank_type=rank_type, hots=hots, news=news, domain=domain, fromApple=fromApple, app_url=app_url))
+
+
+def topic(request, tp=''):
+    meta = request.META['HTTP_USER_AGENT']
+    fromWeixin = 'MicroMessenger' in meta
+    fromApple = 'iPhone' in meta or 'iPad' in meta or 'iPod' in meta
+
+    app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL_WAP
+
+    domain = settings.DOMAIN
+
+    try:
+        topic = TopicInfo.objects.get(tp=tp).name
+    except:
+        topic = ''
+
+    h5games = TopicGamesInfo.objects.filter(topic__tp=tp, status=True).order_by('-modify_at')
+    h5games = [h5.h5game.data for h5 in h5games]
+
+    return render(request, 'html5games/topic.html', dict(topic=topic, h5games=h5games, domain=domain, fromApple=fromApple, app_url=app_url))
 
 
 def play(request, pk=-1):

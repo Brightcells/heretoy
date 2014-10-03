@@ -45,6 +45,12 @@ OPERATE = (
 )
 
 
+SCREEN = (
+    ('horizontal', u'横屏'),
+    ('vertical', u'竖屏'),
+)
+
+
 class TestTokenInfo(CreateUpdateMixin):
     token = models.CharField(_(u'token'), max_length=255, blank=True, null=True, help_text=u'测试 Token')
     status = models.BooleanField(_('status'), default=True, help_text=u'Token 状态')
@@ -89,6 +95,7 @@ class Html5GamesInfo(CreateUpdateMixin):
     commit = models.CharField(_(u'commit'), max_length=255, blank=True, null=True, help_text=u'游戏备注')
     language = models.CharField(_(u'language'), max_length=255, choices=LANGUAGE_CODE, blank=True, null=True, help_text=u'游戏语言')
     operate = models.CharField(_(u'operate'), max_length=255, choices=OPERATE, blank=True, null=True, help_text=u'游戏操作')
+    screen = models.CharField(_(u'screen'), max_length=255, choices=SCREEN, default='vertical', blank=True, null=True, help_text=u'游戏横竖屏')
     status = models.BooleanField(_('status'), default=True, help_text=u'游戏是否显示')
     onshalf = models.CharField(_(u'onshalf'), max_length=255, choices=ONSHALF, default='test', blank=True, null=True, help_text=u'游戏是否上架')
     sole = models.BooleanField(_('sole'), default=False, help_text=u'游戏是否独家')
@@ -113,6 +120,7 @@ class Html5GamesInfo(CreateUpdateMixin):
             'like': self.like,
             'unlike': self.unlike,
             'source': self.source,
+            'screen': self.screen,
             'sole': self.sole,
             'first_publish': self.first_publish,
             'boutique': self.boutique,
@@ -129,6 +137,7 @@ class Html5GamesInfo(CreateUpdateMixin):
             'like': self.like,
             'unlike': self.unlike,
             'source': self.source,
+            'screen': self.screen,
             'sole': self.sole,
             'first_publish': self.first_publish,
             'boutique': self.boutique,
@@ -215,3 +224,53 @@ class Html5GamesUnlikeInfo(CreateUpdateMixin):
 
     def __unicode__(self):
         return u'{0.token}'.format(self)
+
+
+class TopicInfo(CreateUpdateMixin):
+    tp = models.CharField(_(u'tp'), max_length=255, blank=True, null=True, help_text=u'专题标识')
+    name = models.CharField(_(u'name'), max_length=255, blank=True, null=True, help_text=u'专题名称')
+    status = models.BooleanField(_('status'), default=True, help_text=u'专题状态')
+
+    class Meta:
+        verbose_name = _('topicinfo')
+        verbose_name_plural = _('topicinfo')
+
+    def __unicode__(self):
+        return u'{0.name}'.format(self)
+
+
+class TopicGamesInfo(CreateUpdateMixin):
+    topic = models.ForeignKey(TopicInfo, verbose_name=_(u'topic'), blank=True, null=True, related_name='h5game_topic', help_text='Html5 Topic')
+    h5game = models.ForeignKey(Html5GamesInfo, verbose_name=_(u'h5game'), blank=True, null=True, related_name='h5game_topicgame', help_text='Html5 Game')
+    status = models.BooleanField(_('status'), default=True, help_text=u'专题游戏状态')
+
+    class Meta:
+        verbose_name = _('topicgamesinfo')
+        verbose_name_plural = _('topicgamesinfo')
+
+    def __unicode__(self):
+        return u'{0.topic}'.format(self)
+
+
+class LunbotuInfo(CreateUpdateMixin):
+    title = models.CharField(_(u'title'), max_length=255, blank=True, null=True, help_text=u'轮播图标题')
+    url = models.CharField(_(u'url'), max_length=255, blank=True, null=True, help_text=u'轮播图链接')
+    image = models.ImageField(_('image'), upload_to=upload_path, blank=True, null=True, help_text=u'轮播图图片')
+    status = models.BooleanField(_('status'), default=True, help_text=u'轮播图状态')
+
+    class Meta:
+        verbose_name = _('lunbotuinfo')
+        verbose_name_plural = _('lunbotuinfo')
+
+    def __unicode__(self):
+        return u'{0.title}'.format(self)
+
+    def _data(self):
+        return {
+            'pk': self.pk,
+            'title': self.title,
+            'url': self.url,
+            'image': settings.DOMAIN + self.image.url if self.image else '',
+        }
+
+    data = property(_data)

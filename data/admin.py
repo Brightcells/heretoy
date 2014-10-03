@@ -1,5 +1,5 @@
 from django.contrib import admin
-from data.models import TestTokenInfo, Html5GamesClassifyInfo, Html5GamesInfo, Html5GamesPlayInfo, Html5GamesPlayLog, Html5GamesNailLog, Html5GamesLikeInfo, Html5GamesUnlikeInfo
+from data.models import TestTokenInfo, Html5GamesClassifyInfo, Html5GamesInfo, Html5GamesPlayInfo, Html5GamesPlayLog, Html5GamesNailLog, Html5GamesLikeInfo, Html5GamesUnlikeInfo, TopicInfo, TopicGamesInfo, LunbotuInfo
 
 import hashlib
 
@@ -26,7 +26,7 @@ class Html5GamesClassifyInfoAdmin(admin.ModelAdmin):
 
 
 class Html5GamesInfoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'md5', 'onshalf', 'image', 'descr', 'url', 'play', 'real_play', 'like', 'real_like', 'unlike', 'classify1', 'classify2', 'source', 'sole', 'first_publish', 'boutique', 'version', 'commit', 'language', 'operate', 'status')
+    list_display = ('name', 'md5', 'onshalf', 'screen', 'image', 'descr', 'url', 'play', 'real_play', 'like', 'real_like', 'unlike', 'classify1', 'classify2', 'source', 'sole', 'first_publish', 'boutique', 'version', 'commit', 'language', 'operate', 'status')
     search_fields = ('name', 'md5', 'descr', 'commit')
     list_filter = ('onshalf', 'source', 'version', 'language', 'operate', 'classify1', 'classify2')
 
@@ -43,7 +43,7 @@ class Html5GamesPlayInfoAdmin(admin.ModelAdmin):
 
 
 class Html5GamesPlayLogAdmin(admin.ModelAdmin):
-    list_display = ('token', 'h5game')
+    list_display = ('token', 'h5game', 'create_at')
 
 
 class Html5GamesLikeInfoAdmin(admin.ModelAdmin):
@@ -58,6 +58,18 @@ class Html5GamesUnlikeInfoAdmin(admin.ModelAdmin):
     list_display = ('token', 'h5game')
 
 
+class TopicInfoAdmin(admin.ModelAdmin):
+    list_display = ('tp', 'name', 'status')
+
+
+class TopicGamesInfoAdmin(admin.ModelAdmin):
+    list_display = ('topic', 'h5game', 'status')
+
+
+class LunbotuInfoAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url', 'image', 'status')
+
+
 admin.site.register(TestTokenInfo, TestTokenInfoAdmin)
 admin.site.register(Html5GamesClassifyInfo, Html5GamesClassifyInfoAdmin)
 admin.site.register(Html5GamesInfo, Html5GamesInfoAdmin)
@@ -66,3 +78,6 @@ admin.site.register(Html5GamesPlayLog, Html5GamesPlayLogAdmin)
 admin.site.register(Html5GamesNailLog, Html5GamesNailLogAdmin)
 admin.site.register(Html5GamesLikeInfo, Html5GamesLikeInfoAdmin)
 admin.site.register(Html5GamesUnlikeInfo, Html5GamesUnlikeInfoAdmin)
+admin.site.register(TopicInfo, TopicInfoAdmin)
+admin.site.register(TopicGamesInfo, TopicGamesInfoAdmin)
+admin.site.register(LunbotuInfo, LunbotuInfoAdmin)

@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Heretoy | 口袋社交小游戏中心</title>
+        <title>Heretoy | 专题：{{ topic }}</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <meta name="keywords" content="小游戏 HereToy 社交小游戏 手机小游戏 html5小游戏 微信小游戏">
         <meta name="description" content="HereToy，口袋社交小游戏中心。百款游戏，每天更新，无需下载，点开即玩；玩过的游戏自动保存，无网络也可再玩；不仅可以跟微信好友玩，还可以跟其他社交圈好友玩；">
@@ -17,17 +17,6 @@
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-
-        <script type="text/javascript" name="baidu-tc-cerfication" src="http://apps.bdimg.com/cloudaapi/lightapp.js#abe51080d473c59514606426dfd6669f"></script><script type="text/javascript">window.bd && bd._qdc && bd._qdc.init({app_id: '374fbc51f1cdd1f393e2d4ba'});</script>
- 
-	<script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "//hm.baidu.com/hm.js?7af735f2f00556925520de9f0ec5b510";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-	})();
 	</script>
     </head>
     <body style="max-width: 500px; margin: 0 auto;">
@@ -36,26 +25,13 @@
             <div class="header">
                 <div class="warp">HereToy</div>
             </div>
+
             <div id="menu" class="menu">
-                <div id="hot" class="hot">Hot</div>
-                <div id="new" class="new" style="color: #ed4b3c; border-bottom: 5px #ed4b3c solid;">New</div>
-            </div>
-            <div id="hots" class="hots" style="display: none;">
-                {% for h5 in hots %}
-                    <div class="game" onclick="window.open('{% url 'html5games:share' h5.pk %}')">
-                        <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
-                        <div id="play" class="play"><a>试玩</a></div>
-                        <div id="info" class="info">
-                            <div class="name">{{ h5.name }}</div>
-                            <div class="num"><img src="{% static 'html5games/img/play.png' %}"></img><label>{{ h5.play }}</label><img src="{% static 'html5games/img/like.png' %}"></img><label>{{ h5.like }}</label><img src="{% static 'html5games/img/unlike.png' %}"></img><label>{{ h5.unlike }}</label></div>
-                            <div class="descr">{{ h5.descr }}</div>
-                        </div>
-                    </div>
-                {% endfor %}
+                <div id="new" class="new" style="color: #ed4b3c; border-bottom: 5px #ed4b3c solid;">专题：{{ topic }}</div>
             </div>
 
             <div id="news" class="news">
-                {% for h5 in news %}
+                {% for h5 in h5games %}
                     <div class="game" onclick="window.open('{% url 'html5games:share' h5.pk %}')">
                         <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
                         <div id="play" class="play"><a>试玩</a></div>
@@ -81,25 +57,6 @@
 
         <script src="{% static 'js/ht.min.js' %}"></script>
         <script language="Javascript">
-            document.getElementById("hot").onclick = function(){
-                document.getElementById('hots').style.display = "block";
-                document.getElementById('news').style.display = "none";
-                document.getElementById('hot').style.color = "#ed4b3c";
-                document.getElementById('hot').style.borderBottom = "5px #ed4b3c solid";
-                document.getElementById('new').style.color = "#676566";
-                document.getElementById('new').style.borderBottom = "1px #dcdcdc solid";
-            };
-            document.getElementById("new").onclick = function(){
-                document.getElementById('hots').style.display = "none";
-                document.getElementById('news').style.display = "block";
-                document.getElementById('hot').style.color = "#676566";
-                document.getElementById('hot').style.borderBottom = "1px #dcdcdc solid";
-                document.getElementById('new').style.color = "#ed4b3c";
-                document.getElementById('new').style.borderBottom = "5px #ed4b3c solid";
-            };
-
-            {% ifequal rank_type 'hot' %}document.getElementById("hot").onclick();{% endifequal %}
-
             init({
                 "imgUrl" : "{{ domain }}{% static 'html5games/img/heretoy_logo.png' %}",
                 "link" : "{{ domain }}",

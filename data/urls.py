@@ -14,4 +14,7 @@ urlpatterns = patterns('data.views',
     url(r'^mine/$', 'mine', name='mine'),
     url(r'^nail$', 'nail', name='nail'),
     url(r'^nail/$', 'nail', name='nail'),
+    url(r'^topic/(?P<tp>[^/]+)$', 'topic', name='topic'),
+    url(r'^topic/(?P<tp>[^/]+)/$', 'topic', name='topic'),
+    url(r'^lunbotu/$', 'lunbotu', name='lunbotu'),
 )
