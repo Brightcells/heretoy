@@ -132,25 +132,7 @@ class Html5GamesInfo(CreateUpdateMixin):
             'boutique': self.boutique,
         }
 
-    def _info(self):
-        return {
-            'pk': self.md5,
-            'name': self.name,
-            'image': settings.DOMAIN + self.image.url if self.image else settings.APP_DEFAULT_LOGO,
-            'descr': self.descr,
-            'url': self.url,
-            'play': self.play,
-            'like': self.like,
-            'unlike': self.unlike,
-            'source': self.source,
-            'screen': self.screen,
-            'sole': self.sole,
-            'first_publish': self.first_publish,
-            'boutique': self.boutique,
-        }
-
     data = property(_data)
-    info = property(_info)
 
 
 class Html5GamesPlayInfo(CreateUpdateMixin):

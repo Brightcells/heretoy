@@ -40,7 +40,7 @@ def get_my_play_num(token, h5game):
 
 
 def get_game_info(token, h5game):
-    game_info = h5game.info
+    game_info = h5game.data
     game_info['like_flag'] = have_already_like(token, h5game)
     game_info['unlike_flag'] = have_already_unlike(token, h5game)
     game_info['myplay'] = get_my_play_num(token, h5game)
