@@ -70,8 +70,10 @@ def games(request):
 
         if _type == 0:
             h5games = allh5games.order_by('-play', '-like', 'unlike')[start:end]
+            lunbotu = LunbotuInfo.objects.filter(lbt_classify='hot', status=True).order_by('-modify_at')
         else:
             h5games = allh5games.order_by('-create_at')[start:end]
+            lunbotu = LunbotuInfo.objects.filter(lbt_classify='new', status=True).order_by('-modify_at')
 
         h5games = [get_game_info(token, h5game) for h5game in h5games]
     else:
@@ -86,7 +88,8 @@ def games(request):
         dict(
             status=0,
             data=h5games,
-            left=get_left_game_num(len(allh5games), end)
+            left=get_left_game_num(len(allh5games), end),
+            recommend=[lbt.data for lbt in lunbotu],
         )
     )
 

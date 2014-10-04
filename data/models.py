@@ -51,6 +51,12 @@ SCREEN = (
 )
 
 
+LUNBOTU_CLASSIFY = (
+    ('new', u'最新'),
+    ('hot', u'最热'),
+)
+
+
 class TestTokenInfo(CreateUpdateMixin):
     token = models.CharField(_(u'token'), max_length=255, blank=True, null=True, help_text=u'测试 Token')
     status = models.BooleanField(_('status'), default=True, help_text=u'Token 状态')
@@ -113,7 +119,7 @@ class Html5GamesInfo(CreateUpdateMixin):
         return {
             'pk': self.md5,
             'name': self.name,
-            'image': self.image.url if self.image else settings.APP_DEFAULT_LOGO,
+            'image': settings.DOMAIN + self.image.url if self.image else settings.APP_DEFAULT_LOGO,
             'descr': self.descr,
             'url': self.url,
             'play': self.play,
@@ -256,6 +262,9 @@ class LunbotuInfo(CreateUpdateMixin):
     title = models.CharField(_(u'title'), max_length=255, blank=True, null=True, help_text=u'轮播图标题')
     url = models.CharField(_(u'url'), max_length=255, blank=True, null=True, help_text=u'轮播图链接')
     image = models.ImageField(_('image'), upload_to=upload_path, blank=True, null=True, help_text=u'轮播图图片')
+    sort = models.IntegerField(_(u'sort'), default=0, help_text=u'轮播图类型：0 for 游戏推送，1 for 游戏集合，2 for 广告')
+    h5game = models.ForeignKey(Html5GamesInfo, verbose_name=_(u'h5game'), blank=True, null=True, related_name='h5game_lubotugame', help_text='Html5 Game')
+    lbt_classify = models.CharField(_(u'lbt_classify'), max_length=255, choices=LUNBOTU_CLASSIFY, default='new', blank=True, null=True, help_text=u'轮播图类别')
     status = models.BooleanField(_('status'), default=True, help_text=u'轮播图状态')
 
     class Meta:
@@ -266,11 +275,22 @@ class LunbotuInfo(CreateUpdateMixin):
         return u'{0.title}'.format(self)
 
     def _data(self):
-        return {
-            'pk': self.pk,
-            'title': self.title,
-            'url': self.url,
-            'image': settings.DOMAIN + self.image.url if self.image else '',
-        }
+        if self.sort == 0:
+            return {
+                'pk': self.pk,
+                'title': self.title,
+                'url': self.url,
+                'image': settings.DOMAIN + self.image.url if self.image else '',
+                'sort': self.sort,
+                'h5game': self.h5game.data,
+            }
+        else:
+            return {
+                'pk': self.pk,
+                'title': self.title,
+                'url': self.url,
+                'image': settings.DOMAIN + self.image.url if self.image else '',
+                'sort': self.sort,
+            }
 
     data = property(_data)
