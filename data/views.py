@@ -48,6 +48,14 @@ def get_game_info(token, h5game):
     return game_info
 
 
+def deal_with_sort(rec, token):
+    if rec['sort'] == 0:
+        rec['h5game'] = get_game_info(token, rec['h5game'])
+    else:
+        rec.pop('h5game')
+    return rec
+
+
 def get_left_game_num(total, end):
     return max(total - end, 0)
 
@@ -76,6 +84,7 @@ def games(request):
             lunbotu = LunbotuInfo.objects.filter(lbt_classify='new', status=True).order_by('-modify_at')
 
         h5games = [get_game_info(token, h5game) for h5game in h5games]
+        recommend = [deal_with_sort(lbt.data, token) for lbt in lunbotu]
     else:
         start = GAME_NUM_PER_PAGE * 2 * (p - 1)
         end = GAME_NUM_PER_PAGE * 2 * p
@@ -83,13 +92,14 @@ def games(request):
         allh5games = Html5GamesPlayInfo.objects.filter(token=token)
         h5games = allh5games.order_by('-nail', '-modify_at')[start:end]
         h5games = [get_game_info(token, h5.h5game) for h5 in h5games]
+        recommend = []
 
     return JsonHttpResponse(
         dict(
             status=0,
             data=h5games,
             left=get_left_game_num(len(allh5games), end),
-            recommend=[lbt.data for lbt in lunbotu],
+            recommend=recommend,
         )
     )
 

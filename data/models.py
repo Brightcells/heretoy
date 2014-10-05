@@ -257,22 +257,13 @@ class LunbotuInfo(CreateUpdateMixin):
         return u'{0.title}'.format(self)
 
     def _data(self):
-        if self.sort == 0:
-            return {
-                'pk': self.pk,
-                'title': self.title,
-                'url': self.url,
-                'image': settings.DOMAIN + self.image.url if self.image else '',
-                'sort': self.sort,
-                'h5game': self.h5game.data,
-            }
-        else:
-            return {
-                'pk': self.pk,
-                'title': self.title,
-                'url': self.url,
-                'image': settings.DOMAIN + self.image.url if self.image else '',
-                'sort': self.sort,
-            }
+        return {
+            'pk': self.pk,
+            'title': self.title,
+            'url': self.url,
+            'image': settings.DOMAIN + self.image.url if self.image else '',
+            'sort': self.sort,
+            'h5game': self.h5game,
+        }
 
     data = property(_data)
