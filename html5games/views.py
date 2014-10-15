@@ -58,7 +58,7 @@ def topic(request, tp=''):
     except:
         topic = ''
 
-    h5games = TopicGamesInfo.objects.filter(topic__tp=tp, status=True).order_by('-modify_at')
+    h5games = TopicGamesInfo.objects.filter(topic__tp=tp, status=True).order_by('-h5game__play', '-h5game__like', 'h5game__unlike')
     h5games = [h5.h5game.data for h5 in h5games]
 
     return render(request, 'html5games/topic.html', dict(topic=topic, h5games=h5games, domain=domain, fromApple=fromApple, app_url=app_url))

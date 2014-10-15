@@ -73,15 +73,17 @@ def games(request):
 
         if token in testokens:
             allh5games = Html5GamesInfo.objects.filter(status=True).exclude(onshalf='off')
+            alllunbotus = LunbotuInfo.objects.filter(status=True).exclude(onshalf='off')
         else:
             allh5games = Html5GamesInfo.objects.filter(status=True, onshalf='on')
+            alllunbotus = LunbotuInfo.objects.filter(status=True, onshalf='on')
 
         if _type == 0:
             h5games = allh5games.order_by('-play', '-like', 'unlike')[start:end]
-            lunbotu = LunbotuInfo.objects.filter(lbt_classify='hot', status=True).order_by('-modify_at')
+            lunbotu = alllunbotus.filter(lbt_classify='hot').order_by('-modify_at')
         else:
             h5games = allh5games.order_by('-create_at')[start:end]
-            lunbotu = LunbotuInfo.objects.filter(lbt_classify='new', status=True).order_by('-modify_at')
+            lunbotu = alllunbotus.filter(lbt_classify='new').order_by('-modify_at')
 
         h5games = [get_game_info(token, h5game) for h5game in h5games]
         recommend = [deal_with_sort(lbt.data, token) for lbt in lunbotu]
@@ -314,7 +316,7 @@ def nail(request):
 def topic(request, tp=''):
     token = request.GET.get('token', '')
 
-    h5games = TopicGamesInfo.objects.filter(topic__tp=tp, status=True).order_by('-modify_at')
+    h5games = TopicGamesInfo.objects.filter(topic__tp=tp, status=True).order_by('-h5game__play', '-h5game__like', 'h5game__unlike')
     h5games = [get_game_info(token, h5.h5game) for h5 in h5games]
 
     return JsonHttpResponse(

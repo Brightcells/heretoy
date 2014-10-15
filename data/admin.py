@@ -67,7 +67,7 @@ class TopicGamesInfoAdmin(admin.ModelAdmin):
 
 
 class LunbotuInfoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'url', 'image', 'sort', 'h5game', 'lbt_classify', 'status')
+    list_display = ('title', 'url', 'image', 'onshalf', 'sort', 'h5game', 'lbt_classify', 'status')
 
 
 admin.site.register(TestTokenInfo, TestTokenInfoAdmin)

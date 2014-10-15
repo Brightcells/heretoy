@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-30 00:19+0800\n"
+"POT-Creation-Date: 2014-10-09 02:12+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,119 +18,133 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: models.py:49 models.py:140 models.py:168 models.py:180 models.py:192
+#: models.py:61 models.py:139 models.py:169 models.py:181 models.py:194
+#: models.py:206
 msgid "token"
 msgstr "移动设备唯一标识符"
 
-#: models.py:50 models.py:90
+#: models.py:62 models.py:105 models.py:220 models.py:233 models.py:250
 msgid "status"
 msgstr "游戏状态"
 
-#: models.py:53 models.py:54
+#: models.py:65 models.py:66
 msgid "testtokeninfo"
 msgstr "测试设备信息"
 
-#: models.py:61
+#: models.py:73
 msgid "1st"
 msgstr "一级分类"
 
-#: models.py:62
+#: models.py:74
 msgid "2nd"
 msgstr "二级分类"
 
-#: models.py:65 models.py:66
+#: models.py:77 models.py:78
 msgid "html5gamesclassifyinfo"
 msgstr "HTML5游戏分类信息"
 
-#: models.py:73
+#: models.py:85 models.py:219
 msgid "name"
 msgstr "游戏名称"
 
-#: models.py:74
+#: models.py:86
 msgid "md5"
 msgstr ""
 
-#: models.py:75
+#: models.py:87 models.py:246
 msgid "image"
 msgstr "游戏Logo"
 
-#: models.py:76
+#: models.py:88
 msgid "description"
 msgstr "游戏描述"
 
-#: models.py:77
+#: models.py:89 models.py:245
 msgid "url"
 msgstr "游戏链接"
 
-#: models.py:78 models.py:142
+#: models.py:90 models.py:141
 msgid "play"
 msgstr "游戏玩数"
 
-#: models.py:79
+#: models.py:91
 msgid "real_play"
 msgstr "真实游戏玩数"
 
-#: models.py:80
+#: models.py:92
 msgid "like"
 msgstr "游戏赞数"
 
-#: models.py:81
+#: models.py:93
 msgid "real_like"
 msgstr "真实游戏赞数"
 
-#: models.py:82
+#: models.py:94
 msgid "unlike"
 msgstr "游戏踩数"
 
-#: models.py:83
+#: models.py:95 models.py:142 models.py:183
+msgid "nail"
+msgstr "游戏固定数"
+
+#: models.py:96
+msgid "real_nail"
+msgstr "真实游戏固定数"
+
+#: models.py:97
 msgid "classify1"
 msgstr "游戏分类1"
 
-#: models.py:84
+#: models.py:98
 msgid "classify2"
 msgstr "游戏分类2"
 
-#: models.py:85
+#: models.py:99
 msgid "source"
 msgstr "游戏来源"
 
-#: models.py:86
+#: models.py:100
 msgid "version"
 msgstr "游戏版本"
 
-#: models.py:87
+#: models.py:101
 msgid "commit"
 msgstr "游戏备注"
 
-#: models.py:88
+#: models.py:102
 msgid "language"
 msgstr "游戏语言"
 
-#: models.py:89
+#: models.py:103
 msgid "operate"
 msgstr "游戏操作"
 
-#: models.py:91
+#: models.py:104
+msgid "screen"
+msgstr "横竖屏"
+
+#: models.py:106 models.py:251
 msgid "onshalf"
 msgstr "上线状况"
 
-#: models.py:92
+#: models.py:107
 msgid "sole"
 msgstr "独家"
 
-#: models.py:93
+#: models.py:108
 msgid "first_publish"
 msgstr "首发"
 
-#: models.py:94
+#: models.py:109
 msgid "boutique"
 msgstr "精品"
 
-#: models.py:97 models.py:98
+#: models.py:112 models.py:113
 msgid "html5gamesinfo"
 msgstr "HTML5游戏信息"
 
-#: models.py:141 models.py:169 models.py:181 models.py:193
+#: models.py:140 models.py:170 models.py:182 models.py:195 models.py:207
+#: models.py:232 models.py:248
 msgid "h5game"
 msgstr "HTML5游戏"
 
@@ -138,14 +152,50 @@ msgstr "HTML5游戏"
 msgid "html5gamesplayinfo"
 msgstr "HTML5游戏玩信息"
 
-#: models.py:172 models.py:173
+#: models.py:173 models.py:174
 msgid "html5gamesplaylog"
 msgstr "HTML5游戏玩Log"
 
-#: models.py:184 models.py:185
+#: models.py:186 models.py:187
+msgid "html5gamesnaillog"
+msgstr "HTML5游戏固定Log"
+
+#: models.py:198 models.py:199
 msgid "html5gameslikeinfo"
 msgstr "HTML5游戏赞信息"
 
-#: models.py:196 models.py:197
+#: models.py:210 models.py:211
 msgid "html5gamesunlikeinfo"
 msgstr "HTML5游戏踩信息"
+
+#: models.py:218
+msgid "tp"
+msgstr "标识"
+
+#: models.py:223 models.py:224
+msgid "topicinfo"
+msgstr "游戏专题信息"
+
+#: models.py:231
+msgid "topic"
+msgstr "专题"
+
+#: models.py:236 models.py:237
+msgid "topicgamesinfo"
+msgstr "游戏专题游戏信息"
+
+#: models.py:244
+msgid "title"
+msgstr "轮播图描述信息"
+
+#: models.py:247
+msgid "sort"
+msgstr "轮播图类别"
+
+#: models.py:249
+msgid "lbt_classify"
+msgstr "轮播图分属"
+
+#: models.py:254 models.py:255
+msgid "lunbotuinfo"
+msgstr "游戏轮播图信息"

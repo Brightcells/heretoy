@@ -248,6 +248,7 @@ class LunbotuInfo(CreateUpdateMixin):
     h5game = models.ForeignKey(Html5GamesInfo, verbose_name=_(u'h5game'), blank=True, null=True, related_name='h5game_lubotugame', help_text='Html5 Game')
     lbt_classify = models.CharField(_(u'lbt_classify'), max_length=255, choices=LUNBOTU_CLASSIFY, default='new', blank=True, null=True, help_text=u'轮播图类别')
     status = models.BooleanField(_('status'), default=True, help_text=u'轮播图状态')
+    onshalf = models.CharField(_(u'onshalf'), max_length=255, choices=ONSHALF, default='test', blank=True, null=True, help_text=u'轮播图是否上架')
 
     class Meta:
         verbose_name = _('lunbotuinfo')
