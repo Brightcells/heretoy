@@ -4,8 +4,10 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('html5games.views',
-    url(r'^$', 'wap_home', name='wap_home'),
-    url(r'^downloads/$', 'wap_home', name='wap_home'),
+    url(r'^$', 'home', name='home'),
+    url(r'^downloads/$', 'home', name='home'),
+    # url(r'^$', 'wap_home', name='wap_home'),
+    # url(r'^downloads/$', 'wap_home', name='wap_home'),
     url(r'^game/$', 'game', name='game'),
     url(r'^topic/(?P<tp>[^/]+)/$', 'topic', name='topic'),
     # url(r'^play/(?P<pk>\d+)/$', 'play', name='play'),

@@ -500,7 +500,7 @@ body {
     height: 75px;
     width: 100%;
     padding: 10px 0;
-    background-color: white;
+    background-color: #fafcfc;
     text-align: center;
 }
 
@@ -533,11 +533,16 @@ body {
     float: left;
 }
 
+.dl_slogan {
+    height: 41px;
+    margin-top: 2px;
+}
+
 .dl_star {
     clear: left;
     float: left;
-    height: 9px;
-    margin: 5px 0 0 5px;
+    height: 14px;
+    margin: 0 0 0 5px;
 }
 
 .dl_download {
@@ -578,11 +583,51 @@ body {
     bottom: 0;
     left: auto;
     padding: 20px 0;
-    background-color: #929292;
+    background-color: #eb4d3c;
 }
 
 .dl_face>img {
     position: relative;
     width: 95%;
     height: 100%;
+}
+
+.bg_game {
+    position: absolute;
+    top: 50%;
+    margin-top: -128px;
+}
+
+.home_left_container {
+    position: absolute;
+    top: 50%;
+    margin-top: -330px;
+    margin-left: 20px;
+    width: 360px;
+    height: 580px;
+    box-sizing: border-box;
+}
+
+.home_right_container {
+    position: absolute;
+    top: 50%;
+    margin-top: -270px;
+    margin-left: 420px;
+    width: 360px;
+    height: 580px;
+    box-sizing: border-box;
+}
+
+.home_pc_heretoy_phone {
+    clear: left;
+    margin-top: 350px;
+    float: left;
+}
+
+.home_pc_heretoy_qrcode>img {
+    width: 142px;
+    height: 142px;
+    margin-left: 15px;
+    margin-top: 345px;
+    border-radius: 20px;
 }

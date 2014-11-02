@@ -94,7 +94,6 @@ def share(request, pk=-1):
 
     if request.mobile:
         app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL_WAP
-
         return render(request, 'html5games/wap_share.html', dict(h5game=h5game, domain=domain, fromApple=fromApple, app_url=app_url))
     else:
         app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL_PC
@@ -129,6 +128,21 @@ def pc_share(request, pk=-1):
     except:
         h5game = ''
     return render(request, 'html5games/pc_share.html', dict(h5game=h5game, domain=domain))
+
+
+def home(request):
+    meta = request.META['HTTP_USER_AGENT']
+    fromWeixin = 'MicroMessenger' in meta
+    fromApple = 'iPhone' in meta or 'iPad' in meta or 'iPod' in meta
+
+    domain = settings.DOMAIN
+
+    if request.mobile:
+        app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL_WAP
+        return render(request, 'html5games/wap_home.html', dict(domain=domain, fromApple=fromApple, app_url=app_url))
+    else:
+        app_url = settings.APP_DOWNLOAD_URL_WEIXIN if fromWeixin else settings.APP_DOWNLOAD_URL_PC
+        return render(request, 'html5games/pc_home.html', dict(domain=domain, fromApple=fromApple, app_url=app_url))
 
 
 def wap_home(request):

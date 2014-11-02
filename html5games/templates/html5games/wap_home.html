@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Heretoy | 口袋社交小游戏中心</title>
+        <title>口袋小游戏 | 快乐一触即达！</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <meta name="keywords" content="小游戏 HereToy 社交小游戏 手机小游戏 html5小游戏 微信小游戏">
         <meta name="description" content="HereToy，口袋社交小游戏中心。百款游戏，每天更新，无需下载，点开即玩；玩过的游戏自动保存，无网络也可再玩；不仅可以跟微信好友玩，还可以跟其他社交圈好友玩；">
@@ -38,15 +38,14 @@
             </div>
             {% else %}
             <div class="dl_desc">
-                <h3 class="dl_app">HereToy</h3>
-                <span class="dl_ds">口袋社交小游戏中心</span>
-                <img class="dl_star" src="{% static 'html5games/img/star.png' %}"></img>
+                <div><img class="dl_slogan" src="{% static 'html5games/img/wap_slogan.png' %}"></img></div>
+                <div><img class="dl_star" src="{% static 'html5games/img/star.png' %}"></img></div>
             </div>
             <div class="dl_download"><a class="dl_dl" onclick="window.location='{{ app_url }}'">立即下载</a></div>
             {% endif %}
         </div>
 
-        <div class="dl_face"><img src="{% static 'html5games/img/heretoy_face.png' %}"></div>
+        <div class="dl_face"><img src="{% static 'html5games/img/wap_phone.png' %}"></div>
 
         <script language="Javascript">
             // 微信分享的数据

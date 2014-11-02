@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Heretoy | 口袋社交小游戏中心</title>
+        <title>口袋小游戏 | 快乐一触即达！</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <meta name="keywords" content="小游戏 HereToy 社交小游戏 手机小游戏 html5小游戏 微信小游戏">
         <meta name="description" content="HereToy，口袋社交小游戏中心。百款游戏，每天更新，无需下载，点开即玩；玩过的游戏自动保存，无网络也可再玩；不仅可以跟微信好友玩，还可以跟其他社交圈好友玩；">
@@ -34,11 +34,11 @@
         <div style="display: none"><img src="{{ domain }}{% static 'html5games/img/heretoy_logo.png' %}"></div>
         <div class="content">
             <div class="header">
-                <div class="warp">HereToy</div>
+                <div class="warp">口袋小游戏</div>
             </div>
             <div id="menu" class="menu">
-                <div id="hot" class="hot">Hot</div>
-                <div id="new" class="new" style="color: #ed4b3c; border-bottom: 5px #ed4b3c solid;">New</div>
+                <div id="hot" class="hot">最热</div>
+                <div id="new" class="new" style="color: #ed4b3c; border-bottom: 5px #ed4b3c solid;">最新</div>
             </div>
             <div id="hots" class="hots" style="display: none;">
                 {% for h5 in hots %}
@@ -75,7 +75,7 @@
             <div class="htext">您可以先关注我们微信公号：iheretoy</div>
             {% else %}
             <div class="htext">想玩更多小游戏?</div>
-            <div class="hbutton" onclick="window.location='{{ app_url }}'"><span>立即下载Heretoy客户端</span></div>
+            <div class="hbutton" onclick="window.location='{{ app_url }}'"><span>立即下载 “口袋小游戏” 客户端</span></div>
             {% endif %}
         </div>
 
