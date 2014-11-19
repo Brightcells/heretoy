@@ -6,6 +6,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _, ugettext
 
 from heretoy.basemodels import CreateUpdateMixin
+from accounts.models import Developer
 
 import os
 import time
@@ -42,6 +43,7 @@ ONSHALF = (
 OPERATE = (
     ('single', u'单手'),
     ('double', u'双手'),
+    ('gravity', u'重力感应'),
 )
 
 
@@ -54,6 +56,13 @@ SCREEN = (
 LUNBOTU_CLASSIFY = (
     ('new', u'最新'),
     ('hot', u'最热'),
+)
+
+
+AUDIT = (
+    ('audit_ing', _(u'audit_ing')),
+    ('audit_done', _(u'audit_done')),
+    ('audit_reject', _(u'audit_reject')),
 )
 
 
@@ -107,6 +116,10 @@ class Html5GamesInfo(CreateUpdateMixin):
     sole = models.BooleanField(_('sole'), default=False, help_text=u'游戏是否独家')
     first_publish = models.BooleanField(_('first_publish'), default=False, help_text=u'游戏是否首发')
     boutique = models.BooleanField(_('boutique'), default=False, help_text=u'游戏是否精品')
+    developer = models.CharField(_(u'developer'), max_length=255, blank=True, null=True, help_text=u'游戏开发者')
+    submit_at = models.DateTimeField(_(u'submit_at'), blank=True, null=True, help_text=u'游戏提交时间')
+    audit = models.CharField(_(u'audit'), max_length=255, choices=AUDIT, default='audit_ing', blank=True, null=True, help_text=u'游戏审核状态')
+    reject_reason = models.TextField(_(u'reject_reason'), blank=True, null=True, help_text=u'游戏驳回原因')
 
     class Meta:
         verbose_name = _('html5gamesinfo')
@@ -132,7 +145,28 @@ class Html5GamesInfo(CreateUpdateMixin):
             'boutique': self.boutique,
         }
 
+    def _info(self):
+        return {
+            'pk': self.md5,
+            'name': self.name,
+            'image': settings.DOMAIN + self.image.url if self.image else settings.APP_DEFAULT_LOGO,
+            'descr': self.descr,
+            'url': self.url,
+            'play': self.play,
+            'like': self.like,
+            'unlike': self.unlike,
+            'source': self.source,
+            'screen': self.screen,
+            'sole': self.sole,
+            'first_publish': self.first_publish,
+            'boutique': self.boutique,
+            'version': self.version,
+            'submit_at': self.submit_at,
+            'audit': self.audit,
+        }
+
     data = property(_data)
+    info = property(_info)
 
 
 class Html5GamesPlayInfo(CreateUpdateMixin):
@@ -243,6 +277,7 @@ class TopicGamesInfo(CreateUpdateMixin):
 class LunbotuInfo(CreateUpdateMixin):
     title = models.CharField(_(u'title'), max_length=255, blank=True, null=True, help_text=u'轮播图标题')
     url = models.CharField(_(u'url'), max_length=255, blank=True, null=True, help_text=u'轮播图链接')
+    share_url = models.CharField(_(u'share_url'), max_length=255, blank=True, null=True, help_text=u'轮播图分享链接')
     image = models.ImageField(_('image'), upload_to=upload_path, blank=True, null=True, help_text=u'轮播图图片')
     sort = models.IntegerField(_(u'sort'), default=0, help_text=u'轮播图类型：0 for 游戏推送，1 for 游戏集合，2 for 广告')
     h5game = models.ForeignKey(Html5GamesInfo, verbose_name=_(u'h5game'), blank=True, null=True, related_name='h5game_lubotugame', help_text='Html5 Game')
@@ -262,6 +297,7 @@ class LunbotuInfo(CreateUpdateMixin):
             'pk': self.pk,
             'title': self.title,
             'url': self.url,
+            'share_url': self.share_url,
             'image': settings.DOMAIN + self.image.url if self.image else '',
             'sort': self.sort,
             'h5game': self.h5game,

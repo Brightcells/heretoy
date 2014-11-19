@@ -1,0 +1,37 @@
+{% extends "base/developer_base.html" %}
+{% load staticfiles %}
+
+{% block title %}<title>注册</title>{% endblock %}
+
+{% block content %}
+        <form id="signupForm" method="post" action="{% url 'accounts:user_signup' %}?next={{ next }}">{% csrf_token %}
+            <label><span>帐户</span>{{ form.username }} </label><br><br>
+            <label><span>密码</span>{{ form.password }} </label><br><br>
+            <label><span>邮箱</span>{{ form.email }} </label><br><br>
+            <label><span>开发者类型</span>{{ form.devtype }} </label><br><br>
+            <label><span id="com_tem_per">公司名称</span>{{ form.com_tem_per }} </label><br><br>
+            <label id="contact"><span>联系人</span>{{ form.contact }} <br><br></label>
+            <label><span>联系电话</span>{{ form.mobile }} </label><br><br>
+            <span id="signup_button" class="signup_button">注册</span>
+        </form>
+
+    <script>
+        document.getElementById("signup_button").onclick = function(){
+            document.getElementById("signupForm").submit();
+        };
+
+        document.getElementById("id_devtype").onchange = function(){
+            devtype = document.getElementById("id_devtype").value;
+            if(devtype == "company") {
+                document.getElementById("com_tem_per").innerHTML = "公司名称";
+                document.getElementById("contact").style.display = "block";
+            } else if (devtype == "team") {
+                document.getElementById("com_tem_per").innerHTML = "团队名称";
+                document.getElementById("contact").style.display = "block";
+            } else if (devtype == "person") {
+                document.getElementById("com_tem_per").innerHTML = "个人姓名";
+                document.getElementById("contact").style.display = "none";
+            }
+        };
+    </script>
+{% endblock %}

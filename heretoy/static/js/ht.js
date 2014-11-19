@@ -4,7 +4,7 @@
     e.htWords = ['非常好', '干得漂亮', '帅呆了', '哇塞', 'I服U', '天才诞生了'];
     e.getWord = function() {return e.htWords[Math.floor(Math.random() * e.htWords.length)];}
 
-    e.htData = {"appId": "", "imgUrl" : "http://heretoy.com/static/html5games/img/heretoy_logo.png", "link" : "http://heretoy.com/", "desc" : "HereToy，口袋社交小游戏中心。百款游戏，每天更新，无需下载，点开即玩；玩过的游戏自动保存，无网络也可再玩；不仅可以跟微信好友玩，还可以跟其他社交圈好友玩；", "title" : "口袋社交小游戏中心"};
+    e.htData = {"appId": "", "imgUrl" : "http://heretoy.com/static/html5games/img/heretoy_logo.png", "link" : "http://heretoy.com/", "desc" : "HereToy，口袋社交小游戏中心。百款游戏，每天更新，无需下载，点开即玩；玩过的游戏自动保存，无网络也可再玩；不仅可以跟微信好友玩，还可以跟其他社交圈好友玩；", "title" : "口袋社交小游戏中心", "logoUrl": "http://heretoy.com/static/html5games/img/heretoy_logo.png", "slogan": "口袋小游戏", "subslogan": "快乐一触即达 !"};
     e.init = function(data, flag) {
         for(d in data) {
             if(d in e.htData) e.htData[d] = data[d];
@@ -28,4 +28,32 @@
     });
     load(yx).thenRun(function() {
     })
+
+    var wel = document.createElement("div");
+    wel.id = "wel";
+    wel.style.width = wel.style.height = "100%";
+    wel.style.position = "fixed";
+    wel.style.top = wel.style.left = 0;
+    wel.style.textAlign = "center";
+    wel.style.backgroundColor = "#eb4d3c";
+    document.body.appendChild(wel);
+
+    var logo = document.createElement("img");
+    logo.style.padding = "25px 0 0 0";
+    logo.src = e.htData["logoUrl"];
+
+    var slog = document.createElement("p");
+    slog.style.color = "white";
+    slog.style.fontSize = "35px";
+    slog.innerHTML = e.htData["slogan"];
+
+    var subslog = document.createElement("p");
+    subslog.style.color = "white";
+    subslog.innerHTML = e.htData["subslogan"];
+
+    wel.appendChild(logo);
+    wel.appendChild(slog);
+    wel.appendChild(subslog);
+
+    setTimeout("document.getElementById('wel').style.display = 'none'", 5000);
 }(window);

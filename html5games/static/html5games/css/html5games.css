@@ -442,6 +442,7 @@ body {
     font-size: 25px;
     color: #ef4a39;
     padding: 8px 18px;
+    margin-top: 15px;
     border: 1px #ef4a39 solid;
     border-radius: 3px;
     box-sizing: border-box;
@@ -454,7 +455,6 @@ body {
     font-size: 25px;
     color: #ef4a39;
     padding: 8px 18px;
-    margin-top: 15px;
     border: 1px #ef4a39 solid;
     border-radius: 3px;
     box-sizing: border-box;
@@ -596,6 +596,8 @@ body {
     position: absolute;
     top: 50%;
     margin-top: -128px;
+    left: 50%;
+    margin-left: -640px;
 }
 
 .home_left_container {

@@ -1,0 +1,76 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, width=device-width">
+        <meta charset="utf-8">
+        <title>「58到家」阿姨大作战</title>
+        <link href="{% static 'css/pam.css' %}" rel="stylesheet">
+        <script type="text/javascript" src="{% static '58aydzz/js/jquery-1.8.3.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/pam.js' %}"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="container">
+                <div class="tips">您已成功获得<span style="color:red;">{{ cash|default:0 }}</span>元代金券!</div>
+                <div class="usetip">下载58到家app，并用{{ phone }}手机号码登录，在［我的－代金券］页面查看并使用。</div>
+                <div class="downapp"><a href="http://static.58.com/ds/daojia/appdownload.html" target="_blank"><img src="{% static '58aydzz/img/suc_download.png' %}"></a></div>
+                {% if count %}
+                <div class="newgame"><a href="{% url '58kdxyx' %}?openid={{ openid|default:'' }}"><img src="{% static '58aydzz/img/suc_more.png' %}"></a></div>
+                {% else %}
+                <div id="share" class="share"><a href="javascript:void(0)"><img src="{% static '58aydzz/img/suc_share.png' %}"></a></div>
+                {% endif %}
+                <div id="pointer" class="pointer hide"></div>
+            </div>
+        </div>
+    
+    	<style>
+            *{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}body{margin:0;padding:0;font-size:14px;color:#333;font-family:"Hiragino Sans GB","Microsoft YaHei",sans-serif,'Microsoft Sans Serif','Microsoft JhengHei UI'}#main{width:480px;margin:0 auto}#container{width:480px;max-height:800px;margin:0 auto;position:relative}
+            a:link, a:active, a:hover, a:visited {text-decoration: none}
+            @media(min-width:480px){.tips, .usetip, .downapp, .share, .newgame, .pointer{position:absolute;width:60%;left:20%;}.bgDiv{width:480px;margin:0 auto}}
+            @media(max-width:479px){.tips, .usetip, .downapp, .share, .newgame, .pointer{position:fixed;width:80%;left:10%}}
+            .bgDiv{background-color:#faeaeb;}
+            .bgDiv>img{width:90% !important;margin-left:5%;height:90% !important;margin-top:5%}
+            .tips {margin-top:130px;font-size:20px;font-weight:bold;color:#000;text-align:center}
+            .usetip {margin-top:200px;font-size:15px;word-break:break-all;word-wrap:break-word}
+            .downapp {margin-top:330px;text-align:center}
+            .share {margin-top:400px;text-align:center}
+            .newgame {margin-top:400px;text-align:center}
+            .downapp img, .share img, .newgame img{position:relative;width:85%;top:3px}
+.pointer {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1005;
+    background-image: url(/static/58aydzz/img/share.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.hide {
+    display: none;
+}
+        </style>
+        <script>
+            (function () {
+                var res = [
+                    {"image": "{% static '58aydzz/img/bottom.png' %}", "info": "", "link": ""},
+                ]
+                _bg(0, res, 10000);
+            })();
+            $("#share").on("click", function(){$("#pointer").removeClass("hide");});
+        </script>
+
+        <script src="{% static 'js/ht.min.js' %}"></script>
+        <script type="text/javaScript">
+            init({
+                "imgUrl" : "{{ domain }}/static/58aydzz/img/icon.jpg",
+                "link" : "http://heretoy.com/58kdxyx/?refer={{ openid }}&openid=",
+                "desc" : "我已经领取到58到家{{ cash|default:0 }}元保洁代金券！你也来参加吧！",
+                "title" : "58阿姨大作战"
+            }, true);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "base/developer_base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <a href="{% url 'developer:submit_game' %}">添加新游戏</a>
+
+    {% for h5 in h5games %}
+        <div>
+            <img src="{{ h5.image }}" style="width: 50px; height: 50px">
+            <a href="{{ domain }}/share/{{ h5.pk }}" target="_blank">{{ h5.name }}</a>
+            <p>版本{{ h5.version }}</p>
+            <p>{{ h5.submit_at|date:"Y-m-d H:i:s"|default:'' }}提交审核</p>
+            <p>{% trans h5.audit %}</p>
+            <a href="{% url 'developer:edit_game' h5.pk %}">编辑更新</a>
+        </div>
+    {% empty %}
+        <p>您还没有提交任何游戏</p>
+    {% endfor %}
+{% endblock %}

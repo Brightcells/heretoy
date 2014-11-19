@@ -26,9 +26,9 @@ class Html5GamesClassifyInfoAdmin(admin.ModelAdmin):
 
 
 class Html5GamesInfoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'md5', 'onshalf', 'screen', 'image', 'descr', 'url', 'play', 'real_play', 'like', 'real_like', 'unlike', 'classify1', 'classify2', 'source', 'sole', 'first_publish', 'boutique', 'version', 'commit', 'language', 'operate', 'status')
+    list_display = ('name', 'md5', 'onshalf', 'screen', 'image', 'descr', 'url', 'play', 'real_play', 'like', 'real_like', 'unlike', 'classify1', 'classify2', 'source', 'sole', 'first_publish', 'boutique', 'version', 'commit', 'language', 'operate', 'status', 'developer', 'submit_at', 'audit', 'reject_reason')
     search_fields = ('name', 'md5', 'descr', 'commit')
-    list_filter = ('onshalf', 'source', 'version', 'language', 'operate', 'classify1', 'classify2')
+    list_filter = ('onshalf', 'audit', 'source', 'version', 'language', 'operate', 'classify1', 'classify2', 'developer')
 
     def save_model(self, request, obj, form, change):
         if obj.md5 == '':
@@ -67,7 +67,7 @@ class TopicGamesInfoAdmin(admin.ModelAdmin):
 
 
 class LunbotuInfoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'url', 'image', 'onshalf', 'sort', 'h5game', 'lbt_classify', 'status')
+    list_display = ('title', 'url', 'share_url', 'image', 'onshalf', 'sort', 'h5game', 'lbt_classify', 'status')
 
 
 admin.site.register(TestTokenInfo, TestTokenInfoAdmin)

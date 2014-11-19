@@ -1,0 +1,273 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, width=device-width">
+        <meta charset="utf-8">
+        <title>「58到家」阿姨大作战</title>
+        <script type="text/javascript" src="{% static '58aydzz/js/jquery-1.8.3.min.js' %}"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="container">
+                <div id="three_count">
+                    <div class="cdbg"><img src="{% static "58aydzz/img/cdbg.png" %}"></div>
+                    <span>今天您还有<span class="cnum" style="color:red;">{{ count|default:0 }}</span>次机会，要打高分哦～</span>
+                    <div id="tc"><img src="{% static '58aydzz/img/3.png' %}"></div>
+                </div>
+                <div id="modal" class="hide">
+                    <div class="cons">
+                        <div class="coinum">获得<span class="content"></span>金币!</div>
+                        <div id="header" class="header">恭喜您击败全球<span class="rank"></span>%用户，<br>可兑换<span class="cash"></span>元代金券。</div>
+                        <div id="header2" class="header2 hide">很遗憾，您得到的金币不足以兑换代金券，分享给好友可获取更多再玩的机会！</div>
+                        <div id="getcash" class="getcash"> <a href="{% url 'games_bak:bindphone' 0 %}?openid={{ openid|default:''}}" class="bindphone"><img src="{% static '58aydzz/img/getcash.png' %}" class="bindimg"></a></div>
+                        <div id="getmore" class="getmore hide"> <a href="javascript:void(0);"><img src="{% static '58aydzz/img/getmore.png' %}" class="moreimg"></a></div>
+                        <div id="getchance" class="getchance hide"> <a href="javascript:void(0);"><img src="{% static '58aydzz/img/getchance.png' %}" class="chanceimg"></a></div>
+                    </div>
+                </div>
+                <div id="statusbar">
+                    <div id="pause"><img src="{% static '58aydzz/img/pause.png' %}"></div>
+                    <div id="time">
+                        <img src="{% static '58aydzz/img/time.png' %}">
+                        <span id="left">60</span>
+                    </div>
+                    <div id="coin">
+                        <img src="{% static '58aydzz/img/coin.png' %}">
+                        <span id="score">0</span>
+                    </div>
+                </div>
+                <canvas height="800" width="480" id="game-box" class=""></canvas>
+                <div id="modal2" class="hide"></div>
+            </div>
+        </div>
+    
+    	<style>
+*{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}body{margin:0;padding:0;font-size:14px;color:#333;font-family:"Hiragino Sans GB","Microsoft YaHei",sans-serif,'Microsoft Sans Serif','Microsoft JhengHei UI'}#main{width:480px;margin:0 auto}#container{width:480px;max-height:800px;margin:0 auto;position:relative}#container canvas{position:absolute;z-index:1000}#container canvas.playing{cursor:none}#score{font-size:20px;top:-3px;margin-left:5px;position:relative;}
+@media(min-width:480px){div#three_count,#modal,#modal2{position:absolute;}}
+@media(max-width:479px){div#three_count,#modal,#modal2{position:fixed;}}
+#modal{width:100%;height:100%;z-index:1002;background-image:url({% static '58aydzz/img/half.png' %});background-repeat: no-repeat;background-size:cover;filter: alpha(opacity=90);-moz-opacity: 0.9;opacity: 0.9;}
+#modal2{width:100%;height:100%;z-index:1005;background-image:url({% static '58aydzz/img/share.png' %});background-repeat: no-repeat;background-size:cover}
+@media screen and (max-width: 480px) {
+    #main,#container {
+        width:100%
+    }
+}
+.hide{display:none}
+#modal .header{width:80%;margin:20px auto}#modal .content{font-weight:bold;text-align:center;color:red;}
+#modal .header2{width:80%;margin:20px auto}
+#modal .footer{font-size: 15px; margin: 10px 0;}#modal .footer button{width:120px;height:30px;border:#666 solid 2px;border-radius:15px;font-size:15px;font-weight:bold;position:absolute;bottom:4px;left:50%;margin-left:-60px;color:#333;cursor:pointer}
+
+div#three_count {
+    width: 100%;
+    height: 100%;
+    z-index: 1005;
+    background-color: #302c2b;
+    filter: alpha(opacity=90);
+    -moz-opacity: 0.9;
+    opacity: 0.9;
+}
+div#three_count>.cdbg {
+    position: absolute;
+}
+div#three_count>.cdbg>img {
+    width: 80%;
+    height: 320px;
+    margin-top: 80px;
+    margin-left: 10%;
+}
+div#three_count>span {
+    position: absolute;
+    margin: 145px 55px 5px 65px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+div#tc {
+    position: absolute;
+    color: #f6ea32;
+    font-size: 50px;
+    margin-top: 313px;
+    left: 50%;
+    margin-left: -22px;
+}
+div#tc>img {
+    width: 50px;
+    height: 70px; 
+}
+
+#coin {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1001
+}
+#coin>img {
+    width: 25px;
+    height: 25px;
+}
+
+#time {
+    position: absolute;
+    top: 10px;
+    left: 85px;
+    z-index: 1001
+}
+#time>img {
+    width: 25px;
+    height: 25px;
+}
+#left {
+    font-size: 20px;
+    top: -3px;
+    margin-left: 5px;
+    position: relative;
+}
+
+#pause {
+    position: absolute;
+    padding: 10px 20px;
+    z-index: 1001
+}
+#pause>img {
+    width: 25px;
+    height: 25px;
+}
+
+.coinum {
+    color: #333;
+    font-size: 28px;
+    text-align: center;
+}
+.cons {
+    background-color: #faeaeb;
+    width: 90%;
+    height: 270px;
+    margin: 0 auto;
+    font-size: 16px;
+    border: 3px solid #000;
+    border-radius: 12px;
+    padding: 40px 0;
+    text-align: center;
+    top: 50%;
+    margin-top: 150px;
+}
+.footer>span {
+    font-weight: normal;
+    font-size: 22px;
+}
+.getcash, .getmore, .getchance {
+    text-align: center;
+}
+.getcash img, .getmore img, .getchance img {
+    position: relative;
+    width: 65%;
+}
+        </style>
+        <script>(function(){function j(c){if("undefined"!=typeof d[c])return d[c];d[c]=new Image;d[c].src=c;return d[c]}function r(){/*var c=0,d=setInterval(function(){var h=j("bg.jpg");i.drawImage(h,0,0,$(e).width(),$(e).height());var h=j("logo.png"),d=$(e).width(),f=parseInt(h.height/h.width*d),k=($(e).width()-d)/2;i.drawImage(h,k,100,d,f);600==c&&(c=0);h=j("loading"+(parseInt(c/200)+1)+".png");d=h.width;f=h.height;k=($(e).width()-d)/2;i.drawImage(h,k,220,d,f);c++},1);*/m("cartridge.png die1.png die2.png me.png plain1.png plain2.png plain3.png plain1_die1.png plain1_die2.png plain1_die3.png plain1_die4.png plain2_die1.png plain2_die2.png plain2_die3.png plain2_die4.png plain3_die1.png plain3_die2.png plain3_die3.png plain3_die4.png plain3_die5.png plain3_die6.png me_die1.png me_die2.png me_die3.png me_die4.png me_die5.png".split(" "),
+function(){var c=function(g){this.type=g;this.hp;this.height;this.width;this.maxSpeed;this.dieTime;this.status=true;switch(g){case 1:this.hp=2;this.score=1E3;this.modelimg="plain1.png";this.maxSpeed=5;this.dieTime=100;break;case 2:this.hp=4;this.score=2E3;this.modelimg="plain2.png";this.maxSpeed=3;this.dieTime=100;break;case 3:this.hp=10;this.score=5E3;this.modelimg="plain3.png";this.maxSpeed=1.5;this.dieTime=150}this.model=j(this.modelimg);this.width=n/480*this.model.width;this.height=this.width/
+this.model.width*this.model.height;this.x=Math.random()*(n-10-this.width);this.x=this.x<10?10:this.x;this.y=-this.height;g=a.time>10?10:a.time;this.speed=Math.random()*(g-1)+2;this.speed=this.speed<1.5?Math.random()*0.5+1.5:this.speed;this.speed=this.speed>this.maxSpeed?this.maxSpeed:this.speed;this.die=function(){var g=this.type,b=this.x,c=this.y,e=this.width,d=this.height;a.plainsDies.push(new function(a){this.animationTime=a;this.call=function(){if(!(this.animationTime<=0)){var f=j("plain"+g+"_die"+(parseInt((a-this.animationTime)/
+25)+1)+".png");i.drawImage(f,b,c,e,d);this.animationTime--}}}(this.dieTime))};this.byAttack=function(){this.hp--;if(this.hp<=0){a.score=a.score+this.score;this.status=false;this.die()}}},o={show:function(a){$("#modal").find(".content").html(a);
+var cash=Math.round(a*a/125000000)*10, rank=cash
+cash=cash>60?60:cash;
+change('desc', "我已经领取到58到家" + cash +  "元保洁代金券！你也来参加吧！", true);
+rank=rank>=100?99:rank;
+$("#modal").find(".cash").html(cash);
+$("#modal").find(".rank").html(rank);
+cnum = $(".cnum")[0].innerHTML, openid="{{ openid|default:'' }}";
+if(cash){
+    $("#getcash").removeClass("hide");
+    $("#getmore").addClass("hide");
+    $("#getchance").addClass("hide");
+    $("#header").removeClass("hide");
+    $("#header2").addClass("hide");
+    var bindphone = $("#modal").find(".bindphone")[0], url = bindphone.href;
+    bindphone.href=url.replace(/(.*bindphone\/).*(\/.*)/, "$1"+cash+"$2");
+}else{
+    $("#header").addClass("hide");
+    $("#header2").removeClass("hide");
+    if(parseInt(cnum)){
+        $("#getcash").addClass("hide");
+        $("#getmore").removeClass("hide");
+        $("#getchance").addClass("hide");
+    }else{
+        $("#getcash").addClass("hide");
+        $("#getmore").addClass("hide");
+        $("#getchance").removeClass("hide");
+    }
+}
+/*if(cash){}else{bindphone.href='javascript:void(0);';$(".getcash").css("background-color", 'gray')}
+{% if count %}
+{% else %}
+    var nocount = $("#modal").find(".nocount")[0], url2 = nocount.href;
+    nocount.href=url2.replace(/(.*share\/).*(\/.*)/, "$1"+cash+"$2");
+{% endif %}*/
+$("#modal").removeClass("hide")},hide:function(){$("#modal").addClass("hide")}},f=j("bg.jpg"),k=$(e).width(),l=$(e).height();i.drawImage(f,0,0,k,l);var n=$(e).width(),m=$(e).height(),b={status:true};b.model=j("me.png");b.width=n/480*b.model.width;b.height=b.width/b.model.width*
+b.model.height;b.move=function(a,c){b.x=a-b.width/2;b.y=c-b.height/2;var p=$(e).width(),d=$(e).height();b.x=b.x>p-b.width?p-b.width:b.x;b.x=b.x<0?0:b.x;b.y=b.y>d-b.height?d-b.height:b.y};b.moveing=function(){b.status&&i.drawImage(b.model,b.x,b.y,b.width,b.height)};b.cartridges=[];b.cartridge=function(a,b){var c=j("cartridge.png");this.model=c;this.x=a;this.y=b;this.width=n/480*c.width;this.height=this.width/c.width*c.height};b.attackTime=0;b.attack=function(){if(b.status){b.attackTime++;if(b.attackTime%
+20==0){b.attackTime=0;var a=new b.cartridge(0,0);a.x=b.x+(b.width-a.width)/2;a.y=b.y-a.height;b.cartridges.push(a)}}};b.attacking=function(){b.attack();b.cartridges.map(function(g,c){i.drawImage(g.model,g.x,g.y,g.width,g.height);g.y<=0&&b.cartridges.splice(c,1);a.plains.map(function(a){var d=g.x,e=g.y-10;if(d>a.x&&d<a.x+a.width&&e<a.y+a.height+a.speed&&g.y>=a.y+a.height){b.cartridges.splice(c,1);a.byAttack()}});g.y=g.y-10})};b.die=function(){function g(){var b=5*c;this.animationTime=4*c;this.call=
+function(){this.animationTime==1&&a.over();var g=j("me_die"+(parseInt((b-this.animationTime)/c)+1)+".png");i.drawImage(g,d,f,k,h);this.animationTime--}}if(b.status){$(e).off("mousemove");e.removeEventListener("touchmove");b.status=false;var c=25,d=this.x,f=this.y,h=this.height,k=this.width;a.plainsDies.push(new g)}};var a={score:0};a.me=b;a.time=0;a.refresh=function(){a.time=a.time+0.001;a.bgScroll();a.addPlain();a.plainsScroll();a.me.moveing();a.me.attacking();a.plainsDying();$("#score").html(a.score)};
+a.bgScrollTime=0;a.bgScroll=function(){a.bgScrollTime=a.bgScrollTime+0.5;if(a.bgScrollTime>l)a.bgScrollTime=0;i.drawImage(f,0,a.bgScrollTime-l,k,l);i.drawImage(f,0,a.bgScrollTime,k,l)};a.plains=[];a.plainsNum=0;a.addPlain=function(){if(a.bgScrollTime%60==0){if(a.plainsNum==25)a.plainsNum=0;a.plainsNum++;switch(true){case a.plainsNum%13==0:a.plains.push(new c(3,0.3));break;case a.plainsNum%6==0:a.plains.push(new c(2,0.3));break;default:a.plains.push(new c(1,0.3))}}};a.plainsScroll=function(){a.plains.map(function(b,
+c){if(b.status){i.drawImage(b.model,b.x,b.y,b.width,b.height);var d=[b.x,b.y],e=[b.x+b.width,b.y+b.height],f=[a.me.x+a.me.width/3,a.me.y],h=[a.me.x+a.me.width*2/3,a.me.y+a.me.height*2/3],d=[Math.max(d[0],f[0]),Math.max(d[1],f[1])],e=[Math.min(e[0],h[0]),Math.min(e[1],h[1])];d[0]<e[0]&&d[1]<e[1]&&a.me.die();b.y>m&&a.plains.splice(c,1);b.y=b.y+b.speed}else a.plains.splice(c,1)})};a.plainsDies=[];a.plainsDying=function(){a.plainsDies.map(function(b,c){b.animationTime==0?a.plainsDies.splice(c,1):b.call()})};
+a.over=function(){$(e).removeClass("playing");clearInterval(a.clock);clearInterval(a.countdown);o.show(a.score)};a.clear=function(){a.me.x=($(e).width()-a.me.width)/2;a.me.y=$(e).height()-a.me.height;a.plains=[];a.plainsDies=[];a.plainsNum=0;a.time=0;a.bgScrollTime=0;a.score=0;a.me.status=true};a.start=function(){$(e).addClass("playing");$(e).on("mousemove",function(a){var c=a.clientX-$(this).offset().left;b.move(c,a.clientY)});e.addEventListener("touchmove",function(a){a.preventDefault();a=a.targetTouches[0];b.move(a.pageX,
+a.pageY)});o.hide();a.clear();a.pause=false;a.clock=setInterval(function(){a.refresh()},7);a.left=60;a.countdown=setInterval(function(){if(a.left>0){a.left-=1;$("#left").html(a.left);}else{a.over();}},1000);};a.start();
+
+$("#getmore").on("click",function(){
+    cnum-=1;
+    a.start();
+    $.ajax({
+        type: "get",
+        url: "{% url 'games_bak:retry' %}?openid={{ openid }}",
+        data: {},
+        dataType: "json",
+        success: function(json){
+            console.log("success");
+        }
+    });
+});
+$("#getchance").on("click",function(){$("#modal2").removeClass("hide");});
+
+$("#pause").click(function() {
+    if(a.pause) {
+        a.clock = setInterval(function() {a.refresh()}, 7);
+        a.countdown=setInterval(function(){if(a.left>0){a.left-=1;$("#left").html(a.left);}else{a.over();}},1000);
+        $("#pause>img")[0].src = "{% static '58aydzz/img/pause.png' %}";
+        a.pause = false;
+    } else {
+        clearInterval(a.clock);
+        clearInterval(a.countdown);
+        $("#pause>img")[0].src = "{% static '58aydzz/img/continue.png' %}";
+        a.pause = true;
+    }
+});
+
+})}function m(c,e){var h=0,i=c.length,f;for(f in c)d[c[f]]=new Image,d[c[f]].src=s+c[f],d[c[f]].onload=function(){h++;h>=i&&e()}}var s="{{ domain }}/static/58aydzz/img/",e=$("#game-box").get(0),q=function(){$(e).attr("height",800>$(window).height()?$(window).height():800);$(e).attr("width",480>$(window).width()?$(window).width():
+480)};$(window).on("resize",q);q();var i=e.getContext("2d"),d=[];
+
+    var three_second = 3; 
+    var ts = setInterval(function(){
+        if(three_second>1){
+            three_second-=1;/*$("#tc").html(three_second);*/
+            var imgUrl = $("#tc>img")[0].src;
+            $("#tc>img")[0].src=imgUrl.replace(/(.*img\/)(.*)/, "$1"+three_second+".png");
+        }else{
+            clearInterval(ts);
+            $("#three_count").addClass("hide");
+            $(function(){m(["bg.jpg",],r)})
+        }
+    },1000);
+
+})();
+    </script>
+
+        <script src="{% static 'js/ht.min.js' %}"></script>
+        <script type="text/javaScript">
+            init({
+                "imgUrl" : "{{ domain }}/static/58aydzz/img/icon.jpg",
+                "link" : "http://heretoy.com/58kdxyx/?refer={{ openid }}&openid=",
+                "desc" : "我已经领取到58到家60元保洁代金券！你也来参加吧！",
+                "title" : "58阿姨大作战"
+            }, true);
+        </script>
+    </body>
+</html>

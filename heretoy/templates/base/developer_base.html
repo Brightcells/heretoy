@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        {% block title %}{% endblock %}
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+
+        <!-- Le styles -->
+        <link href="{% static 'css/header.css' %}" rel="stylesheet">
+        {% block headercss %}{% endblock %}
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="wrap">
+           <div class="container">
+               <div class="header">
+		    <ul class="left">
+			<li><a href="http://heretoy.com">首页</a></li>
+			<li><a href="">HereToy动态</a></li>
+			<li><a href="">关于HereToy</a></li>
+		    </ul>
+		    <ul class="right">
+			<li><a href="{% url 'developer:submit_game' %}">提交H5游戏</a></li>
+			{% if user.username %}
+			    <li><a href="">{{ user.username }}</a></li>
+			    <li><a href="{% url 'accounts:user_logout' %}">退出</a></li>
+			{% else %}
+			    <li><a href="{% url 'accounts:user_login' %}">登录</a></li>
+			{% endif %}
+		    </ul>
+		</div>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>

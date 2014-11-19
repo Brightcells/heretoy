@@ -1,0 +1,50 @@
+.both_side {
+    margin-top: 150px; 
+}
+
+.left_side {
+    float: left;
+    width: 50%;
+    text-align: right;
+    border-right: 1px black dashed;
+    box-sizing: border-box;
+    padding-right: 80px;
+    padding-bottom: 30px;
+}
+
+.login_title {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+label>span {
+    height: 25px;
+    line-height: 25px;
+    position: relative;
+    bottom: 3px;
+}
+
+.login_username, .login_password {
+    width: 200px;
+    height: 25px;
+    font-size: 25px;
+    margin: 15px 0 0 15px;
+}
+
+.login_button {
+    padding: 10px 35px;
+    margin-right: 55px;
+    border-radius: 2px;
+    color: white;
+    background-color: grey;
+    cursor: pointer;
+}
+
+.right_side {
+    float: right;
+    width: 50%;
+    text-align: left;
+    padding-left: 80px;
+    box-sizing: border-box;
+    margin-top: 120px;
+}

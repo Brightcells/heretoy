@@ -38,10 +38,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'heretoy',
+    'accounts',
     'south',
     'eatshit',
     'html5games',
     'data',
+    'developer',
+    'cogames',
     'games_bak',
 )
 
@@ -53,6 +56,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'mobi.middleware.MobileDetectionMiddleware',
+)
+
+UTHENTICATION_BACKENDS = (
+    'accounts.backends.UserBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'heretoy.urls'

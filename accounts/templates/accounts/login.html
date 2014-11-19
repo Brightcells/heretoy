@@ -1,0 +1,31 @@
+{% extends "base/developer_base.html" %}
+{% load staticfiles %}
+
+{% block title %}<title>登录</title>{% endblock %}
+
+{% block headercss %}
+    <link href="{% static 'accounts/css/accounts.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="both_side">
+    <div class="left_side">
+        <p class="login_title">登录开发者帐户</p>
+        <form id="loginForm" method="post" action="{% url 'accounts:user_login' %}?next={{ next }}">{% csrf_token %}
+            <label><span>帐户</span>{{ form.username }} </label><br>
+            <label><span>密码</span>{{ form.password }} </label><br>
+            <br><br>
+            <span id="login_button" class="login_button">登录</span>
+        </form>
+    </div>
+    <div class="right_side">
+        <span>没有帐户? <a class="to_signup" href="{% url 'accounts:user_signup' %}">立即免费注册&gt;&gt;</a></span>
+    </div>
+    </div>
+
+    <script>
+        document.getElementById("login_button").onclick = function(){
+            document.getElementById("loginForm").submit();
+        };
+    </script>
+{% endblock %}

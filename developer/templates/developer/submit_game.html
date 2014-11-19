@@ -1,0 +1,17 @@
+{% extends "base/developer_base.html" %}
+
+{% block content %}
+        <form method="post" action="{% url 'developer:submit_game' %}" enctype='multipart/form-data'>{% csrf_token %}
+            <label> 名称 {{ form.name }} </label><br><br>
+            <label> 图标 {{ form.image }} </label><br><br>
+            <label> 描述 {{ form.descr }} </label><br><br>
+            <label> 链接 {{ form.url }} </label><br><br>
+            <label> 分类1 {{ form.classify1 }} </label><br><br>
+            <label> 分类2 {{ form.classify2 }} </label><br><br>
+            <label> 版本 {{ form.version }} </label><br><br>
+            <label> 语言 {{ form.language }} </label><br><br>
+            <label> 操作 {{ form.operate }} </label><br><br>
+            <label> 横竖屏 {{ form.screen }} </label><br><br>
+            <input type="submit" value="提交审核" />
+        </form>
+{% endblock %}

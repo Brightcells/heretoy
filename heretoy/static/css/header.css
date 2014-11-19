@@ -1,0 +1,42 @@
+/* For Wrap */
+.wrap {
+    margin: 20px;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+/* For header */
+.header {
+    overflow: hidden;
+}
+
+.header li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.header li:first-child {
+    margin-left: 0;
+}
+
+.header li>a {
+    color: #b4b4b4;
+}
+
+.header li>a:hover {
+    color: #fff;
+}
+
+.header .left {
+    float: left;
+    padding-left: 0;
+    margin: 0 0 14px 0;
+}
+
+.header .right {
+    float: right;
+    margin: 0 0 14px 0;
+}
