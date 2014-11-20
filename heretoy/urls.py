@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 
     url(r'^diorsclubadmin/', include(admin.site.urls)),
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^status/', 'heretoy.views.status', name='status'),
 )
 
 urlpatterns += patterns('games_bak.views',
