@@ -22,6 +22,7 @@
                         <div class="coinum">获得<span class="content"></span>金币!</div>
                         <div id="header" class="header">恭喜您击败全球<span class="rank"></span>%用户，<br>可兑换<span class="cash"></span>元代金券。</div>
                         <div id="header2" class="header2 hide">很遗憾，您得到的金币不足以兑换代金券，分享给好友可获取更多再玩的机会！</div>
+                        <div id="header3" class="header3 hide">很遗憾，您得到的金币不足以兑换代金券，不过您还有把玩的机会，加油哦～</div>
                         <div id="getcash" class="getcash"> <a href="{% url 'games_bak:bindphone' 0 %}?openid={{ openid|default:''}}" class="bindphone"><img src="{% static '58aydzz/img/getcash.png' %}" class="bindimg"></a></div>
                         <div id="getmore" class="getmore hide"> <a href="javascript:void(0);"><img src="{% static '58aydzz/img/getmore.png' %}" class="moreimg"></a></div>
                         <div id="getchance" class="getchance hide"> <a href="javascript:void(0);"><img src="{% static '58aydzz/img/getchance.png' %}" class="chanceimg"></a></div>
@@ -57,6 +58,7 @@
 .hide{display:none}
 #modal .header{width:80%;margin:20px auto}#modal .content{font-weight:bold;text-align:center;color:red;}
 #modal .header2{width:80%;margin:20px auto}
+#modal .header3{width:80%;margin:20px auto}
 #modal .footer{font-size: 15px; margin: 10px 0;}#modal .footer button{width:120px;height:30px;border:#666 solid 2px;border-radius:15px;font-size:15px;font-weight:bold;position:absolute;bottom:4px;left:50%;margin-left:-60px;color:#333;cursor:pointer}
 
 div#three_count {
@@ -182,19 +184,23 @@ if(cash){
     $("#getchance").addClass("hide");
     $("#header").removeClass("hide");
     $("#header2").addClass("hide");
+    $("#header3").addClass("hide");
     var bindphone = $("#modal").find(".bindphone")[0], url = bindphone.href;
     bindphone.href=url.replace(/(.*bindphone\/).*(\/.*)/, "$1"+cash+"$2");
 }else{
     $("#header").addClass("hide");
-    $("#header2").removeClass("hide");
     if(parseInt(cnum)){
         $("#getcash").addClass("hide");
         $("#getmore").removeClass("hide");
         $("#getchance").addClass("hide");
+        $("#header2").addClass("hide");
+        $("#header3").removeClass("hide");
     }else{
         $("#getcash").addClass("hide");
         $("#getmore").addClass("hide");
         $("#getchance").removeClass("hide");
+        $("#header2").removeClass("hide");
+        $("#header3").addClass("hide");
     }
 }
 /*if(cash){}else{bindphone.href='javascript:void(0);';$(".getcash").css("background-color", 'gray')}
