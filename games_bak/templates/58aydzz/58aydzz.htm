@@ -20,7 +20,7 @@
                 <div id="modal" class="hide">
                     <div class="cons">
                         <div class="coinum">获得<span class="content"></span>金币!</div>
-                        <div id="header" class="header">恭喜您击败全球<span class="rank"></span>%用户，<br>可兑换<span class="cash"></span>元代金券。</div>
+                        <div id="header" class="header">恭喜您击败全球<span class="rank"></span>%用户，<br>可兑换<span class="cash" style="color:red;"></span>元代金券。</div>
                         <div id="header2" class="header2 hide">很遗憾，您得到的金币不足以兑换代金券，分享给好友可获取更多再玩的机会！</div>
                         <div id="header3" class="header3 hide">很遗憾，您得到的金币不足以兑换代金券，不过您还有把玩的机会，加油哦～</div>
                         <div id="getcash" class="getcash"> <a href="{% url 'games_bak:bindphone' 0 %}?openid={{ openid|default:''}}" class="bindphone"><img src="{% static '58aydzz/img/getcash.png' %}" class="bindimg"></a></div>
@@ -48,7 +48,7 @@
 *{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}body{margin:0;padding:0;font-size:14px;color:#333;font-family:"Hiragino Sans GB","Microsoft YaHei",sans-serif,'Microsoft Sans Serif','Microsoft JhengHei UI'}#main{width:480px;margin:0 auto}#container{width:480px;max-height:800px;margin:0 auto;position:relative}#container canvas{position:absolute;z-index:1000}#container canvas.playing{cursor:none}#score{font-size:20px;top:-3px;margin-left:5px;position:relative;}
 @media(min-width:480px){div#three_count,#modal,#modal2{position:absolute;}}
 @media(max-width:479px){div#three_count,#modal,#modal2{position:fixed;}}
-#modal{width:100%;height:100%;z-index:1002;background-image:url({% static '58aydzz/img/half.png' %});background-repeat: no-repeat;background-size:cover;filter: alpha(opacity=90);-moz-opacity: 0.9;opacity: 0.9;}
+#modal{width:100%;height:100%;z-index:1002;background-image:url({% static '58aydzz/img/half.png' %});background-repeat: no-repeat;background-size:cover}
 #modal2{width:100%;height:100%;z-index:1005;background-image:url({% static '58aydzz/img/share.png' %});background-repeat: no-repeat;background-size:cover}
 @media screen and (max-width: 480px) {
     #main,#container {
