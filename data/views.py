@@ -72,7 +72,7 @@ def games(request):
 
     recommend = []
 
-    if _type in [0, 1]:
+    if _type in [0, 1]:  # 0 for hot 1 for new
         testokens = [d['token'] for d in TestTokenInfo.objects.filter(status=True).values('token')]
 
         if token in testokens:
@@ -91,14 +91,14 @@ def games(request):
 
         h5games = [get_game_info(token, h5game) for h5game in h5games]
         recommend = [deal_with_sort(lbt.data, token) for lbt in lunbotu]
-    elif _type in [2, ]:
+    elif _type in [2, 20]:  # 2 and 20 for played
         start = GAME_NUM_PER_PAGE * 2 * (p - 1)
         end = GAME_NUM_PER_PAGE * 2 * p
 
         allh5games = Html5GamesPlayInfo.objects.filter(token=token)
         h5games = allh5games.order_by('-nail', '-modify_at')[start:end]
         h5games = [get_game_info(token, h5.h5game) for h5 in h5games]
-    else:
+    else:  # 21 for favorited
         start = GAME_NUM_PER_PAGE * 2 * (p - 1)
         end = GAME_NUM_PER_PAGE * 2 * p
 
@@ -236,7 +236,7 @@ def plu(request):
 
     try:
         h5game = Html5GamesInfo.objects.get(md5=pk)
-        if _type == 0:  # play
+        if _type == 0:  # 0 for play
             h5game.play += random.randint(5, 10)
             h5game.real_play += 1
             h5game.save()
@@ -247,7 +247,7 @@ def plu(request):
             except:
                 Html5GamesPlayInfo.objects.create(token=token, h5game=h5game)
             Html5GamesPlayLog.objects.create(token=token, h5game=h5game)
-        elif _type == 1:  # like
+        elif _type == 1:  # 1 for like
             if have_already_like_or_unlike(token, h5game):
                 RESULT['status'] = 1
                 RESULT['data']['msg'] = 'You have already like/unlike game of this pk!'
@@ -256,7 +256,7 @@ def plu(request):
                 h5game.real_like += 1
                 h5game.save()
                 Html5GamesLikeInfo.objects.create(token=token, h5game=h5game)
-        elif _type == 2:  # unlike
+        elif _type == 2:  # 2 for unlike
             if have_already_like_or_unlike(token, h5game):
                 RESULT['status'] = 1
                 RESULT['data']['msg'] = 'You have already like/unlike game of this pk!'
@@ -264,9 +264,9 @@ def plu(request):
                 h5game.unlike += 1
                 h5game.save()
                 Html5GamesUnlikeInfo.objects.create(token=token, h5game=h5game)
-        elif _type == 3:  # favorite
+        elif _type == 3:  # 3 for favorite
             h5game.favorite += random.randint(5, 10)
-            h5game.real_favorite -= 1
+            h5game.real_favorite += 1
             h5game.save()
 
             if have_already_favorite(token, h5game):
@@ -274,7 +274,7 @@ def plu(request):
                 RESULT['data']['msg'] = 'You have already favorite game of this pk!'
             else:
                 set_or_remove_favorite(token, h5game, True)
-        else:  # cancel favorite
+        else:  # 4 for cancel favorite
             h5game.real_favorite -= 1
             h5game.save()
 
@@ -309,7 +309,7 @@ def set_or_remove_favorite(token, h5game, flag):
     h5gameplay, created = Html5GamesPlayInfo.objects.get_or_create(token=token, h5game=h5game)
     h5gameplay.favorite = flag
     h5gameplay.save()
-    Html5GamesFavoriteLog.objects.create(token=token, h5game=h5game, nail=flag)
+    Html5GamesFavoriteLog.objects.create(token=token, h5game=h5game, favorite=flag)
 
 
 @csrf_exempt
