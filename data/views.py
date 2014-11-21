@@ -1,4 +1,5 @@
-# Create your views here.
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -6,9 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from CodeConvert import CodeConvert
-
-from data.models import TestTokenInfo, Html5GamesInfo, Html5GamesPlayInfo, Html5GamesPlayLog, Html5GamesNailLog, Html5GamesLikeInfo, Html5GamesUnlikeInfo, TopicGamesInfo, LunbotuInfo
+from data.models import *
 from utils.json_utils import JsonHttpResponse
 
 import ast
@@ -18,6 +17,8 @@ import random
 import requests
 
 from datetime import datetime
+
+from CodeConvert import CodeConvert
 
 
 GAME_NUM_PER_PAGE = settings.GAME_NUM_PER_PAGE
@@ -45,6 +46,7 @@ def get_game_info(token, h5game):
     game_info['unlike_flag'] = have_already_unlike(token, h5game)
     game_info['myplay'] = get_my_play_num(token, h5game)
     game_info['nail_flag'] = have_already_nail(token, h5game)
+    game_info['fav_flag'] = have_already_favorite(token, h5game)
     return game_info
 
 
@@ -68,6 +70,8 @@ def games(request):
     start = GAME_NUM_PER_PAGE * (p - 1)
     end = GAME_NUM_PER_PAGE * p
 
+    recommend = []
+
     if _type in [0, 1]:
         testokens = [d['token'] for d in TestTokenInfo.objects.filter(status=True).values('token')]
 
@@ -87,14 +91,20 @@ def games(request):
 
         h5games = [get_game_info(token, h5game) for h5game in h5games]
         recommend = [deal_with_sort(lbt.data, token) for lbt in lunbotu]
-    else:
+    elif _type in [2, ]:
         start = GAME_NUM_PER_PAGE * 2 * (p - 1)
         end = GAME_NUM_PER_PAGE * 2 * p
 
         allh5games = Html5GamesPlayInfo.objects.filter(token=token)
         h5games = allh5games.order_by('-nail', '-modify_at')[start:end]
         h5games = [get_game_info(token, h5.h5game) for h5 in h5games]
-        recommend = []
+    else:
+        start = GAME_NUM_PER_PAGE * 2 * (p - 1)
+        end = GAME_NUM_PER_PAGE * 2 * p
+
+        allh5games = Html5GamesPlayInfo.objects.filter(token=token, favorite=True)
+        h5games = allh5games.order_by('-modify_at')[start:end]
+        h5games = [get_game_info(token, h5.h5game) for h5 in h5games]
 
     return JsonHttpResponse(
         dict(
@@ -265,11 +275,22 @@ def have_already_nail(token, h5game):
     return Html5GamesPlayInfo.objects.filter(token=token, h5game=h5game, nail=True).exists()
 
 
+def have_already_favorite(token, h5game):
+    return Html5GamesPlayInfo.objects.filter(token=token, h5game=h5game, favorite=True).exists()
+
+
 def set_or_remove_nail(token, h5game, flag):
     h5gameplay, created = Html5GamesPlayInfo.objects.get_or_create(token=token, h5game=h5game)
     h5gameplay.nail = flag
     h5gameplay.save()
-    Html5GamesNailLog.objects.create(token=token, h5game=h5game, nail=False)
+    Html5GamesNailLog.objects.create(token=token, h5game=h5game, nail=flag)
+
+
+def set_or_remove_favorite(token, h5game, flag):
+    h5gameplay, created = Html5GamesPlayInfo.objects.get_or_create(token=token, h5game=h5game)
+    h5gameplay.favorite = flag
+    h5gameplay.save()
+    Html5GamesFavoriteLog.objects.create(token=token, h5game=h5game, nail=flag)
 
 
 @csrf_exempt
@@ -306,6 +327,47 @@ def nail(request):
                 RESULT['data']['msg'] = 'You have not nail game of this pk!'
             else:
                 set_or_remove_nail(token, h5game, False)
+    except:
+        RESULT['status'] = 1
+        RESULT['data']['msg'] = 'Game of this pk doesn\'t exists!'
+
+    return JsonHttpResponse(RESULT)
+
+
+@csrf_exempt
+def favorite(request):
+    RESULT = copy.deepcopy(RESULT_BASE)
+
+    if request.method == 'GET':
+        token = request.GET.get('token', '')
+        fav = int(request.GET.get('fav', 0))
+        pk = request.GET.get('pk', '')
+    else:
+        if request.POST == {} and request.body != '':
+            try:
+                request.POST = json.loads(request.body)
+            except:
+                pass
+        else:
+            pass
+        token = request.POST.get('token', '')
+        fav = int(request.POST.get('fav', 0))
+        pk = request.POST.get('pk', '')
+
+    try:
+        h5game = Html5GamesInfo.objects.get(md5=pk)
+        if fav == 0:
+            if have_already_favorite(token, h5game):
+                RESULT['status'] = 1
+                RESULT['data']['msg'] = 'You have already favorite game of this pk!'
+            else:
+                set_or_remove_favorite(token, h5game, True)
+        else:
+            if not have_already_favorite(token, h5game):
+                RESULT['status'] = 1
+                RESULT['data']['msg'] = 'You have not favorite game of this pk!'
+            else:
+                set_or_remove_favorite(token, h5game, False)
     except:
         RESULT['status'] = 1
         RESULT['data']['msg'] = 'Game of this pk doesn\'t exists!'
