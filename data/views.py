@@ -256,7 +256,7 @@ def plu(request):
                 h5game.real_like += 1
                 h5game.save()
                 Html5GamesLikeInfo.objects.create(token=token, h5game=h5game)
-        else:
+        elif _type == 2:
             if have_already_like_or_unlike(token, h5game):
                 RESULT['status'] = 1
                 RESULT['data']['msg'] = 'You have already like/unlike game of this pk!'
@@ -264,6 +264,23 @@ def plu(request):
                 h5game.unlike += 1
                 h5game.save()
                 Html5GamesUnlikeInfo.objects.create(token=token, h5game=h5game)
+        else:
+            h5game.favorite += random.randint(5, 10)
+            h5game.real_favorite += 1
+            h5game.save()
+
+            if fav == 0:
+                if have_already_favorite(token, h5game):
+                    RESULT['status'] = 1
+                    RESULT['data']['msg'] = 'You have already favorite game of this pk!'
+                else:
+                    set_or_remove_favorite(token, h5game, True)
+            else:
+                if not have_already_favorite(token, h5game):
+                    RESULT['status'] = 1
+                    RESULT['data']['msg'] = 'You have not favorite game of this pk!'
+                else:
+                    set_or_remove_favorite(token, h5game, False)
     except:
         RESULT['status'] = 1
         RESULT['data']['msg'] = 'Game of this pk doesn\'t exists!'
