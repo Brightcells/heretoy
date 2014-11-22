@@ -1,0 +1,594 @@
+* {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    -webkit-touch-callout:none;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+}
+
+.swiper-container {
+    -webkit-perspective: 1200px;
+    -moz-perspective: 1200px;
+    -ms-perspective: 1200px;
+    perspective: 1200px;
+}
+.swiper-wrapper {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.swiper-slide {
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.page-container {
+    position: relative;
+}
+
+/* LOADING */
+#loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 60;
+}
+#spinner {
+    margin: 50% auto;
+    width: 90px;
+    height: 90px;
+    position: relative;
+    text-align: center;
+    -webkit-animation: rotate 2.0s infinite linear;
+    animation: rotate 2.0s infinite linear;
+}
+#dot1, #dot2 {
+    width: 60%;
+    height: 60%;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    background-color: rgb(2,128,255);
+    border-radius: 100%;
+    -webkit-animation: bounce 2.0s infinite ease-in-out;
+    animation: bounce 2.0s infinite ease-in-out;
+}
+#dot2 {
+    top: auto;
+    bottom: 0px;
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+@-webkit-keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes bounce {
+    0%, 100% {
+        -webkit-transform: scale(0.0);
+    }
+    50% {
+        -webkit-transform: scale(1.0);
+    }
+}
+@keyframes bounce {
+    0%, 100% {
+        -webkit-transform: scale(0.0);
+        transform: scale(0.0);
+    }
+    50% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+    }
+}
+
+/* MAIN */
+#main {
+    position: absolute;
+}
+
+.hide{
+    display: none;
+}
+
+/* PAGE 0 */
+#page0 {
+    background-image: url("/static/yiguankoudai3/img/0.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+}
+#page0-bg {
+    position: absolute;
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+}
+.zoom {
+    animation: zoom-ani 4s linear forwards;
+    -webkit-animation: zoom-ani 4s linear forwards;
+}
+@keyframes zoom-ani {
+    0% {
+        transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+@-webkit-keyframes zoom-ani {
+    0% {
+        transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+
+/* PAGE 1 */
+#page1 {
+    background-image: url("/static/yiguankoudai3/img/bg_2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-left: 2%;
+}
+#page1_part1 {
+    position: absolute;
+    width: 96%;
+    top:10%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page1_part2 {
+    position: absolute;
+    width: 96%;
+    top: 23%;
+    -webkit-animation-duration: 0.7s;
+
+
+}
+#page1_part3 {
+    position: absolute;
+    width: 96%;
+    top: 60%;
+    -webkit-animation-duration: 0.7s;
+
+
+}
+/* PAGE 2 */
+#page2 {
+    background-image: url("/static/yiguankoudai3/img/bg_3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#page2_part1 {
+    position: absolute;
+    width: 75%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page2_part2 {
+    position: absolute;
+    width: 96%;
+    top:12%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page2_part3 {
+    position: absolute;
+    width: 96%;
+    top:25%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page2_part4 {
+    position: absolute;
+    width: 96%;
+    top:40%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page2_part5 {
+    position: absolute;
+    width: 96%;
+    top:65%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+
+/* PAGE 3 */
+#page3 {
+    background-image: url("/static/yiguankoudai3/img/bg_1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#page3_part1 {
+    position: absolute;
+    width: 96%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page3_part2 {
+    position: absolute;
+    width: 96%;
+    top:10%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 1s;
+}
+#page3_part3 {
+    position: absolute;
+    width: 96%;
+    top:36%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page3_part4 {
+    position: absolute;
+    width: 96%;
+    top:42%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 1s;
+}
+
+/* PAGE 4 */
+#page4 {
+    background-image: url("/static/yiguankoudai3/img/bg_2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#page4_part1 {
+    position: absolute;
+    width: 96%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page4_part2 {
+    position: absolute;
+    width: 96%;
+    top:10%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 1s;
+}
+#page4_part3 {
+    position: absolute;
+    width: 96%;
+    top:40%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page4_part4 {
+    position: absolute;
+    width: 96%;
+    top:48%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 1s;
+}
+
+/* PAGE 5 */
+#page5 {
+    background-image: url("/static/yiguankoudai3/img/bg_3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#page5_part1 {
+    position: absolute;
+    width: 96%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page5_part2 {
+    position: absolute;
+    width: 96%;
+    top:15%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 1.5s;
+}
+#page5_part3 {
+    position: absolute;
+    width: 96%;
+    top:53%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+
+/* PAGE 6 */
+#page6 {
+    background-image: url("/static/yiguankoudai3/img/bg_1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#page6_part1 {
+    position: absolute;
+    width: 96%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+
+#page6_part2 {
+    position: absolute;
+    width: 96%;
+    top:10%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+
+#page6_part3 {
+    position: absolute;
+    width: 96%;
+    top:22%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+
+#page6_part4 {
+    position: absolute;
+    width: 96%;
+    top:32%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+
+#page6_part5 {
+    position: absolute;
+    width: 96%;
+    top:44%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+
+#page6_part6 {
+    position: absolute;
+    width: 96%;
+    top:61%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+
+
+
+/* PAGE 7 */
+#page7 {
+    background-image: url("/static/yiguankoudai3/img/bg_2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#page7_part1 {
+    position: absolute;
+    width: 96%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page7_part2 {
+    position: absolute;
+    width: 96%;
+    top:18%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page7_part3 {
+    position: absolute;
+    width: 96%;
+    top:45%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+
+
+/* PAGE 8 */
+#page8 {
+    background-image: url("/static/yiguankoudai3/img/bg_3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#page8_part1 {
+    position: absolute;
+    width: 96%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page8_part2 {
+    position: absolute;
+    width: 96%;
+    top:20%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page8_part3 {
+    position: absolute;
+    width: 96%;
+    top:59%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+
+/* PAGE 9 */
+#page9 {
+    background-image: url("/static/yiguankoudai3/img/bg_1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#page9_part1 {
+    position: absolute;
+    width: 96%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page9_part2 {
+    position: absolute;
+    width: 96%;
+    top:17%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 1s;
+}
+#page9_part3 {
+    position: absolute;
+    width: 96%;
+    top:50%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page9_part4 {
+    position: absolute;
+    width: 96%;
+    top:63%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 1s;
+}
+
+#page10 {
+    background-image: url("/static/yiguankoudai3/img/bg_2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#page10_part1 {
+    position: absolute;
+    width: 96%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page10_part2 {
+    position: absolute;
+    width: 96%;
+    top:12%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page10_part3 {
+    position: absolute;
+    width: 96%;
+    top:25%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page10_part4 {
+    position: absolute;
+    width: 96%;
+    top:40%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page11 {
+    background-image: url("/static/yiguankoudai3/img/bg_3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#page11_part1 {
+    position: absolute;
+    width: 96%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page11_part2 {
+    position: absolute;
+    width: 96%;
+    top:15%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page11_part3 {
+    position: absolute;
+    width: 96%;
+    top:40%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page11_part4 {
+    position: absolute;
+    width: 96%;
+    top:50%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}       
+#page12 {
+    background-image: url("/static/yiguankoudai3/img/bg_1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}   
+#page12_part1 {
+    position: absolute;
+    width: 96%;
+    top:3%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page12_part2 {
+    position: absolute;
+    width: 96%;
+    top:12%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page12_part3 {
+    position: absolute;
+    width: 96%;
+    top:55%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+}
+#page13 {
+    background-image: url("/static/yiguankoudai3/img/13.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}  
+#swiper-tip {
+    position: absolute;
+    width: 16%;
+    left: 43%;
+    bottom: 0;
+    animation: ufo-ani 1s ease-in-out 0 infinite alternate;
+    -webkit-animation: ufo-ani 1s ease-in-out 0 infinite alternate;
+    z-index: 15;
+}
+@keyframes ufo-ani {
+    0% {
+        bottom: 0;
+    }
+    100% {
+        bottom: 1rem;
+    }
+}
+
+@-webkit-keyframes ufo-ani {
+    0% {
+        bottom: 0;
+    }
+    100% {
+        bottom: 1rem;
+    }
+}

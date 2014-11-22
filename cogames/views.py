@@ -29,3 +29,9 @@ def yiguankoudai(request):
 def yiguankoudai2(request):
     domain = settings.DOMAIN
     return render(request, 'yiguankoudai2/index.html', dict(domain=domain))
+
+
+@xframe_options_exempt
+def yiguankoudai3(request):
+    domain = settings.DOMAIN
+    return render(request, 'yiguankoudai3/index.html', dict(domain=domain))
