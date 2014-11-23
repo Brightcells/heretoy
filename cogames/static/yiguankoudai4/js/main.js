@@ -125,7 +125,8 @@ function showPage(id) {
                     sheetSwiper1 = new Swiper("#page2_part3", {
                         slidesPerView: 'auto',
                         freeMode:true,
-                        freeModeFluid:true    
+                        freeModeFluid:true,
+                        autoplay:2000
                     }); 
                 }
             }).show(); 
@@ -143,7 +144,8 @@ function showPage(id) {
                     sheetSwiper2 = new Swiper("#page3_part4", {
                         slidesPerView: 'auto',
                         freeMode:true,
-                        freeModeFluid:true    
+                        freeModeFluid:true,
+                        autoplay:2000
                     }); 
                 }
 
@@ -232,7 +234,8 @@ function showPage(id) {
                 sheetSwiper3 = new Swiper("#page10_part2", {
                     slidesPerView: 'auto',
                     freeMode:true,
-                    freeModeFluid:true    
+                    freeModeFluid:true,
+                    autoplay:2000
                 }); 
             }
         });

@@ -17,7 +17,9 @@ html, body {
 img {
     width: 100%;
 }
-
+.swiper-scrollbar {
+    width:100%;height:4px;position:absolute;left:0;bottom:5px;z-index:100;
+}
 .swiper-container {
     -webkit-perspective: 1200px;
     -moz-perspective: 1200px;
@@ -248,8 +250,8 @@ img {
 #page3_part4 {
     position: absolute;
     width: 100%;
-    top:60%;
-    height: 160px;
+    top:57%;
+    height: 200px;
     animation-duration: 0.5s;
     -webkit-animation-duration: 1s;
     overflow: hidden;
@@ -280,7 +282,7 @@ img {
 #page4_part3 {
     position: absolute;
     width: 75%;
-    top:50%;
+    top:55%;
     padding-left: 12%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
@@ -300,7 +302,7 @@ img {
 }
 #page5_part2 {
     position: absolute;
-    width: 78%;
+    width: 75%;
     top: 10%;
     padding-left: 11%;   
     animation-duration: 0.5s;
@@ -410,7 +412,7 @@ img {
 #page8_part3 {
     position: absolute;
     width: 96%;
-    top:59%;
+    top:65%;
     padding-left: 2%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
@@ -432,17 +434,17 @@ img {
 }
 #page9_part2 {
     position: absolute;
-    width: 84%;
-    padding-left: 7%;
+    width: 75%;
+    padding-left: 12%;
     top:17%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 1s;
 }
 #page9_part3 {
     position: absolute;
-    width: 84%;
+    width: 75%;
     top: 55%;
-    padding-left: 7%;
+    padding-left: 12%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -464,8 +466,8 @@ img {
 #page10_part2 {
     position: absolute;
     width: 100%;
-    top:17%;
-    height: 170px;
+    top:18%;
+    height: 165px;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -515,7 +517,7 @@ img {
 #page11_part3 {
     position: absolute;
     width: 96%;
-    top: 23%;
+    top: 20%;
     padding-left: 1%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
@@ -523,23 +525,23 @@ img {
 #page11_part4 {
     position: absolute;
     width: 100%;
-    top:28%;
+    top:25%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }  
 #page11_part5 {
     position: absolute;
-    width: 96%;
-    top:55%;
-    padding-left: 2%;
+    width: 92%;
+    top:54%;
+    padding-left: 4%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }    
 #page11_part6 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:63%;
-    padding-left: 2%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }       
