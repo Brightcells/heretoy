@@ -19,25 +19,25 @@
                 <form id="phForm" class="phone" action="{% url 'games_bak:getcash' cash %}?openid={{ openid }}" method="post">{% csrf_token %}
                     <input id="ph" name="phone" class="ph" type="text" placeholder="请输入手机号...">
                 </form>
-                <div class="btton"><button id="btn" class="btn" type="text">立即领券</button></div>
+                <div class="btton"><a id="btn" class="btn"><img src="{% static '58aydzz/img/getcash.png' %}" class="bindimg"></a></div>
                 <div class="ht"><img src="{% static '58aydzz/img/ht.png' %}"></div>
             </div>
         </div>
     
     	<style>
-            *{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}body{margin:0;padding:0;font-size:14px;color:#333;font-family:"Hiragino Sans GB","Microsoft YaHei",sans-serif,'Microsoft Sans Serif','Microsoft JhengHei UI'}#main{width:480px;margin:0 auto}#container{width:480px;max-height:800px;margin:0 auto;position:relative}
+            *{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}body{margin:0;padding:0;font-size:14px;color:#333;font-family:"Hiragino Sans GB","Microsoft YaHei",sans-serif,'Microsoft Sans Serif','Microsoft JhengHei UI'}#main{width:480px;margin:0 auto}#container{width:480px;max-height:800px;margin:0 auto;position:relative;text-align:center}
             @media(min-width:480px){.logo, .tips, .phone, .btton, .ht{position:absolute;width:60%;left:20%;}.bgDiv{width:480px;margin:0 auto;}}
             @media(max-width:479px){.logo, .tips, .phone, .btton, .ht{position:fixed;width:80%;left:10%;}}
             .logo {bottom:300px;text-align:center;}
-            .logo>img {width: 80%;}
+            .logo>img, .btn>img {width: 80%;}
             .ht {bottom: 25px;text-align:center;}
-            .ht>img {width: 35%;}
+            .ht>img {width: 30%;}
             .tips {bottom:190px;text-align:center;margin-top:120px;font-size:16px;color:#929292}
             .phone {bottom:140px;font-size:17px;font-weight:bold}
-            .phone>.ph {width:100%;padding:6px 10px;font-size:18px;line-height:20px;border: 2px solid #ddd;border-radius:10px;}
+            .phone>.ph {width:80%;padding:6px 10px;font-size:18px;line-height:20px;border: 2px solid #ddd;border-radius:10px;}
             .phone>.ph:hover {border:2px solid #ff7572}
             .btton {bottom:80px;font-size:17px;font-weight:bold}
-            .btn {width:100%;height:40px;left:10%;text-align:center;margin-top:35px;font-size:17px;font-weight:bold;color:#fefefe;background-color:#f6344f;border:2px solid #000;border-radius:10px}
+            .btn {width:80%;height:40px;left:10%;text-align:center;margin-top:35px;}
 
 input::-webkit-input-placeholder { font-size: 14px; color: #ddd; }
 input::-moz-placeholder { font-size: 14px; color: #ddd; }
@@ -45,6 +45,7 @@ input:-ms-input-placeholder { font-size: 14px; color: #ddd; }
 input:-moz-placeholder { font-size: 14px; color: #ddd; }
         </style>
         <script>
+            $(".logo").css("bottom", ($(window).height()-150) + "px");
             $("#btn").click(function(){ph=$("#ph")[0].value;if(ph==""){alert("请输入手机号码");}else if(ph.length!=11){alert("您输入的手机号码不正确")}else{$("#phForm").submit()}});
         </script>
 
