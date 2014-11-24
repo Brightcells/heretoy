@@ -101,7 +101,11 @@ function showPage(id) {
     // }
     switch(id) {
         case 0:
-        $('#page0-bg').removeClass().addClass('zoom');
+        $('#page0_part1').removeClass().addClass('animated fadeInUpBig').one('webkitAnimationEnd animationend', function() {
+            $('#page0_part2').removeClass().addClass('animated fadeInUp').show(); 
+            $('#page0_part3').removeClass().addClass('animated fadeInUp').show();            
+        });
+        $('#page0_part1').show();
         resetPage(1);
         break;
 
@@ -125,8 +129,7 @@ function showPage(id) {
                     sheetSwiper1 = new Swiper("#page2_part3", {
                         slidesPerView: 'auto',
                         freeMode:true,
-                        freeModeFluid:true,
-                        autoplay:2000
+                        freeModeFluid:true
                     }); 
                 }
             }).show(); 
@@ -144,8 +147,7 @@ function showPage(id) {
                     sheetSwiper2 = new Swiper("#page3_part4", {
                         slidesPerView: 'auto',
                         freeMode:true,
-                        freeModeFluid:true,
-                        autoplay:2000
+                        freeModeFluid:true
                     }); 
                 }
 
@@ -234,8 +236,7 @@ function showPage(id) {
                 sheetSwiper3 = new Swiper("#page10_part2", {
                     slidesPerView: 'auto',
                     freeMode:true,
-                    freeModeFluid:true,
-                    autoplay:2000
+                    freeModeFluid:true
                 }); 
             }
         });
@@ -277,7 +278,7 @@ function initWeixin() {
         Api.showOptionMenu();
         var wxData = {
             'appId': '',
-            'imgUrl': '',
+            'imgUrl': 'http://img.hb.aicdn.com/ff7165413227529b42ffbdfc04c10426173c9fe9252d-Wz7SGV_fw658',
             'link': window.location.href,
             'desc': '中国在线答疑应用教育价值分析报告',
             'title': '中国在线答疑应用教育价值分析报告'
@@ -306,5 +307,6 @@ $(window).load(function() {
     $('#loading').hide();
     initSwiper();
     initWeixin();
-    showPage(0)
+    resetPage(0);
+    showPage(0);
 });

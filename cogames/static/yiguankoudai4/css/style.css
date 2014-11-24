@@ -118,9 +118,35 @@ img {
 
 /* PAGE 0 */
 #page0 {
-    background-image: url("/static/yiguankoudai4/img/0.jpg");
+    background-image: url("/static/yiguankoudai4/img/background.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
+}
+#page0_part1 {
+    position: absolute;
+    width: 80%;
+    top:10%;
+    padding-left: 10%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+
+}
+#page0_part2 {
+    position: absolute;
+    width: 70%;
+    top: 26%;
+    padding-left: 15%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
+
+}
+#page0_part3 {
+    position: absolute;
+    width: 70%;
+    top: 70%;
+    padding-left: 15%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.7s;
 
 }
 #page0-bg {
@@ -162,22 +188,24 @@ img {
 }
 #page1_part1 {
     position: absolute;
-    width: 96%;
-    top:3%;
+    top:5%;
+    width: 90%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
 #page1_part2 {
     position: absolute;
-    width: 84%;
-    padding-left: 5%;
-    top: 12%;
+    width: 72%;
+    padding-left: 13%;
+    top: 18%;
     -webkit-animation-duration: 0.7s;
 }
 #page1_part3 {
     position: absolute;
-    width: 96%;
-    top: 50%;
+    width: 80%;
+    padding-left: 10%;
+    top: 55%;
     -webkit-animation-duration: 0.7s;
 
 
@@ -197,8 +225,9 @@ img {
 }
 #page2_part2 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:12%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -213,9 +242,9 @@ img {
 }
 #page2_part4 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:72%;
-    padding-left: 1%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -235,8 +264,9 @@ img {
 }
 #page3_part2 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:10%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 1s;
 }
@@ -251,7 +281,7 @@ img {
     position: absolute;
     width: 100%;
     top:57%;
-    height: 200px;
+    height: 180px;
     animation-duration: 0.5s;
     -webkit-animation-duration: 1s;
     overflow: hidden;
@@ -295,16 +325,17 @@ img {
 }
 #page5_part1 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:3%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
 #page5_part2 {
     position: absolute;
-    width: 75%;
+    width: 70%;
     top: 10%;
-    padding-left: 11%;   
+    padding-left: 13%;   
     animation-duration: 0.5s;
     -webkit-animation-duration: 1.5s;
 }
@@ -318,26 +349,27 @@ img {
 }
 #page6_part1 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:3%;
-    padding-left: 2%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
 
 #page6_part2 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:16%;
+    padding-left: 5%
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
 
 #page6_part3 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:65%;
-    padding-left: 1%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -357,33 +389,33 @@ img {
 }
 #page7_part2 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top: 10%;
-    padding-left: 2%;   
+    padding-left: 5%;   
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
 #page7_part3 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top: 25%;
-    padding-left: 2%;   
+    padding-left: 5%;   
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
 #page7_part4 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top: 30%;
-    padding-left: 2%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
 #page7_part5 {
     position: absolute;
-    width: 96%;
+    width: 95%;
     top: 80%;
-    padding-left: 2%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -397,8 +429,9 @@ img {
 }
 #page8_part1 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:3%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -411,9 +444,9 @@ img {
 }
 #page8_part3 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:65%;
-    padding-left: 2%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -426,9 +459,9 @@ img {
 }
 #page9_part1 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:3%;
-    padding-left: 2%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -457,9 +490,9 @@ img {
 }
 #page10_part1 {
     position: absolute;
-    width: 96%;
+    width: 95%;
     top:3%;
-    padding-left: 2%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -473,9 +506,9 @@ img {
 }
 #page10_part3 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top: 52%;
-    padding-left: 2%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -508,17 +541,17 @@ img {
 }
 #page11_part2 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top: 10%;
-    padding-left: 2%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
 #page11_part3 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top: 20%;
-    padding-left: 1%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
@@ -531,9 +564,9 @@ img {
 }  
 #page11_part5 {
     position: absolute;
-    width: 92%;
+    width: 90%;
     top:54%;
-    padding-left: 4%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }    
@@ -552,23 +585,23 @@ img {
 }   
 #page12_part1 {
     position: absolute;
-    width: 96%;
+    width: 90%;
     top:3%;
-    padding-left: 2%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
 #page12_part2 {
     position: absolute;
-    width: 98%;
+    width: 90%;
     top:18%;
-    padding-left: 1%;
+    padding-left: 5%;
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
 
 #page13 {
-    background-image: url("/static/yiguankoudai4/img/13.jpg");
+    background-image: url("/static/yiguankoudai4/img/14.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }  
@@ -581,6 +614,30 @@ img {
     -webkit-animation: ufo-ani 1s ease-in-out 0 infinite alternate;
     z-index: 15;
 }
+#sheet1-tip {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    animation: righticon 1s ease-in-out 0 infinite alternate;
+    -webkit-animation: righticon 1s ease-in-out 0 infinite alternate;
+    z-index: 15;
+}
+#sheet2-tip {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    animation: righticon 1s ease-in-out 0 infinite alternate;
+    -webkit-animation: righticon 1s ease-in-out 0 infinite alternate;
+    z-index: 15;
+}
+#sheet3-tip {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    animation: righticon 1s ease-in-out 0 infinite alternate;
+    -webkit-animation: righticon 1s ease-in-out 0 infinite alternate;
+    z-index: 15;
+}
 @keyframes ufo-ani {
     0% {
         bottom: 0;
@@ -590,11 +647,28 @@ img {
     }
 }
 
-@-webkit-keyframes ufo-ani {
+@-webkit-keyframes righticon {
     0% {
         bottom: 0;
     }
     100% {
         bottom: 1rem;
+    }
+}
+@keyframes ufo-ani {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: 1rem;
+    }
+}
+
+@-webkit-keyframes righticon {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: 1rem;
     }
 }
