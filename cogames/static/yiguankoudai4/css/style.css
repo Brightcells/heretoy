@@ -599,6 +599,11 @@ img {
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
+#page13 {
+    background-image: url("/static/yiguankoudai4/img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 #page13_part1 {
     position: absolute;
     width: 90%;
