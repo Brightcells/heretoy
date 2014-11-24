@@ -95,7 +95,7 @@ def games(request):
         start = GAME_NUM_PER_PAGE * 2 * (p - 1)
         end = GAME_NUM_PER_PAGE * 2 * p
 
-        allh5games = Html5GamesPlayInfo.objects.filter(token=token)
+        allh5games = Html5GamesPlayInfo.objects.filter(token=token).exclude(favorite=True)
         h5games = allh5games.order_by('-nail', '-modify_at')[start:end]
         h5games = [get_game_info(token, h5.h5game) for h5 in h5games]
     else:  # 21 for favorited
