@@ -8,6 +8,7 @@ class OpenidInfoAdmin(admin.ModelAdmin):
 
 class CashInfoAdmin(admin.ModelAdmin):
     list_display = ('cash', 'num', 'status')
+    search_fields = ('cash', )
 
 
 class PrizeInfoAdmin(admin.ModelAdmin):

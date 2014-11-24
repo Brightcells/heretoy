@@ -141,6 +141,8 @@ GAME_NUM_PER_PAGE = 10
 PLAY_NUM_PER_CLICK = 8
 LIKE_NUM_PER_CLICK = 8
 
+CONPON = 'http://t.jzt.58.com/weixingamebaggame/binding'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
