@@ -286,7 +286,7 @@ function initWeixin() {
         Api.showOptionMenu();
         var wxData = {
             'appId': '',
-            'imgUrl': 'http://img.hb.aicdn.com/ff7165413227529b42ffbdfc04c10426173c9fe9252d-Wz7SGV_fw658',
+            'imgUrl': 'http://kdxyx.com/static/yiguankoudai4/img/iconshare.png',
             'link': window.location.href,
             'desc': '中国在线答疑应用教育价值分析报告',
             'title': '中国在线答疑应用教育价值分析报告'
