@@ -72,7 +72,7 @@ function initSwiper() {
             //     showPage(8);
             //     $('#swiper-tip').show();
             // }
-             else if(swiper.activeIndex == 13) {
+             else if(swiper.activeIndex == 14) {
                 $('#swiper-tip').hide();
             }
             else {
@@ -264,6 +264,14 @@ function showPage(id) {
           }).show(); 
         });
         $('#page12_part1').show();
+        break;
+        case 13:
+        $('#page13_part1').removeClass().addClass('animated fadeInRight').one('webkitAnimationEnd animationend', function() {
+            $('#page13_part2').removeClass().addClass('animated rotateInDownRight').one('webkitAnimationEnd animationend', function() {            
+                $('#page13_part3').removeClass().addClass('animated rotateInDownLeft').show(); 
+            }).show(); 
+        });
+        $('#page13_part1').show();
         break;
     }
 }

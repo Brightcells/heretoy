@@ -599,8 +599,32 @@ img {
     animation-duration: 0.5s;
     -webkit-animation-duration: 0.7s;
 }
+#page13_part1 {
+    position: absolute;
+    width: 90%;
+    top:3%;
+    padding-left: 5%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+}
+#page13_part2 {
+    position: absolute;
+    width: 75%;
+    padding-left: 12%;
+    top:17%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 1s;
+}
+#page13_part3 {
+    position: absolute;
+    width: 75%;
+    top: 55%;
+    padding-left: 12%;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+}
 
-#page13 {
+#page14 {
     background-image: url("/static/yiguankoudai4/img/14.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
