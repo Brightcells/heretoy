@@ -74,13 +74,13 @@ def kdxyx(request):
     openid = request.GET.get('openid', '')
     token = request.GET.get('token', '')
 
-    if openid != '' and openid != refer:
+    if openid != '' and refer != '' and openid != refer:
         try:
             ymd = time.strftime('%Y%m%d', time.localtime())
-            if(Refer.objects.filter(refer=refer, openid=openid, refer_ymd=ymd).exists()):
+            if(ReferInfo.objects.filter(refer=refer, openid=openid, refer_ymd=ymd).exists()):
                 pass
             else:
-                Refer.objects.create(refer=refer, openid=openid, refer_ymd=ymd)
+                ReferInfo.objects.create(refer=refer, openid=openid, refer_ymd=ymd)
                 oi = OpenidInfo.objects.get(openid=refer, status=True)
                 oi.refer += 1
                 oi.count += oi.refer % 2
