@@ -89,8 +89,11 @@ def kdxyx(request):
             pass
 
     if openid != '' or token != '':
-        oi, created = OpenidInfo.objects.get_or_create(openid=openid, token=token)
-        count = oi.count if openid != '' else oi.tcount
+        try:
+            oi, created = OpenidInfo.objects.get_or_create(openid=openid, token=token)
+            count = oi.count if openid != '' else oi.tcount
+        except:
+            count = 0
     else:
         count = 0
 
