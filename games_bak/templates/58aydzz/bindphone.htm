@@ -16,7 +16,7 @@
             <div id="container">
                 <div class="logo"><img src="{% static '58aydzz/img/58logo.png' %}"></div>
                 <div class="tips">输入手机号获取<span style="color:#ff6c00;font-weight:bold;">{{ cash|default:0 }}</span>元代金券<br>该代金券将与手机号绑定</div>
-                <form id="phForm" class="phone" action="{% url 'games_bak:getcash' cash %}?openid={{ openid }}" method="post">{% csrf_token %}
+                <form id="phForm" class="phone" action="{% url 'games_bak:getcash' cash %}?openid={{ openid }}&token={{ token }}" method="post">{% csrf_token %}
                     <input id="ph" name="phone" class="ph" type="text" placeholder="请输入手机号...">
                 </form>
                 <div class="btton"><a id="btn" class="btn"><img src="{% static '58aydzz/img/getcash.png' %}" class="bindimg"></a></div>

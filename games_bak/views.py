@@ -72,69 +72,93 @@ def yzdmx(request):
 def kdxyx(request):
     refer = request.GET.get('refer', '')
     openid = request.GET.get('openid', '')
-    if refer == openid:
-        pass
-    else:
+    token = request.GET.get('token', '')
+
+    if openid != '' and openid != refer:
         try:
-            oi = OpenidInfo.objects.get(openid=refer, status=True)
-            oi.refer += 1
-            oi.count += oi.refer % 2
-            oi.save()
+            ymd = time.strftime('%Y%m%d', time.localtime())
+            if(Refer.objects.filter(refer=refer, openid=openid, refer_ymd=ymd).exists()):
+                pass
+            else:
+                Refer.objects.create(refer=refer, openid=openid, refer_ymd=ymd)
+                oi = OpenidInfo.objects.get(openid=refer, status=True)
+                oi.refer += 1
+                oi.count += oi.refer % 2
+                oi.save()
         except:
             pass
-    oi, created = OpenidInfo.objects.get_or_create(openid=openid)
+
+    if openid != '' or token != '':
+        oi, created = OpenidInfo.objects.get_or_create(openid=openid, token=token)
+        count = oi.count if openid != '' else oi.tcount
+    else:
+        count = 0
 
     domain = settings.DOMAIN
-    return render(request, '58aydzz/58kdxyx.htm', dict(domain=domain, openid=openid, count=oi.count))
+    return render(request, '58aydzz/58kdxyx.htm', dict(domain=domain, openid=openid, token=token, count=count))
 
 
 @xframe_options_exempt
 def aydzz(request):
     openid = request.GET.get('openid', '')
+    token = request.GET.get('token', '')
 
-    can = True
+    can = False
     count = 0
+
     if openid:
         try:
             oi = OpenidInfo.objects.get(openid=openid, status=True)
             if oi.count:
                 oi.count -= 1
                 oi.save()
-            else:
-                can = False
+                can = True
             count = oi.count
         except:
-            can = False
-    else:
-        can = False
+            pass
+
+    if token:
+        try:
+            oi = OpenidInfo.objects.get(token=token, status=True)
+            if oi.tcount:
+                oi.tcount -= 1
+                oi.save()
+                can = True
+            count = oi.tcount
+        except:
+            pass
 
     domain = settings.DOMAIN
     if can:
-        return render(request, '58aydzz/58aydzz.htm', dict(domain=domain, can=can, openid=openid, count=count))
+        return render(request, '58aydzz/58aydzz.htm', dict(domain=domain, can=can, openid=openid, token=token, count=count))
     else:
-        return redirect(reverse('games_bak:share', args=(0, )) + '?openid=' + openid)
+        return redirect(reverse('games_bak:share', args=(0, )) + '?openid=' + openid + '&token=' + token)
 
 
 @xframe_options_exempt
 def bind_phone(request, cash):
     openid = request.GET.get('openid', '')
+    token = request.GET.get('token', '')
+
     try:
-        phone = PrizeInfo.objects.filter(openid=openid)[0].phone
+        phone = PrizeInfo.objects.filter(openid=openid, token=token)[0].phone
     except:
         phone = ''
+
     domain = settings.DOMAIN
-    return render(request, '58aydzz/bindphone.htm', dict(domain=domain, openid=openid, phone=phone, cash=cash))
+    return render(request, '58aydzz/bindphone.htm', dict(domain=domain, openid=openid, token=token, phone=phone, cash=cash))
 
 
 @xframe_options_exempt
 def get_cash(request, cash):
     openid = request.GET.get('openid', '')
+    token = request.GET.get('token', '')
     phone = request.POST.get('phone', '')
 
     if len(phone) == 11:
         try:
             try:
-                createtime = PrizeInfo.objects.filter(openid=openid, phone=phone)[0].create_at
+                createtime = PrizeInfo.objects.filter(openid=openid, token=token, phone=phone)[0].create_at
                 td = timezone.now() - createtime
                 seconds = int((td.microseconds + (td.seconds + td.days * 24 * 3600) * 10 ** 6) / 10 ** 6)
             except:
@@ -147,7 +171,7 @@ def get_cash(request, cash):
                 try:
                     data = {'phone': phone, 'conpon': c.cash}
                     req = requests.post(settings.CONPON, data)
-                    p = PrizeInfo.objects.create(openid=openid, phone=phone, cash=c.cash, num=cash)
+                    p = PrizeInfo.objects.create(openid=openid, token=token, phone=phone, cash=c.cash, num=cash)
                 except:
                     c.status = True
                     c.save()
@@ -160,7 +184,7 @@ def get_cash(request, cash):
 
     domain = settings.DOMAIN
     try:
-        count = OpenidInfo.objects.get(openid=openid, status=True).count
+        count = OpenidInfo.objects.get(openid=openid, token=token, status=True).count
     except:
         count = 0
     total_count = PrizeInfo.objects.filter(phone=phone, status=True).count()
@@ -172,14 +196,15 @@ def get_cash(request, cash):
         phone = phone[:3] + '****' + phone[-4:]
     except:
         pass
-    return render(request, '58aydzz/success.htm', dict(domain=domain, openid=openid, phone=phone, count=count, cash=cash, total_count=total_count, total_cash=total_cash))
+    return render(request, '58aydzz/success.htm', dict(domain=domain, openid=openid, token=token, phone=phone, count=count, cash=cash, total_count=total_count, total_cash=total_cash))
 
 
 @xframe_options_exempt
 def share(request, cash):
     openid = request.GET.get('openid', '')
+    token = request.GET.get('token', '')
     domain = settings.DOMAIN
-    return render(request, '58aydzz/share.htm', dict(domain=domain, openid=openid, cash=cash))
+    return render(request, '58aydzz/share.htm', dict(domain=domain, openid=openid, token=token, cash=cash))
 
 
 def retry(request):
@@ -203,4 +228,5 @@ def retry(request):
 
 def refresh(request):
     OpenidInfo.objects.filter(count=0).update(count=1)
+    OpenidInfo.objects.filter(tcount=0).update(tcount=1)
     return HttpResponse('hello world')

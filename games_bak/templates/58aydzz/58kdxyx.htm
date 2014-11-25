@@ -15,7 +15,7 @@
                 <div id="wel-box">
                     <div class="logo"><img src="{% static '58aydzz/img/logo.png' %}"></div>
                     <div class="start">
-                        <a href="{% url '58aydzz' %}?openid={{ openid|default:''}}"><img src="{% static '58aydzz/img/letsgo.png' %}"></a>
+                        <a href="{% url '58aydzz' %}?openid={{ openid|default:''}}&token={{ token|default:'' }}"><img src="{% static '58aydzz/img/letsgo.png' %}"></a>
                     </div>
                     <div class="tips"><img src="{% static '58aydzz/img/tips.png' %}"></div>
                     <div class="declare"><img src="{% static '58aydzz/img/declare.png' %}"></div>
