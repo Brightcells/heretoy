@@ -34,7 +34,7 @@
                 {% for h5 in h5games %}
                     <div class="game" onclick="window.open('{% url 'html5games:share' h5.pk %}')">
                         <div id="logo" class="logo"><img src="{{ h5.image }}"></div>
-                        <div id="play" class="play"><a>试玩</a></div>
+                        <div id="play" class="play"><a>进入</a></div>
                         <div id="info" class="info">
                             <div class="name">{{ h5.name }}</div>
                             <div class="num"><img src="{% static 'html5games/img/play.png' %}"></img><label>{{ h5.play }}</label><img src="{% static 'html5games/img/like.png' %}"></img><label>{{ h5.like }}</label><img src="{% static 'html5games/img/unlike.png' %}"></img><label>{{ h5.unlike }}</label></div>
