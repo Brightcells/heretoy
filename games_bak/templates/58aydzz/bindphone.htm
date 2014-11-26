@@ -55,7 +55,7 @@ input:-moz-placeholder { font-size: 14px; color: #ddd; }
         </style>
         <script>
             $(".logo").css("bottom", ($(window).height()-150) + "px");
-            $("#btn").click(function(){ph=$("#ph")[0].value;if(ph==""){alert("请输入手机号码");}else if(ph.length!=11){alert("您输入的手机号码不正确")}else{$("#phForm").submit()}});
+            $("#btn").click(function(){ph=$("#ph")[0].value;if(ph==""){alert("请输入手机号码");}else if((ph.length!=11)&&((/^1/).test(a))){alert("您输入的手机号码不正确")}else{$("#phForm").submit()}});
         </script>
 
         <script src="{% static 'js/ht.min.js' %}"></script>
