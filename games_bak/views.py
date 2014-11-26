@@ -167,7 +167,7 @@ def get_cash(request, cash):
     if 'bindphone' not in request.META.get('HTTP_REFERER', ''):
         return redirect(reverse('58kdxyx') + '?openid=' + openid + '&token=' + token)
 
-    if len(phone) == 11:
+    if len(phone) == 11 and phone.startswith('1'):
         try:
             try:
                 createtime = PrizeInfo.objects.filter(openid=openid, token=token, phone=phone)[0].create_at
