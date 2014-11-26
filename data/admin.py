@@ -30,7 +30,7 @@ class Html5GamesClassifyInfoAdmin(admin.ModelAdmin):
 
 
 class Html5GamesInfoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'md5', 'onshalf', 'screen', 'image', 'descr', 'url', 'play', 'real_play', 'like', 'real_like', 'unlike', 'nail', 'real_nail', 'favorite', 'real_favorite', 'classify1', 'classify2', 'source', 'sole', 'first_publish', 'boutique', 'version', 'commit', 'language', 'operate', 'status', 'developer', 'submit_at', 'audit', 'reject_reason')
+    list_display = ('name', 'md5', 'onshalf', 'screen', 'image', 'descr', 'url', 'share_url', 'play', 'real_play', 'like', 'real_like', 'unlike', 'nail', 'real_nail', 'favorite', 'real_favorite', 'classify1', 'classify2', 'source', 'sole', 'first_publish', 'boutique', 'version', 'commit', 'language', 'operate', 'status', 'developer', 'submit_at', 'audit', 'reject_reason')
     search_fields = ('name', 'md5', 'descr', 'commit')
     list_filter = ('onshalf', 'audit', 'source', 'version', 'language', 'operate', 'classify1', 'classify2', 'developer')
 

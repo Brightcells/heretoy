@@ -96,6 +96,7 @@ class Html5GamesInfo(CreateUpdateMixin):
     image = models.ImageField(_(u'image'), upload_to=upload_path, blank=True, null=True, help_text=u'游戏 Logo')
     descr = models.TextField(_(u'description'), blank=True, null=True, help_text=u'游戏描述')
     url = models.CharField(_(u'url'), max_length=255, blank=True, null=True, help_text=u'游戏链接')
+    share_url = models.CharField(_(u'share_url'), max_length=255, blank=True, null=True, help_text=u'游戏分享链接')
     play = models.IntegerField(_(u'play'), default=0, help_text=u'游戏玩数')
     real_play = models.IntegerField(_(u'real_play'), default=0, help_text=u'真实游戏玩数')
     like = models.IntegerField(_(u'like'), default=0, help_text=u'游戏赞数')
@@ -137,6 +138,7 @@ class Html5GamesInfo(CreateUpdateMixin):
             'image': settings.DOMAIN + self.image.url if self.image else settings.APP_DEFAULT_LOGO,
             'descr': self.descr,
             'url': self.url,
+            'share_url': self.share_url,
             'play': self.play,
             'like': self.like,
             'unlike': self.unlike,
@@ -154,6 +156,7 @@ class Html5GamesInfo(CreateUpdateMixin):
             'image': settings.DOMAIN + self.image.url if self.image else settings.APP_DEFAULT_LOGO,
             'descr': self.descr,
             'url': self.url,
+            'share_url': self.share_url,
             'play': self.play,
             'like': self.like,
             'unlike': self.unlike,
