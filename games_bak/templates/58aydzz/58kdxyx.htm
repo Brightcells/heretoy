@@ -8,6 +8,15 @@
         <meta charset="utf-8">
         <title>「58到家」阿姨大作战</title>
         <script type="text/javascript" src="{% static '58aydzz/js/jquery-1.8.3.min.js' %}"></script>
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?e6fc24c3f133144145c436a7189a6240";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
     </head>
     <body>
         <div id="main">
@@ -17,7 +26,13 @@
                     <div class="start">
                         <a href="{% url '58aydzz' %}?openid={{ openid|default:''}}&token={{ token|default:'' }}"><img src="{% static '58aydzz/img/letsgo.png' %}"></a>
                     </div>
-                    <div class="tips"><img src="{% static '58aydzz/img/tips.png' %}"></div>
+                    <div class="tips">
+                        <div>
+                            <div class="fir">规则说明：</div>
+                            <div class="sec">1.拖动超人阿姨控制飞行方向，60s内超人阿姨消灭的害虫越多，获得的58保洁代金券金额越高！</div>
+                            <div class="thi">2.该活动开放城市 ：北京、上海、广州、深圳、天津、重庆、杭州、成都、武汉、哈尔滨、济南、福州、长沙、西安、合肥。</div>
+                        </div>
+                    </div>
                     <div class="declare"><img src="{% static '58aydzz/img/declare.png' %}"></div>
                     {% if count %}{% else %}<div class="pointer"></div>{% endif %}
                 </div>
@@ -71,15 +86,25 @@ body {
 }
 
 .tips {
-    margin-top: 108px;
-    text-align:center;
+    margin-top: 100px;
+    color: #fff;
+    font-family: STXihei, YaHei, simsun;
+    padding-left: 5%
 }
-.tips>img {
+.tips>div {
     width: 90%;
+}
+.fir {
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+.sec, .thi {
+    font-size: 10px;
+    padding-bottom: 3px;
 }
 
 .start {
-    margin-top: 35px;
+    margin-top: 25px;
     text-align: center;
 }
 .start img {

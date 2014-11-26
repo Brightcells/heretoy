@@ -106,6 +106,9 @@ def aydzz(request):
     openid = request.GET.get('openid', '')
     token = request.GET.get('token', '')
 
+    if '58kdxyx' not in request.META.get('HTTP_REFERER', ''):
+        return redirect(reverse('58kdxyx') + '?openid=' + openid + '&token=' + token)
+
     can = False
     count = 0
 
@@ -143,6 +146,9 @@ def bind_phone(request, cash):
     openid = request.GET.get('openid', '')
     token = request.GET.get('token', '')
 
+    if '58aydzz' not in request.META.get('HTTP_REFERER', ''):
+        return redirect(reverse('58kdxyx') + '?openid=' + openid + '&token=' + token)
+
     try:
         phone = PrizeInfo.objects.filter(openid=openid, token=token)[0].phone
     except:
@@ -157,6 +163,9 @@ def get_cash(request, cash):
     openid = request.GET.get('openid', '')
     token = request.GET.get('token', '')
     phone = request.POST.get('phone', '')
+
+    if 'bindphone' not in request.META.get('HTTP_REFERER', ''):
+        return redirect(reverse('58kdxyx') + '?openid=' + openid + '&token=' + token)
 
     if len(phone) == 11:
         try:

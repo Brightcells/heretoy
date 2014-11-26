@@ -8,6 +8,15 @@
         <meta charset="utf-8">
         <title>「58到家」阿姨大作战</title>
         <script type="text/javascript" src="{% static '58aydzz/js/jquery-1.8.3.min.js' %}"></script>
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?e6fc24c3f133144145c436a7189a6240";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
     </head>
     <body>
         <div id="main">
@@ -175,7 +184,7 @@ function(){
     var c=function(g){this.type=g;this.hp;this.height;this.width;this.maxSpeed;this.dieTime;this.status=true;switch(g){case 1:this.hp=2;this.score=1E3;this.modelimg="plain1.png";this.maxSpeed=5;this.dieTime=100;break;case 2:this.hp=6;this.score=2E3;this.modelimg="plain2.png";this.maxSpeed=3;this.dieTime=100;break;case 3:this.hp=12;this.score=5E3;this.modelimg="plain3.png";this.maxSpeed=1.5;this.dieTime=150}this.model=j(this.modelimg);this.width=n/480*this.model.width;this.height=this.width/this.model.width*this.model.height;this.x=Math.random()*(n-10-this.width);this.x=this.x<10?10:this.x;this.y=-this.height;g=a.time>10?10:a.time;this.speed=Math.random()*(g-1)+2;this.speed=this.speed<1.5?Math.random()*0.5+1.5:this.speed;this.speed=this.speed>this.maxSpeed?this.maxSpeed:this.speed;this.die=function(){var g=this.type,b=this.x,c=this.y,e=this.width,d=this.height;a.plainsDies.push(new function(a){this.animationTime=a;this.call=function(){if(!(this.animationTime<=0)){var f=j("plain"+g+"_die"+(parseInt((a-this.animationTime)/25)+1)+".png");i.drawImage(f,b,c,e,d);this.animationTime--}}}(this.dieTime))};this.byAttack=function(){this.hp-=hp;if(this.hp<=0){a.score=a.score+this.score;this.status=false;this.die()}}},
     w=function(g){this.type=g;this.hp;this.height;this.width;this.maxSpeed;this.dieTime;this.status=true;switch(g){case 1:this.hp=1.5;this.score=1E3;this.modelimg="weapon1.png";this.maxSpeed=5;this.dieTime=100;break;case 2:this.hp=2;this.score=2E3;this.modelimg="weapon2.png";this.maxSpeed=3;this.dieTime=100}this.model=j(this.modelimg);this.width=n/480*this.model.width;this.height=this.width/this.model.width*this.model.height;this.x=Math.random()*(n-10-this.width);this.x=this.x<10?10:this.x;this.y=-this.height;g=a.time>10?10:a.time;this.speed=Math.random()*(g-1)+2;this.speed=this.speed<1.5?Math.random()*0.5+1.5:this.speed;this.speed=this.speed>this.maxSpeed?this.maxSpeed:this.speed;this.die=function(){a.weapons.splice(c,1);wp="weapon"+this.type+this.type+".png";hp=this.hp;tl=10;a.wp = setInterval(function(){if(tl>0){tl-=1;}else{wp="cartridge.png",hp=1,clearInterval(a.wp);}},1000);};},
     o={show:function(a){$("#modal").find(".content").html(a);
-var cash=Math.floor(a/12500)*10,rank=Math.round(a*a/125000000)*10;
+var cash=Math.floor(a/10000)*10,rank=Math.round(a*a/125000000)*10;
 cash=cash>60?60:cash;
 change('desc', "我已经领取到58到家" + cash +  "元保洁代金券！你也来参加吧！", true);
 rank=rank>=100?99:rank;
