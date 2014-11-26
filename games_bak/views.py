@@ -219,6 +219,14 @@ def share(request, cash):
     return render(request, '58aydzz/share.htm', dict(domain=domain, openid=openid, token=token, cash=cash))
 
 
+@xframe_options_exempt
+def offline(request):
+    openid = request.GET.get('openid', '')
+    token = request.GET.get('token', '')
+    domain = settings.DOMAIN
+    return render(request, '58aydzz/offline.htm', dict(domain=domain, openid=openid, token=token))
+
+
 def retry(request):
     openid = request.GET.get('openid', '')
     status = True
