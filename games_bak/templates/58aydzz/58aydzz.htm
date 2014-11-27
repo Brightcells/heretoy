@@ -186,11 +186,11 @@ function(){
     o={show:function(a){$("#modal").find(".content").html(a);
 var tmp=a/1000,cash=Math.floor(tmp/10)*10,rank=Math.floor(tmp*1.6);
 cash=cash>60?60:cash;
-change('desc', "我已经领取到58到家" + cash +  "元保洁代金券！你也来参加吧！", true);
 rank=rank>99?99:rank;
 $("#modal").find(".cash").html(cash);
 $("#modal").find(".rank").html(rank);
 if(cash){
+    change('desc', "我已经领取到58到家" + cash +  "元保洁代金券！你也来参加吧！", true);
     $("#getcash").removeClass("hide");
     $("#getmore").addClass("hide");
     $("#getchance").addClass("hide");
@@ -288,7 +288,7 @@ $("#pause").click(function() {
             init({
                 "imgUrl" : "{{ domain }}/static/58aydzz/img/icon.jpg",
                 "link" : "http://t.jzt.58.com/weixingamebaggame/redirectUrl?url=" + encodeURIComponent("{{ domain }}/cogames/58kdxyx/") + "&refer={{ openid }}",
-                "desc" : "我已经领取到58到家60元保洁代金券！你也来参加吧！",
+                "desc" : "和58超人阿姨一起来消灭害虫，200万优惠券等你来拿！",
                 "title" : "58阿姨大作战"
             }, true);
         </script>
