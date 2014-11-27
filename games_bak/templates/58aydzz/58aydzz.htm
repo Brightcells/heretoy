@@ -240,7 +240,7 @@ a.prestart=function(){
             dataType: "json",
             success: function(data){
                 cnum = data.count;
-                if(cnum>0) {cnum-=1;a.start();}else{$("#getchance").removeClass("hide");}
+                if(cnum>0) {cnum-=1;$(".cnum")[0].innerHTML=cnum-1;a.start();}else{$("#getchance").removeClass("hide");}
             }
         });
 };
@@ -287,7 +287,7 @@ $("#pause").click(function() {
             init({
                 "imgUrl" : "{{ domain }}/static/58aydzz/img/icon.jpg",
                 "link" : "http://t.jzt.58.com/weixingamebaggame/redirectUrl?url=" + encodeURIComponent("{{ domain }}/cogames/58kdxyx/") + "&refer={{ openid }}",
-                "desc" : "和58超人阿姨一起来消灭害虫，200万优惠券等你来拿！",
+                "desc" : "和58到家超人阿姨一起来消灭害虫，200万优惠券等你来拿！",
                 "title" : "58阿姨大作战"
             }, true);
         </script>
