@@ -246,6 +246,30 @@ def retry(request):
     return HttpResponse(json.dumps(dict(status=status, errmsg='')))
 
 
+def count(request):
+    openid = request.GET.get('openid', '')
+    token = request.GET.get('token', '')
+
+    count = 0
+
+    if token:
+        try:
+            oi = OpenidInfo.objects.get(token=token, status=True)
+            count = oi.tcount
+        except:
+            pass
+
+    if openid:
+        try:
+            oi = OpenidInfo.objects.get(openid=openid, status=True)
+            count = oi.count
+        except:
+            pass
+
+    domain = settings.DOMAIN
+    return HttpResponse(json.dumps(dict(count=count)))
+
+
 def refresh(request):
     OpenidInfo.objects.filter(count=0).update(count=1)
     OpenidInfo.objects.filter(tcount=0).update(tcount=1)

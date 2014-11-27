@@ -8,5 +8,6 @@ urlpatterns = patterns('games_bak.views',
     url(r'^share/(?P<cash>\d+)/$', 'share', name='share'),
     url(r'^offline/$', 'offline', name='offline'),
     url(r'^retry/$', 'retry', name='retry'),
+    url(r'^count/$', 'count', name='count'),
     url(r'^refresh/$', 'refresh', name='refresh'),
 )
