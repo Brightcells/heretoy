@@ -179,16 +179,6 @@ div#tc>img {
         </style>
         <script>
 var wp="cartridge.png",hp=1,tl=0,cnum = parseInt($(".cnum")[0].innerHTML), openid="{{ openid|default:'' }}";
-        $.ajax({
-            type: "get",
-            url: "{% url 'games_bak:count' %}?openid={{ openid }}&token={{ token }}",
-            data: {},
-            dataType: "json",
-            success: function(data){
-                cnum = data.count;
-                console.log("success");
-            }
-        });
 (function(){function j(c){if("undefined"!=typeof d[c])return d[c];d[c]=new Image;d[c].src=c;return d[c]}function r(){m("cartridge.png die1.png die2.png me.png plain1.png plain2.png plain3.png plain1_die1.png plain1_die2.png plain1_die3.png plain1_die4.png plain2_die1.png plain2_die2.png plain2_die3.png plain2_die4.png plain3_die1.png plain3_die2.png plain3_die3.png plain3_die4.png plain3_die5.png plain3_die6.png me_die1.png me_die2.png me_die3.png me_die4.png me_die5.png weapon1.png weapon2.png weapon11.png weapon22.png".split(" "),
 function(){
     var c=function(g){this.type=g;this.hp;this.height;this.width;this.maxSpeed;this.dieTime;this.status=true;switch(g){case 1:this.hp=2;this.score=1E3;this.modelimg="plain1.png";this.maxSpeed=5;this.dieTime=100;break;case 2:this.hp=6;this.score=2E3;this.modelimg="plain2.png";this.maxSpeed=3;this.dieTime=100;break;case 3:this.hp=12;this.score=5E3;this.modelimg="plain3.png";this.maxSpeed=1.5;this.dieTime=150}this.model=j(this.modelimg);this.width=n/480*this.model.width;this.height=this.width/this.model.width*this.model.height;this.x=Math.random()*(n-10-this.width);this.x=this.x<10?10:this.x;this.y=-this.height;g=a.time>10?10:a.time;this.speed=Math.random()*(g-1)+2;this.speed=this.speed<1.5?Math.random()*0.5+1.5:this.speed;this.speed=this.speed>this.maxSpeed?this.maxSpeed:this.speed;this.die=function(){var g=this.type,b=this.x,c=this.y,e=this.width,d=this.height;a.plainsDies.push(new function(a){this.animationTime=a;this.call=function(){if(!(this.animationTime<=0)){var f=j("plain"+g+"_die"+(parseInt((a-this.animationTime)/25)+1)+".png");i.drawImage(f,b,c,e,d);this.animationTime--}}}(this.dieTime))};this.byAttack=function(){this.hp-=hp;if(this.hp<=0){a.score=a.score+this.score;this.status=false;this.die()}}},
@@ -241,23 +231,22 @@ a.plainsDies=[];a.plainsDying=function(){a.plainsDies.map(function(b,c){b.animat
 a.over=function(){$(e).removeClass("playing");clearInterval(a.clock);clearInterval(a.countdown);o.show(a.score)};
 
 a.clear=function(){a.me.x=($(e).width()-a.me.width)/2;a.me.y=$(e).height()-a.me.height;a.plains=[];a.weapons=[];a.plainsDies=[];a.plainsNum=0;a.weaponsNum=0;a.time=0;a.bgScrollTime=0;a.score=0;a.me.status=true;wp="cartridge.png";hp=1};a.start=function(){$(e).addClass("playing");$(e).on("mousemove",function(a){var c=a.clientX-$(this).offset().left;b.move(c,a.clientY)});e.addEventListener("touchmove",function(a){a.preventDefault();a=a.targetTouches[0];b.move(a.pageX,
-a.pageY)});o.hide();a.clear();a.pause=false;a.clock=setInterval(function(){a.refresh()},7);a.left=60;a.countdown=setInterval(function(){if(a.left>0){a.left-=1;$("#left").html(a.left);}else{a.over();}},1000);};a.start();
-
-$("#getmore").on("click",function(){
-    if(cnum>0){
-        cnum-=1;
+a.pageY)});o.hide();a.clear();a.pause=false;a.clock=setInterval(function(){a.refresh()},7);a.left=60;a.countdown=setInterval(function(){if(a.left>0){a.left-=1;$("#left").html(a.left);}else{a.over();}},1000);};
+a.prestart=function(){
         $.ajax({
             type: "get",
-            url: "{% url 'games_bak:retry' %}?openid={{ openid }}",
+            url: "{% url 'games_bak:retry' %}?openid={{ openid }}&token={{ token }}",
             data: {},
             dataType: "json",
             success: function(data){
-                console.log("success");
-                a.start();
+                cnum = data.count;
+                if(cnum>0) {cnum-=1;a.start();}else{$("#getchance").removeClass("hide");}
             }
         });
-    }
-});
+};
+a.prestart();
+
+$("#getmore").on("click",function(){a.prestart();});
 $("#getchance").on("click",function(){$("#modal2").removeClass("hide");});
 
 $("#pause").click(function() {

@@ -98,7 +98,7 @@ def kdxyx(request):
         count = 0
 
     domain = settings.DOMAIN
-    return render(request, '58aydzz/58kdxyx.htm', dict(domain=domain, openid=openid, token=token, count=count))
+    return render(request, '58aydzz/58kdxyx.htm', dict(domain=domain, openid=openid, token=token, count=max(count, 0)))
 
 
 @xframe_options_exempt
@@ -116,10 +116,8 @@ def aydzz(request):
         try:
             oi = OpenidInfo.objects.get(openid=openid, status=True)
             if oi.count:
-                oi.count -= 1
-                oi.save()
                 can = True
-            count = oi.count
+            count = oi.count - 1
         except:
             pass
 
@@ -127,16 +125,14 @@ def aydzz(request):
         try:
             oi = OpenidInfo.objects.get(token=token, status=True)
             if oi.tcount:
-                oi.tcount -= 1
-                oi.save()
                 can = True
-            count = oi.tcount
+            count = oi.tcount - 1
         except:
             pass
 
     domain = settings.DOMAIN
     if can:
-        return render(request, '58aydzz/58aydzz.htm', dict(domain=domain, can=can, openid=openid, token=token, count=count))
+        return render(request, '58aydzz/58aydzz.htm', dict(domain=domain, can=can, openid=openid, token=token, count=max(count, 0)))
     else:
         return redirect(reverse('games_bak:share', args=(0, )) + '?openid=' + openid + '&token=' + token)
 
@@ -229,21 +225,26 @@ def offline(request):
 
 def retry(request):
     openid = request.GET.get('openid', '')
-    status = True
+    token = request.GET.get('token', '')
+
     if openid:
         try:
             oi = OpenidInfo.objects.get(openid=openid, status=True)
-            if oi.count:
-                oi.count -= 1
-                oi.save()
-            else:
-                status = False
+            oi.count -= 1
+            oi.save()
             count = oi.count
         except:
-            status = False
-    else:
-        status = False
-    return HttpResponse(json.dumps(dict(status=status, errmsg='')))
+            pass
+
+    if token:
+        try:
+            oi = OpenidInfo.objects.get(token=token, status=True)
+            oi.count -= 1
+            oi.save()
+            count = oi.tcount
+        except:
+            pass
+    return HttpResponse(json.dumps(dict(count=count + 1)))
 
 
 def count(request):
