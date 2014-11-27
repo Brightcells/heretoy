@@ -185,7 +185,7 @@ function(){
     w=function(g){this.type=g;this.hp;this.height;this.width;this.maxSpeed;this.dieTime;this.status=true;switch(g){case 1:this.hp=1.5;this.score=1E3;this.modelimg="weapon1.png";this.maxSpeed=5;this.dieTime=100;break;case 2:this.hp=2;this.score=2E3;this.modelimg="weapon2.png";this.maxSpeed=3;this.dieTime=100}this.model=j(this.modelimg);this.width=n/480*this.model.width;this.height=this.width/this.model.width*this.model.height;this.x=Math.random()*(n-10-this.width);this.x=this.x<10?10:this.x;this.y=-this.height;g=a.time>10?10:a.time;this.speed=Math.random()*(g-1)+2;this.speed=this.speed<1.5?Math.random()*0.5+1.5:this.speed;this.speed=this.speed>this.maxSpeed?this.maxSpeed:this.speed;this.die=function(){a.weapons.splice(c,1);wp="weapon"+this.type+this.type+".png";hp=this.hp;tl=10;a.wp = setInterval(function(){if(tl>0){tl-=1;}else{wp="cartridge.png",hp=1,clearInterval(a.wp);}},1000);};},
     o={show:function(a){$("#modal").find(".content").html(a);
 var tmp=a/1000,cash=Math.floor(a/9200)*10,rank=Math.floor(tmp*1.6);
-cash=cash>60?60:cash;
+cash=cash>30?30:cash;
 rank=rank>99?99:rank;
 $("#modal").find(".cash").html(cash);
 $("#modal").find(".rank").html(rank);
