@@ -77,7 +77,7 @@ def kdxyx(request):
     if openid != '' and refer != '' and openid != refer:
         try:
             ymd = time.strftime('%Y%m%d', time.localtime())
-            if(ReferInfo.objects.filter(refer=refer, openid=openid, refer_ymd=ymd).exists()):
+            if(ReferInfo.objects.filter(openid=openid, refer_ymd=ymd).exists()):
                 pass
             else:
                 ReferInfo.objects.create(refer=refer, openid=openid, refer_ymd=ymd)
