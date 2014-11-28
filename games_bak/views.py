@@ -158,7 +158,7 @@ def bind_phone(request, cash):
 def get_cash(request, cash):
     openid = request.GET.get('openid', '')
     token = request.GET.get('token', '')
-    phone = request.POST.get('phone', '')
+    phone = request.GET.get('phone', '')
 
     if 'bindphone' not in request.META.get('HTTP_REFERER', ''):
         return redirect(reverse('58kdxyx') + '?openid=' + openid + '&token=' + token)
