@@ -90,7 +90,8 @@ def kdxyx(request):
 
     if openid != '' or token != '':
         try:
-            oi, created = OpenidInfo.objects.get_or_create(openid=openid, token=token)
+            tmp_openid = 'kdxyx_' + token if openid == '' else openid
+            oi, created = OpenidInfo.objects.get_or_create(openid=tmp_openid, token=token)
             count = oi.count if openid != '' else oi.tcount
         except:
             count = 0
@@ -192,7 +193,8 @@ def get_cash(request, cash):
 
     domain = settings.DOMAIN
     try:
-        count = OpenidInfo.objects.get(openid=openid, token=token, status=True).count
+        tmp_openid = 'kdxyx_' + token if openid == '' else openid
+        count = OpenidInfo.objects.get(openid=tmp_openid, token=token, status=True).count
     except:
         count = 0
     total_count = PrizeInfo.objects.filter(phone=phone, status=True).count()
