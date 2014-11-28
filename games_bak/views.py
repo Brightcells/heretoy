@@ -239,7 +239,7 @@ def retry(request):
     if token:
         try:
             oi = OpenidInfo.objects.get(token=token, status=True)
-            oi.count -= 1
+            oi.tcount -= 1
             oi.save()
             count = oi.tcount
         except:
