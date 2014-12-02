@@ -36,7 +36,7 @@ def get_path():
         month=today.month
     )
     if not os.path.exists(dirpath):
-        os.mkdirs(dirpath)
+        os.makedirs(dirpath)
     return '{dir_path}/{timestamp}.png'.format(
         dir_path=dirpath,
         timestamp=timestamp
