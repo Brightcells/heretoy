@@ -3,6 +3,7 @@
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -84,10 +85,10 @@ def games(request):
 
         if _type == 0:
             h5games = allh5games.order_by('-play', '-like', 'unlike')[start:end]
-            lunbotu = alllunbotus.filter(lbt_classify='hot').order_by('-modify_at')
+            lunbotu = alllunbotus.filter(Q(lbt_classify='hot') | Q(lbt_classify='both')).order_by('-modify_at')
         else:
             h5games = allh5games.order_by('-create_at')[start:end]
-            lunbotu = alllunbotus.filter(lbt_classify='new').order_by('-modify_at')
+            lunbotu = alllunbotus.filter(Q(lbt_classify='new') | Q(lbt_classify='both')).order_by('-modify_at')
 
         h5games = [get_game_info(token, h5game) for h5game in h5games]
         recommend = [deal_with_sort(lbt.data, token) for lbt in lunbotu]

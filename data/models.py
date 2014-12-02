@@ -56,6 +56,7 @@ SCREEN = (
 LUNBOTU_CLASSIFY = (
     ('new', u'最新'),
     ('hot', u'最热'),
+    ('both', u'最热&最新'),
 )
 
 
