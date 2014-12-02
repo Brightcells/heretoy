@@ -31,9 +31,14 @@ def change_dict_2_utf8(obj):
 def get_path():
     today = datetime.datetime.today()
     timestamp = str(time.time())
-    return 'heretoy/image/{year}{month}/{timestamp}.png'.format(
+    dirpath = 'heretoy/image/{year}{month}'.format(
         year=today.year,
-        month=today.month,
+        month=today.month
+    )
+    if not os.path.exists(dirpath):
+        os.mkdirs(dirpath)
+    return '{dir_path}/{timestamp}.png'.format(
+        dir_path=dirpath,
         timestamp=timestamp
     )
 
