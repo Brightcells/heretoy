@@ -25,8 +25,10 @@ urlpatterns += patterns('games_bak.views',
     url(r'^JumpingThief/', 'Jumping', name='Jumping'),
     url(r'^yzdmx/', 'yzdmx', name='yzdmx'),
 
-    url(r'^cogames/58kdxyx/', 'kdxyx', name='58kdxyx'),
-    url(r'^cogames/58aydzz/', 'aydzz', name='58aydzz'),
+    # url(r'^cogames/58kdxyx/', 'kdxyx', name='58kdxyx'),
+    # url(r'^cogames/58aydzz/', 'aydzz', name='58aydzz'),
+    url(r'^cogames/58kdxyx/', 'offline', name='58kdxyx'),
+    url(r'^cogames/58aydzz/', 'offline', name='58aydzz'),
 )
 
 urlpatterns += patterns('',
