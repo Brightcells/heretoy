@@ -179,8 +179,8 @@ def get_cash(request, cash):
                 c.save()
                 try:
                     data = {'phone': phone, 'conpon': c.cash}
-                    req = requests.post(settings.CONPON, data)
-                    p = PrizeInfo.objects.create(openid=openid, token=token, phone=phone, cash=c.cash, num=cash)
+                    # req = requests.post(settings.CONPON, data)
+                    # p = PrizeInfo.objects.create(openid=openid, token=token, phone=phone, cash=c.cash, num=cash)
                 except:
                     c.status = True
                     c.save()

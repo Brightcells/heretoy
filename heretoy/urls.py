@@ -29,6 +29,8 @@ urlpatterns += patterns('games_bak.views',
     # url(r'^cogames/58aydzz/', 'aydzz', name='58aydzz'),
     url(r'^cogames/58kdxyx/', 'offline', name='58kdxyx'),
     url(r'^cogames/58aydzz/', 'offline', name='58aydzz'),
+    url(r'^cogames/58kdxyx_bak/', 'kdxyx', name='58kdxyx'),
+    url(r'^cogames/58aydzz_bak/', 'aydzz', name='58aydzz'),
 )
 
 urlpatterns += patterns('',
